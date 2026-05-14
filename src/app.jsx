@@ -5,43 +5,43 @@ const LanguageContext = React.createContext();
 
 const App = () => {
   const [lang, setLang] = React.useState('uz');
-  
+
   const t = (key) => {
     return window.dict[lang][key] || key;
   };
 
   useReveal();
   // Smooth-scroll for anchor links
-  React.useEffect(()=>{
-    const onClick = (e)=>{
+  React.useEffect(() => {
+    const onClick = (e) => {
       const a = e.target.closest && e.target.closest('a[href^="#"]');
       if (!a) return;
       const id = a.getAttribute('href').slice(1);
       if (!id) return;
       const el = document.getElementById(id);
-      if (el){ e.preventDefault(); window.scrollTo({ top: el.offsetTop - 20, behavior:'smooth' }); }
+      if (el) { e.preventDefault(); window.scrollTo({ top: el.offsetTop - 20, behavior: 'smooth' }); }
     };
     document.addEventListener('click', onClick);
-    return ()=>document.removeEventListener('click', onClick);
-  },[]);
+    return () => document.removeEventListener('click', onClick);
+  }, []);
 
   const value = { lang, setLang, t };
 
   return (
     <LanguageContext.Provider value={value}>
-      <Cursor/>
-      <Nav/>
+      <Cursor />
+      <Nav />
       <main>
-        <Hero/>
-        <About/>
-        <Stats/>
-        <Skills/>
-        <Work/>
-        <Clients/>
-        <Testimonials/>
-        <Pricing/>
-        <Contact/>
-        <Footer/>
+        <Hero />
+        <About />
+        <Stats />
+        <Skills />
+        <Work />
+        <Clients />
+        <Testimonials />
+        <Pricing />
+        <Contact />
+        <Footer />
       </main>
     </LanguageContext.Provider>
   );
@@ -50,4 +50,4 @@ const App = () => {
 // Export context for components
 window.LanguageContext = LanguageContext;
 
-ReactDOM.createRoot(document.getElementById('root')).render(<App/>);
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
