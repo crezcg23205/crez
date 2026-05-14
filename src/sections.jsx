@@ -771,7 +771,7 @@ const Pricing = () => {
         />
         <PricingCard
           tier={t('pricing_promo_tier')}
-          price="110"
+          price="200"
           unit="rolik"
           tagline={t('pricing_promo_tagline')}
           features={[
