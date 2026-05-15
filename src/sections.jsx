@@ -139,7 +139,7 @@ const Nav = () => {
           </div>
         </div>
         <div className="hidden md:flex items-center gap-2 font-mono text-[11px] ink-dim">
-          <span className="w-2 h-2 rounded-full bg-[#3CFF7E] pulse-dot" />
+          <span className="w-2 h-2 rounded-full bg-[#FF3B3B] pulse-dot" />
           <span className="uppercase tracking-[.18em]">{t('nav_available')}</span>
         </div>
       </div>
@@ -190,7 +190,7 @@ const Hero = () => {
       {/* Available pill */}
       <div className="reveal">
         <div className="inline-flex items-center gap-2 border border-line rounded-full px-4 py-2 font-mono text-[11px] uppercase tracking-[.18em] mb-8 backdrop-blur">
-          <span className="w-2 h-2 rounded-full bg-[#3CFF7E] pulse-dot" />
+          <span className="w-2 h-2 rounded-full bg-[#FF3B3B] pulse-dot" />
           {t('hero_status')}
         </div>
       </div>
