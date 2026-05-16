@@ -293,7 +293,7 @@ const Stats = () => {
       <div className="grid md:grid-cols-3 gap-12 md:gap-6">
         <Stat n={2} suffix="+" label={t('stats_exp')} delay={0} />
         <Stat n={120} suffix="+" label={t('stats_projects')} delay={150} />
-        <Stat n={40} suffix="+" label={t('stats_clients')} delay={300} />
+        <Stat n={90} suffix="+" label={t('stats_clients')} delay={300} />
       </div>
     </section>
   );
