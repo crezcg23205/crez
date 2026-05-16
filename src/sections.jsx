@@ -677,7 +677,7 @@ const PricingCard = ({ tier, price, tagline, features, accent: isAccent, idx, un
         </div>
       ))}
     </div>
-    <a href="https://t.me/crez_vd" target="_blank" rel="noopener noreferrer"
+    <a href="https://t.me/crez_motion" target="_blank" rel="noopener noreferrer"
       className={`cta-btn group inline-flex items-center justify-between w-full mt-10 font-mono text-[11px] uppercase tracking-[.18em] rounded-full px-6 py-4 transition ${isAccent ? 'bg-accent text-black hover:bg-transparent hover:text-[var(--accent)] border border-accent' : 'border border-[var(--ink)] hover:bg-[var(--ink)] hover:text-black'
         }`}>
       <span>{tier} {ctaLabel}</span>
@@ -845,7 +845,7 @@ const Contact = () => {
           <div className="space-y-5">
             <MagneticLink href="mailto:salyamovcrez@gmail.com">salyamovcrez@gmail.com</MagneticLink><br />
             <MagneticLink href="https://www.instagram.com/crez_motion/">crez_motion — Instagram</MagneticLink><br />
-            <MagneticLink href="https://t.me/crez_vd">@crez_vd — Telegram</MagneticLink>
+            <MagneticLink href="https://t.me/crez_motion">@crez_motion — Telegram</MagneticLink>
           </div>
         </div>
         <div className="md:col-span-5 reveal reveal-delay-2">
@@ -855,7 +855,7 @@ const Contact = () => {
             <div>UTC +05:00</div>
             <div className="ink">{t('contact_services')}</div>
           </div>
-          <a href="https://t.me/crez_vd" className="cta-btn group inline-flex items-center gap-3 mt-10 font-mono text-[11px] uppercase tracking-[.18em] border border-accent rounded-full px-6 py-4 bg-accent text-black hover:bg-transparent hover:text-[var(--accent)] transition">
+          <a href="https://t.me/crez_motion" className="cta-btn group inline-flex items-center gap-3 mt-10 font-mono text-[11px] uppercase tracking-[.18em] border border-accent rounded-full px-6 py-4 bg-accent text-black hover:bg-transparent hover:text-[var(--accent)] transition">
             {t('contact_cta')} <span className="cta-arrow inline-block">↗</span>
           </a>
         </div>
