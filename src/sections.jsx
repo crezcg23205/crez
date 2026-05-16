@@ -195,13 +195,9 @@ const Hero = () => {
         </div>
       </div>
 
-      <h1 className="reveal reveal-delay-1 flex justify-start">
-        <img 
-          src="logo.jpg" 
-          alt="CREZ" 
-          className="w-full max-w-[1000px] h-auto invert brightness-150 grayscale select-none pointer-events-none" 
-          style={{ marginLeft: '-2vw' }}
-        />
+      {/* Massive wordmark */}
+      <h1 className="font-display leading-[.82] reveal reveal-delay-1" style={{ fontSize: 'clamp(120px, 26vw, 480px)' }}>
+        <span className="glitch" data-text="CREZ">CREZ</span>
       </h1>
 
       {/* Tagline */}
