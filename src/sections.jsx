@@ -844,7 +844,7 @@ const Contact = () => {
           <div className="eyebrow mb-6">{t('contact_channels')}</div>
           <div className="space-y-5">
             <MagneticLink href="mailto:salyamovcrez@gmail.com">salyamovcrez@gmail.com</MagneticLink><br />
-            <MagneticLink href="https://instagram.com/salyamov_vd">@salyamov_vd — Instagram</MagneticLink><br />
+            <MagneticLink href="https://www.instagram.com/crez_motion/">crez_motion — Instagram</MagneticLink><br />
             <MagneticLink href="https://t.me/crez_vd">@crez_vd — Telegram</MagneticLink>
           </div>
         </div>
