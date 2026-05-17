@@ -718,7 +718,7 @@ const Pricing = () => {
       <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
         <PricingCard
           tier={t('pricing_standard_tier')}
-          price="30"
+          price="35"
           tagline={t('pricing_standard_tagline')}
           features={[
             t('pricing_standard_f1'),
@@ -735,7 +735,7 @@ const Pricing = () => {
         />
         <PricingCard
           tier={t('pricing_premium_tier')}
-          price="50"
+          price="55"
           tagline={t('pricing_premium_tagline')}
           accent
           features={[
