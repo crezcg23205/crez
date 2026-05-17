@@ -786,7 +786,7 @@ const Pricing = () => {
           ctaLabel={t('pricing_cta')}
           note={t('pricing_note')}
           exampleLabel={t('pricing_example')}
-          onExampleClick={() => setModalVideo('AQO8jSCn4cGbejgB6EXSnY3SNBQaExPjyQbyaKmwd9jTsOcHXkk0wJL6yZFmmu8.mp4')}
+          onExampleClick={() => setModalVideo('promo200.mp4')}
         />
       </div>
 
