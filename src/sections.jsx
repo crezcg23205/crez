@@ -731,7 +731,7 @@ const Pricing = () => {
           ctaLabel={t('pricing_cta')}
           note={t('pricing_note')}
           exampleLabel={t('pricing_example')}
-          onExampleClick={() => setModalVideo('reskam.mp4')}
+          onExampleClick={() => setModalVideo('standart.mp4')}
         />
         <PricingCard
           tier={t('pricing_premium_tier')}
