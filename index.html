@@ -28,7 +28,8 @@
       --ink: #F2F1EA;
       --ink-dim: #8A8A82;
       --line: #1C1C1A;
-      --accent: #C6FF00;
+      --accent: #FF5A1F;
+      --accent-gradient: linear-gradient(135deg, #FF3D00, #FFA000);
     }
 
     * {
@@ -70,10 +71,14 @@
 
     .accent {
       color: var(--accent);
+      background: var(--accent-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      display: inline-block;
     }
 
     .bg-accent {
-      background: var(--accent);
+      background: var(--accent-gradient);
     }
 
     .border-line {

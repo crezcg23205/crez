@@ -7,18 +7,18 @@ const Reel3D = () => (
     <svg viewBox="0 0 400 300" className="absolute inset-0 w-full h-full">
       <defs>
         <linearGradient id="r3d" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0%" stopColor="#C6FF00"/>
-          <stop offset="100%" stopColor="#3a4a00"/>
+          <stop offset="0%" stopColor="#FF5A1F"/>
+          <stop offset="100%" stopColor="#5c1a00"/>
         </linearGradient>
       </defs>
       <g style={{transformOrigin:'200px 150px', animation:'spin-slow 18s linear infinite'}}>
         <polygon points="200,80 280,140 200,200 120,140" fill="url(#r3d)" opacity=".9"/>
-        <polygon points="200,80 280,140 200,200 120,140" fill="none" stroke="#C6FF00" strokeWidth="1"/>
+        <polygon points="200,80 280,140 200,200 120,140" fill="none" stroke="#FF5A1F" strokeWidth="1"/>
         <line x1="200" y1="80" x2="200" y2="200" stroke="#0A0A0A" strokeWidth="1"/>
         <line x1="120" y1="140" x2="280" y2="140" stroke="#0A0A0A" strokeWidth="1"/>
       </g>
       <g style={{transformOrigin:'200px 150px', animation:'spin-slow 28s linear infinite reverse'}}>
-        <circle cx="200" cy="150" r="110" fill="none" stroke="#C6FF00" strokeWidth=".5" strokeDasharray="3 6" opacity=".5"/>
+        <circle cx="200" cy="150" r="110" fill="none" stroke="#FF5A1F" strokeWidth=".5" strokeDasharray="3 6" opacity=".5"/>
         <circle cx="200" cy="150" r="130" fill="none" stroke="#F2F1EA" strokeWidth=".5" strokeDasharray="1 8" opacity=".3"/>
       </g>
     </svg>
@@ -48,7 +48,7 @@ const ReelOrbit = () => (
     <div className="absolute inset-0" style={{background:'radial-gradient(circle at 50% 60%, #2a1230 0%, #0A0A0A 70%)'}}></div>
     <div className="absolute inset-0 flex items-center justify-center">
       <div className="relative" style={{width:0, height:0}}>
-        <div className="absolute rounded-full bg-accent" style={{width:18, height:18, left:-9, top:-9, boxShadow:'0 0 30px #C6FF00'}}/>
+        <div className="absolute rounded-full bg-accent" style={{width:18, height:18, left:-9, top:-9, boxShadow:'0 0 30px #FF5A1F'}}/>
         <div className="absolute rounded-full bg-white" style={{width:8, height:8, left:-4, top:-4, animation:'orbit 4s linear infinite'}}/>
         <div className="absolute rounded-full" style={{width:6, height:6, left:-3, top:-3, background:'#FF4500', animation:'orbit2 7s linear infinite'}}/>
         <div className="absolute rounded-full bg-white/60" style={{width:4, height:4, left:-2, top:-2, animation:'orbit 9s linear infinite reverse'}}/>
@@ -63,7 +63,7 @@ const ReelGrid = () => (
     <svg viewBox="0 0 400 300" className="absolute inset-0 w-full h-full" preserveAspectRatio="none">
       <defs>
         <pattern id="gp" width="20" height="20" patternUnits="userSpaceOnUse">
-          <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#C6FF00" strokeWidth=".4" opacity=".4"/>
+          <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#FF5A1F" strokeWidth=".4" opacity=".4"/>
         </pattern>
       </defs>
       <g style={{transformOrigin:'center', transform:'perspective(400px) rotateX(55deg) translateZ(0)'}}>
@@ -71,7 +71,7 @@ const ReelGrid = () => (
       </g>
     </svg>
     <div className="absolute inset-0 flex items-center justify-center">
-      <div className="font-display text-7xl accent" style={{textShadow:'0 0 30px #C6FF00, 0 0 60px #C6FF00', animation:'flicker 2.5s infinite'}}>3D</div>
+      <div className="font-display text-7xl accent" style={{textShadow:'0 0 30px #FF5A1F, 0 0 60px #FF5A1F', animation:'flicker 2.5s infinite'}}>3D</div>
     </div>
   </div>
 );
@@ -79,7 +79,7 @@ const ReelGrid = () => (
 const ReelGradient = () => (
   <div className="absolute inset-0 overflow-hidden">
     <div className="absolute inset-0" style={{
-      background:'conic-gradient(from 0deg at 50% 50%, #FF4500, #C6FF00, #00E5FF, #FF3BCC, #FF4500)',
+      background:'conic-gradient(from 0deg at 50% 50%, #FF4500, #FFA500, #00E5FF, #FF3BCC, #FF4500)',
       animation:'spin-slow 12s linear infinite',
       filter:'blur(30px)'
     }}/>
@@ -94,7 +94,7 @@ const ReelGradient = () => (
 
 const ReelType = () => (
   <div className="absolute inset-0 overflow-hidden flex items-center justify-center">
-    <div className="absolute inset-0" style={{background:'#C6FF00'}}/>
+    <div className="absolute inset-0" style={{background:'#FF5A1F'}}/>
     <div className="absolute inset-0 mix-blend-difference flex items-center justify-center">
       <div className="text-center">
         <div className="font-display text-6xl text-black leading-[.9]" style={{animation:'flicker 3s infinite'}}>BREND</div>
@@ -115,12 +115,12 @@ const ReelLogo = () => (
     <div className="absolute inset-0" style={{background:'radial-gradient(circle at 50% 50%, #14140e 0%, #0A0A0A 80%)'}}></div>
     <svg viewBox="0 0 400 300" className="absolute inset-0 w-full h-full">
       <g style={{transformOrigin:'200px 150px', animation:'spin-slow 14s linear infinite'}}>
-        <circle cx="200" cy="150" r="60" fill="none" stroke="#C6FF00" strokeWidth="1.5"/>
+        <circle cx="200" cy="150" r="60" fill="none" stroke="#FF5A1F" strokeWidth="1.5"/>
         <circle cx="200" cy="150" r="80" fill="none" stroke="#F2F1EA" strokeWidth=".5" strokeDasharray="2 4" opacity=".6"/>
-        <circle cx="200" cy="150" r="100" fill="none" stroke="#C6FF00" strokeWidth=".5" strokeDasharray="1 12" opacity=".4"/>
+        <circle cx="200" cy="150" r="100" fill="none" stroke="#FF5A1F" strokeWidth=".5" strokeDasharray="1 12" opacity=".4"/>
       </g>
       <g style={{transformOrigin:'200px 150px', animation:'spin-slow 8s linear infinite reverse'}}>
-        <rect x="170" y="120" width="60" height="60" fill="none" stroke="#C6FF00" strokeWidth="1"/>
+        <rect x="170" y="120" width="60" height="60" fill="none" stroke="#FF5A1F" strokeWidth="1"/>
       </g>
       <text x="200" y="158" textAnchor="middle" fill="#F2F1EA" fontFamily="Anton" fontSize="36">LIPTON</text>
     </svg>
@@ -133,10 +133,10 @@ const ReelVFX = () => (
       <div key={i} className="absolute rounded-full" style={{
         width: 2 + Math.random()*3, height: 2 + Math.random()*3,
         left: `${Math.random()*100}%`, top: `${Math.random()*100}%`,
-        background: i%4===0 ? '#C6FF00' : '#F2F1EA',
+        background: i%4===0 ? '#FF5A1F' : '#F2F1EA',
         opacity: .3 + Math.random()*.7,
         animation:`floaty ${4+Math.random()*6}s ease-in-out ${Math.random()*3}s infinite`,
-        boxShadow: i%4===0 ? '0 0 8px #C6FF00' : 'none'
+        boxShadow: i%4===0 ? '0 0 8px #FF5A1F' : 'none'
       }}/>
     ))}
     <div className="absolute inset-0 flex items-center justify-center">

@@ -12,7 +12,7 @@ window.dict = {
     hero_cta: "Reelni ko'rish",
     hero_scroll: "Pastga",
     about_eyebrow: "(01) — Men haqimda",
-    about_title: "O'zbekistondan 21 yoshli vizual hikoyachi — g'oyalarni harakatga <span class=\"accent\">aylantiraman</span>.",
+    about_title: "21 yoshli vizual kontent yaratuvchi — g‘oyalarni kreativ videolarga <span class=\"accent\">aylantiraman</span>.",
     about_body: "Men video animator montajorman. Rejissyorlikdan tortib har bir kadrni animatsiya qilishgacha bo‘lgan jarayonni o‘z bo‘ynimga olaman — vizualizatsiyadan tortib yakuniy ishlovgacha. Mening ishlarim tipografiya, tekstura va vaqt uyg‘unligida tug‘iladi.",
     stats_eyebrow: "(02) — Raqamlarda",
     stats_exp: "Yillik tajriba",

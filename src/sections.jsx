@@ -129,7 +129,7 @@ const Nav = () => {
                 key={l.id}
                 role="button"
                 onClick={() => setLang(l.id)}
-                className={`w-full flex items-center gap-3 px-4 py-3 text-[11px] font-mono uppercase tracking-widest transition-colors cursor-pointer group/item ${lang === l.id ? 'bg-[#C6FF00]/10 text-[#C6FF00]' : 'ink-dim'} hover:bg-[#C6FF00] hover:!text-black`}
+                className={`w-full flex items-center gap-3 px-4 py-3 text-[11px] font-mono uppercase tracking-widest transition-colors cursor-pointer group/item ${lang === l.id ? 'bg-[#FF5A1F]/10 text-[#FF5A1F]' : 'ink-dim'} hover:bg-[#FF5A1F] hover:!text-black`}
               >
                 <img src={`https://flagcdn.com/w20/${l.flag}.png`} alt={l.id} className="w-4 h-auto rounded-[2px] shrink-0" />
                 <span className="flex-1 text-left font-medium">{l.label}</span>
@@ -159,7 +159,7 @@ const Hero = () => {
     <section className="relative min-h-screen flex flex-col justify-end pb-20 pt-32 px-6 md:px-12 overflow-hidden">
       {/* Mesh background */}
       <div className="absolute inset-0 -z-10">
-        <div className="mesh-blob absolute" style={{ width: 600, height: 600, left: '-10%', top: '10%', background: '#C6FF00', opacity: .18, borderRadius: '50%' }} />
+        <div className="mesh-blob absolute" style={{ width: 600, height: 600, left: '-10%', top: '10%', background: '#FF5A1F', opacity: .18, borderRadius: '50%' }} />
         <div className="mesh-blob absolute" style={{ width: 500, height: 500, right: '-5%', bottom: '-10%', background: '#FF3BCC', opacity: .10, borderRadius: '50%', animationDelay: '-4s' }} />
         <div className="mesh-blob absolute" style={{ width: 400, height: 400, left: '40%', top: '50%', background: '#00E5FF', opacity: .08, borderRadius: '50%', animationDelay: '-8s' }} />
       </div>
@@ -633,7 +633,7 @@ const Process = () => {
       <div className="relative">
         <svg className="absolute left-0 right-0 top-12 hidden md:block" height="2" width="100%">
           <line x1="0" y1="1" x2="100%" y2="1" stroke="#1C1C1A" strokeWidth="1" />
-          <line x1="0" y1="1" x2="100%" y2="1" stroke="#C6FF00" strokeWidth="1" strokeDasharray="6 8" />
+          <line x1="0" y1="1" x2="100%" y2="1" stroke="#FF5A1F" strokeWidth="1" strokeDasharray="6 8" />
         </svg>
         <div className="grid md:grid-cols-4 gap-10">
           {steps.map((s, i) => (
@@ -834,7 +834,7 @@ const Contact = () => {
   return (
     <section id="contact" className="relative px-6 md:px-12 py-32 border-t border-line overflow-hidden">
       <div className="absolute inset-0 -z-10">
-        <div className="mesh-blob absolute" style={{ width: 600, height: 600, right: '-10%', top: '-10%', background: '#C6FF00', opacity: .1, borderRadius: '50%' }} />
+        <div className="mesh-blob absolute" style={{ width: 600, height: 600, right: '-10%', top: '-10%', background: '#FF5A1F', opacity: .1, borderRadius: '50%' }} />
       </div>
       <div className="eyebrow mb-12">{t('contact_eyebrow')}</div>
       <h2 className="font-display leading-[.85] reveal" style={{ fontSize: 'clamp(64px, 14vw, 260px)' }} dangerouslySetInnerHTML={{ __html: t('contact_title') }} />
