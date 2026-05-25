@@ -735,7 +735,7 @@ const Pricing = () => {
         />
         <PricingCard
           tier={t('pricing_premium_tier')}
-          price="55"
+          price="65"
           tagline={t('pricing_premium_tagline')}
           accent
           features={[
