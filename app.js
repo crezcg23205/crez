@@ -162,7 +162,7 @@
     // --- ROW 4 ---
     { 
       src: 'AQNfxjwV0rVswEwjarweXcYUDWIPDh2Q1GoHJZkM_tie5Ij02RmUuO23F4QImGU (2).mp4', 
-      title: 'Motion Project', 
+      title: 'alivisionvip', 
       subtitle: 'cinematic edit',
       summary: 'A dynamic, high-energy motion piece crafted to capture attention immediately.',
       deliverables: ['Typography', 'Sound Design', 'Coloring'],
@@ -173,7 +173,7 @@
     },
     { 
       src: 'AQPsEuneNNBGcnG_LbMr_c2rNkpS5sdZ_psmsj53WCnZB35dF97qlzuM6VFeDW2W5YIb0xRkj54 (2).mp4', 
-      title: 'Creative Reel', 
+      title: 'alivisionvip', 
       subtitle: 'cinematic edit',
       summary: 'A visually engaging promotional video focusing on brand storytelling and product appeal.',
       deliverables: ['Typography', 'Sound Design', 'Coloring'],
