@@ -196,7 +196,8 @@
       subtitle: 'Motion reels',
       summary: 'High-quality motion video tailored for social media engagement.',
       deliverables: ['Motion Graphics', 'Typography', 'Sound Design'],
-      gridClass: 'col-span-4'
+      gridClass: 'col-span-4',
+      isVertical: true
     },
     { 
       src: 'un2.mp4', 
@@ -204,7 +205,8 @@
       subtitle: 'Motion reels',
       summary: 'High-quality motion video tailored for social media engagement.',
       deliverables: ['Motion Graphics', 'Typography', 'Sound Design'],
-      gridClass: 'col-span-4'
+      gridClass: 'col-span-4',
+      isVertical: true
     },
     { 
       src: 'un3.mp4', 
@@ -212,7 +214,8 @@
       subtitle: 'Motion reels',
       summary: 'High-quality motion video tailored for social media engagement.',
       deliverables: ['Motion Graphics', 'Typography', 'Sound Design'],
-      gridClass: 'col-span-4'
+      gridClass: 'col-span-4',
+      isVertical: true
     }
   ];
 
@@ -225,10 +228,11 @@
       const tagsHtml = proj.deliverables.map(t => `<span>${t}</span>`).join('');
       
       const noCropClass = proj.noCrop ? 'no-crop' : '';
+      const verticalClass = proj.isVertical ? 'vertical-video' : '';
 
       html += `
         <div class="project-block reveal ${proj.gridClass}">
-          <div class="project-video-wrapper ${noCropClass}" data-video-src="${proj.src}">
+          <div class="project-video-wrapper ${noCropClass} ${verticalClass}" data-video-src="${proj.src}">
             <video src="${proj.src}" autoplay muted loop playsinline preload="metadata"></video>
             <div class="project-video-overlay">
               <div class="overlay-num">${num}</div>

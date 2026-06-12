@@ -401,6 +401,10 @@ ul, ol { list-style: none; }
   width: 100%;
   aspect-ratio: 16/9;
   background: #000;
+}
+
+.project-video-wrapper.vertical-video {
+  aspect-ratio: 9/16;
   border-radius: 8px;
   overflow: hidden;
   margin-bottom: 24px;
