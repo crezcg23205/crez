@@ -636,16 +636,18 @@ ul, ol { list-style: none; }
   gap: 80px;
 }
 .start-title {
-  font-family: var(--font-primary);
-  font-size: clamp(32px, 4vw, 48px);
-  font-weight: 900;
-  line-height: 1.1;
+  font-family: var(--font-secondary);
+  font-size: clamp(40px, 5.5vw, 72px);
+  font-weight: bold;
+  line-height: 1.06;
+  margin-bottom: 28px;
+  color: var(--text);
   letter-spacing: -0.03em;
-  margin-bottom: 20px;
 }
 .start-title em {
   font-family: var(--font-serif);
   font-style: italic;
+  font-weight: 400;
 }
 .start-sub {
   font-size: 14px;
