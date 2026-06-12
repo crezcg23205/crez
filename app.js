@@ -185,9 +185,8 @@
       src: 'AQP1B2m9brsMVnUsbVPTPwE2_AGhejug1y9CSq3a_MP43ndG5y7rM8zadICQIxo.mp4', 
       title: 'WBC boxing', 
       subtitle: 'dynamic edit',
-      deliverables: ['Sound Design'],
-      challenge: 'Condensing a wide range of visual styles into one cohesive masterpiece.',
-      idea: 'Creating a seamless visual journey that leaves a lasting impression.',
+      summary: 'A promotional video crafted for Suliabbar\'s WBC fight in Saudi Arabia.',
+      deliverables: ['Sound Design', 'Editing', 'Coloring'],
       gridClass: 'col-span-12'
     },
     // --- ROW 6 ---
@@ -195,25 +194,25 @@
       src: 'un1.mp4', 
       title: 'Flour Mill', 
       subtitle: 'Motion reels',
+      summary: 'High-quality motion video tailored for social media engagement.',
       deliverables: ['Motion Graphics', 'Typography', 'Sound Design'],
-      gridClass: 'col-span-4',
-      noCrop: true
+      gridClass: 'col-span-4'
     },
     { 
       src: 'un2.mp4', 
       title: 'Flour Mill', 
       subtitle: 'Motion reels',
+      summary: 'High-quality motion video tailored for social media engagement.',
       deliverables: ['Motion Graphics', 'Typography', 'Sound Design'],
-      gridClass: 'col-span-4',
-      noCrop: true
+      gridClass: 'col-span-4'
     },
     { 
       src: 'un3.mp4', 
       title: 'Flour Mill', 
       subtitle: 'Motion reels',
+      summary: 'High-quality motion video tailored for social media engagement.',
       deliverables: ['Motion Graphics', 'Typography', 'Sound Design'],
-      gridClass: 'col-span-4',
-      noCrop: true
+      gridClass: 'col-span-4'
     }
   ];
 
@@ -239,10 +238,12 @@
           </div>
           
           <div class="project-details">
+            ${proj.summary ? `
             <div class="details-section">
               <h4>SUMMARY</h4>
               <p>${proj.summary}</p>
             </div>
+            ` : ''}
             <div class="details-section">
               <h4>DELIVERABLES</h4>
               <div class="tags">
