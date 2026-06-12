@@ -189,6 +189,31 @@
       challenge: 'Condensing a wide range of visual styles into one cohesive masterpiece.',
       idea: 'Creating a seamless visual journey that leaves a lasting impression.',
       gridClass: 'col-span-12'
+    },
+    // --- ROW 6 ---
+    { 
+      src: 'un1.mp4', 
+      title: 'Flour Mill', 
+      subtitle: 'Motion reels',
+      deliverables: ['Motion Graphics', 'Typography', 'Sound Design'],
+      gridClass: 'col-span-4',
+      noCrop: true
+    },
+    { 
+      src: 'un2.mp4', 
+      title: 'Flour Mill', 
+      subtitle: 'Motion reels',
+      deliverables: ['Motion Graphics', 'Typography', 'Sound Design'],
+      gridClass: 'col-span-4',
+      noCrop: true
+    },
+    { 
+      src: 'un3.mp4', 
+      title: 'Flour Mill', 
+      subtitle: 'Motion reels',
+      deliverables: ['Motion Graphics', 'Typography', 'Sound Design'],
+      gridClass: 'col-span-4',
+      noCrop: true
     }
   ];
 
