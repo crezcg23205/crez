@@ -163,7 +163,7 @@
     { 
       src: 'AQNfxjwV0rVswEwjarweXcYUDWIPDh2Q1GoHJZkM_tie5Ij02RmUuO23F4QImGU (2).mp4', 
       title: 'Motion Project', 
-      subtitle: 'Motion reels',
+      subtitle: 'cinematic edit',
       summary: 'A dynamic, high-energy motion piece crafted to capture attention immediately.',
       deliverables: ['Motion Graphics', 'Typography', 'Sound Design', 'Infographics'],
       challenge: 'Creating fluid, fast-paced transitions that keep the viewer engaged.',
@@ -174,7 +174,7 @@
     { 
       src: 'AQPsEuneNNBGcnG_LbMr_c2rNkpS5sdZ_psmsj53WCnZB35dF97qlzuM6VFeDW2W5YIb0xRkj54 (2).mp4', 
       title: 'Creative Reel', 
-      subtitle: 'Promo video',
+      subtitle: 'cinematic edit',
       summary: 'A visually engaging promotional video focusing on brand storytelling and product appeal.',
       deliverables: ['Motion Graphics', 'Typography', 'Sound Design', 'Infographics'],
       challenge: 'Balancing a strong brand message with eye-catching visuals.',
@@ -185,13 +185,13 @@
     // --- ROW 5 ---
     { 
       src: 'AQP1B2m9brsMVnUsbVPTPwE2_AGhejug1y9CSq3a_MP43ndG5y7rM8zadICQIxo.mp4', 
-      title: 'Brand Highlight', 
-      subtitle: 'Motion reels',
+      title: 'WBC boxing', 
+      subtitle: 'dynamic edit',
       summary: 'A comprehensive brand showcase displaying the best of our motion editing capabilities.',
       deliverables: ['Motion Graphics', 'Typography', 'Sound Design', 'Infographics'],
       challenge: 'Condensing a wide range of visual styles into one cohesive masterpiece.',
       idea: 'Creating a seamless visual journey that leaves a lasting impression.',
-      gridClass: 'col-span-12 center-block'
+      gridClass: 'col-span-12'
     }
   ];
 
