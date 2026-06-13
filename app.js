@@ -161,36 +161,6 @@
     },
     // --- ROW 4 ---
     { 
-      src: 'AQNfxjwV0rVswEwjarweXcYUDWIPDh2Q1GoHJZkM_tie5Ij02RmUuO23F4QImGU (2).mp4', 
-      title: 'alivisionvip', 
-      subtitle: 'cinematic edit',
-      deliverables: ['Typography', 'Sound Design', 'Coloring'],
-      challenge: 'Creating fluid, fast-paced transitions that keep the viewer engaged.',
-      idea: 'Applying modern motion design principles with bold, striking typography.',
-      gridClass: 'col-span-6',
-      noCrop: true
-    },
-    { 
-      src: 'AQPsEuneNNBGcnG_LbMr_c2rNkpS5sdZ_psmsj53WCnZB35dF97qlzuM6VFeDW2W5YIb0xRkj54 (2).mp4', 
-      title: 'alivisionvip', 
-      subtitle: 'cinematic edit',
-      deliverables: ['Typography', 'Sound Design', 'Coloring'],
-      challenge: 'Balancing a strong brand message with eye-catching visuals.',
-      idea: 'Using rhythmic editing perfectly synced to a custom sound design track.',
-      gridClass: 'col-span-6',
-      noCrop: true
-    },
-    // --- ROW 5 ---
-    { 
-      src: 'AQP1B2m9brsMVnUsbVPTPwE2_AGhejug1y9CSq3a_MP43ndG5y7rM8zadICQIxo.mp4', 
-      title: 'WBC boxing', 
-      subtitle: 'dynamic edit',
-      summary: 'A promotional video crafted for Suliabbar\'s WBC fight in Saudi Arabia.',
-      deliverables: ['Sound Design', 'Editing', 'Coloring'],
-      gridClass: 'col-span-12'
-    },
-    // --- ROW 6 ---
-    { 
       src: 'un1.mp4', 
       title: 'Flour Mill', 
       subtitle: 'Motion reels',
@@ -216,6 +186,36 @@
       deliverables: ['Motion Graphics', 'Typography', 'Sound Design'],
       gridClass: 'col-span-4',
       isVertical: true
+    },
+    // --- ROW 5 ---
+    { 
+      src: 'AQNfxjwV0rVswEwjarweXcYUDWIPDh2Q1GoHJZkM_tie5Ij02RmUuO23F4QImGU (2).mp4', 
+      title: 'alivisionvip', 
+      subtitle: 'cinematic edit',
+      deliverables: ['Typography', 'Sound Design', 'Coloring'],
+      challenge: 'Creating fluid, fast-paced transitions that keep the viewer engaged.',
+      idea: 'Applying modern motion design principles with bold, striking typography.',
+      gridClass: 'col-span-6',
+      noCrop: true
+    },
+    { 
+      src: 'AQPsEuneNNBGcnG_LbMr_c2rNkpS5sdZ_psmsj53WCnZB35dF97qlzuM6VFeDW2W5YIb0xRkj54 (2).mp4', 
+      title: 'alivisionvip', 
+      subtitle: 'cinematic edit',
+      deliverables: ['Typography', 'Sound Design', 'Coloring'],
+      challenge: 'Balancing a strong brand message with eye-catching visuals.',
+      idea: 'Using rhythmic editing perfectly synced to a custom sound design track.',
+      gridClass: 'col-span-6',
+      noCrop: true
+    },
+    // --- ROW 6 ---
+    { 
+      src: 'AQP1B2m9brsMVnUsbVPTPwE2_AGhejug1y9CSq3a_MP43ndG5y7rM8zadICQIxo.mp4', 
+      title: 'WBC boxing', 
+      subtitle: 'dynamic edit',
+      summary: 'A promotional video crafted for Suliabbar\'s WBC fight in Saudi Arabia.',
+      deliverables: ['Sound Design', 'Editing', 'Coloring'],
+      gridClass: 'col-span-12'
     }
   ];
 
