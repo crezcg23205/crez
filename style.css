@@ -30,6 +30,8 @@
   --text-muted: #999999;
   --border: #e5e5e5;
   --border-hover: #cccccc;
+  --nav-bg: rgba(255, 255, 255, 0.85);
+  --overlay-bg: rgba(255, 255, 255, 0.97);
   --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   --font-serif: 'Instrument Serif', Georgia, serif;
   --font-primary: 'Helvetica Now ExtraBlack', sans-serif;
@@ -39,6 +41,18 @@
   --radius: 10px;
   --radius-full: 9999px;
   --side-pad: 80px;
+}
+
+[data-theme="dark"] {
+  --bg: #0a0a0a;
+  --bg-input: #1a1a1a;
+  --text: #ffffff;
+  --text-secondary: #999999;
+  --text-muted: #666666;
+  --border: #333333;
+  --border-hover: #555555;
+  --nav-bg: rgba(10, 10, 10, 0.85);
+  --overlay-bg: rgba(10, 10, 10, 0.97);
 }
 
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
@@ -154,7 +168,7 @@ ul, ol { list-style: none; }
   justify-content: space-between;
   padding: 0 var(--side-pad);
   height: 64px;
-  background: rgba(255,255,255,0.85);
+  background: var(--nav-bg);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border-bottom: 1px solid var(--border);
@@ -196,7 +210,7 @@ ul, ol { list-style: none; }
 .nav-burger span { display: block; width: 20px; height: 1.5px; background: var(--text); transition: all 0.3s var(--ease); transform-origin: center; }
 .nav-burger.open span:first-child { transform: rotate(45deg) translate(2.5px, 2.5px); }
 .nav-burger.open span:last-child { transform: rotate(-45deg) translate(2.5px, -2.5px); }
-.mobile-overlay { position: fixed; inset: 0; z-index: 99; background: rgba(255,255,255,0.97); backdrop-filter: blur(30px); display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity 0.4s var(--ease); }
+.mobile-overlay { position: fixed; inset: 0; z-index: 99; background: var(--overlay-bg); backdrop-filter: blur(30px); display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity 0.4s var(--ease); }
 .mobile-overlay.open { opacity: 1; pointer-events: auto; }
 .mobile-nav { display: flex; flex-direction: column; align-items: center; gap: 24px; }
 .mobile-link { font-family: var(--font-primary); font-weight: 900; font-size: 28px; color: var(--text-secondary); transition: color 0.3s; }
