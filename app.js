@@ -214,7 +214,7 @@
       title: 'SFAD', 
       subtitle: 'dynamic edit',
       summary: 'A high-energy promotional video crafted for SFAD.',
-      deliverables: ['Sound Design', 'Editing', 'Coloring'],
+      deliverables: ['Motion Graphics', 'Typography', 'Sound Design'],
       gridClass: 'col-span-12'
     }
   ];
