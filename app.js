@@ -210,10 +210,10 @@
     },
     // --- ROW 6 ---
     { 
-      src: 'AQP1B2m9brsMVnUsbVPTPwE2_AGhejug1y9CSq3a_MP43ndG5y7rM8zadICQIxo.mp4', 
-      title: 'WBC boxing', 
+      src: 'meport4res.mp4', 
+      title: 'SFAD', 
       subtitle: 'dynamic edit',
-      summary: 'A promotional video crafted for Suliabbar\'s WBC fight in Saudi Arabia.',
+      summary: 'A high-energy promotional video crafted for SFAD.',
       deliverables: ['Sound Design', 'Editing', 'Coloring'],
       gridClass: 'col-span-12'
     }
