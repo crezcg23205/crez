@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Pricing — CREZ Motion</title>
+  <meta name="description" content="Pricing for CREZ motion edits and ads."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css"/>
+  <style>
+    /* Pricing specific styles */
+    .pricing-section {
+      padding: 160px var(--side-pad) 120px;
+      min-height: 100vh;
+      position: relative;
+      z-index: 10;
+    }
+    .pricing-header {
+      text-align: center;
+      margin-bottom: 80px;
+    }
+    .pricing-title {
+      font-family: var(--font-primary);
+      font-size: clamp(3rem, 6vw, 5rem);
+      font-weight: 900;
+      color: var(--text);
+      line-height: 1.1;
+      margin-bottom: 24px;
+    }
+    .pricing-desc {
+      font-size: 16px;
+      color: var(--text-secondary);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 40px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .price-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 48px;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.3s var(--ease), border-color 0.3s;
+    }
+    .price-card:hover {
+      transform: translateY(-8px);
+      border-color: var(--text);
+    }
+    .price-card.featured {
+      background: var(--text);
+      color: var(--bg);
+    }
+    .price-card.featured .price-amount,
+    .price-card.featured .price-name,
+    .price-card.featured .feature-item {
+      color: var(--bg);
+    }
+    .price-card.featured .price-desc,
+    .price-card.featured .feature-item svg {
+      color: rgba(255, 255, 255, 0.7);
+    }
+    .price-card.featured .btn {
+      background: var(--bg);
+      color: var(--text);
+      border-color: var(--bg);
+    }
+    .price-name {
+      font-family: var(--font-secondary);
+      font-size: 14px;
+      text-transform: uppercase;
+      font-weight: bold;
+      color: var(--text-muted);
+      margin-bottom: 16px;
+    }
+    .price-amount {
+      font-family: var(--font-primary);
+      font-size: 48px;
+      font-weight: 900;
+      color: var(--text);
+      margin-bottom: 16px;
+      line-height: 1;
+    }
+    .price-desc {
+      font-size: 15px;
+      color: var(--text-secondary);
+      margin-bottom: 32px;
+    }
+    .price-features {
+      margin-bottom: 40px;
+      flex: 1;
+    }
+    .feature-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 16px;
+      font-size: 14px;
+      color: var(--text);
+    }
+    .feature-item svg {
+      width: 20px;
+      height: 20px;
+      flex-shrink: 0;
+      color: var(--text-muted);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Global side lines -->
+  <div class="global-side-lines" aria-hidden="true">
+    <div class="side-line side-line--1"></div>
+    <div class="side-line side-line--5"></div>
+  </div>
+
+  <!-- ===== NAV ===== -->
+  <nav class="nav" id="nav">
+    <a href="index.html#top" class="nav-logo">crez motion</a>
+    <div class="nav-links">
+      <a href="index.html#work" class="nav-link">Portfolio</a>
+      <a href="index.html#testimonials" class="nav-link">Reviews</a>
+      <a href="index.html#start" class="nav-link">Start</a>
+    </div>
+    <div style="display: flex; align-items: center; gap: 16px;">
+      <a href="https://t.me/crez_motion" target="_blank" class="nav-cta">Contact me<span class="arrow">↗</span></a>
+    </div>
+  </nav>
+
+  <!-- ===== PRICING ===== -->
+  <section class="pricing-section">
+    <div class="pricing-header reveal">
+      <h1 class="pricing-title">Simple, transparent <em>pricing</em></h1>
+      <p class="pricing-desc">Choose the right package for your brand's motion edit needs.</p>
+    </div>
+
+    <div class="pricing-grid reveal">
+      <!-- Starter Package -->
+      <div class="price-card">
+        <div class="price-name">Social Media Reel</div>
+        <div class="price-amount">Start</div>
+        <p class="price-desc">Perfect for Instagram/TikTok content to engage your audience quickly.</p>
+        
+        <div class="price-features">
+          <div class="feature-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            <span>Up to 15-30 seconds</span>
+          </div>
+          <div class="feature-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            <span>Dynamic Editing & Transitions</span>
+          </div>
+          <div class="feature-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            <span>Standard Sound Design</span>
+          </div>
+          <div class="feature-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            <span>Basic Color Correction</span>
+          </div>
+        </div>
+        <a href="https://t.me/crez_motion" target="_blank" class="btn btn--outlined btn--full">Book Now <span class="arrow">↗</span></a>
+      </div>
+
+      <!-- Professional Package -->
+      <div class="price-card featured">
+        <div class="price-name">Premium Promo</div>
+        <div class="price-amount">Pro</div>
+        <p class="price-desc">High-end promotional videos designed to showcase your brand at its best.</p>
+        
+        <div class="price-features">
+          <div class="feature-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            <span>Up to 60 seconds</span>
+          </div>
+          <div class="feature-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            <span>Advanced Motion Graphics</span>
+          </div>
+          <div class="feature-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            <span>Custom Kinetic Typography</span>
+          </div>
+          <div class="feature-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            <span>Immersive Sound Design</span>
+          </div>
+          <div class="feature-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            <span>Cinematic Color Grading</span>
+          </div>
+        </div>
+        <a href="https://t.me/crez_motion" target="_blank" class="btn btn--filled btn--full">Get Started <span class="arrow">↗</span></a>
+      </div>
+
+      <!-- Custom Package -->
+      <div class="price-card">
+        <div class="price-name">Brand Film</div>
+        <div class="price-amount">Custom</div>
+        <p class="price-desc">Full-scale production tailored exactly to your unique brand requirements.</p>
+        
+        <div class="price-features">
+          <div class="feature-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            <span>Unlimited Duration</span>
+          </div>
+          <div class="feature-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            <span>Full Storyboarding & Direction</span>
+          </div>
+          <div class="feature-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            <span>3D Elements & Compositing</span>
+          </div>
+          <div class="feature-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            <span>Multi-format Deliverables</span>
+          </div>
+        </div>
+        <a href="https://t.me/crez_motion" target="_blank" class="btn btn--outlined btn--full">Contact Us <span class="arrow">↗</span></a>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    // Initialize reveal animations for price page
+    document.addEventListener("DOMContentLoaded", () => {
+      const targets = document.querySelectorAll('.reveal');
+      targets.forEach(el => {
+        if (!el.classList.contains('reveal')) el.classList.add('reveal');
+      });
+
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            e.target.classList.add('in');
+            io.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.1 });
+      
+      targets.forEach((el) => io.observe(el));
+      
+      // Theme matching
+      if (localStorage.getItem('theme') === 'dark') {
+        document.body.setAttribute('data-theme', 'dark');
+      }
+    });
+  </script>
+</body>
+</html>
