@@ -72,26 +72,12 @@
   const projects = [
     // --- ROW 1 ---
     { 
-      src: 'promo200.mp4', 
-      title: 'Millat Umidi', 
-      subtitle: 'Promo video',
-      summary: 'A full production motion animation for a premium product launch.',
-      deliverables: ['Motion Graphics', 'Typography', 'Sound Design', 'Infographics'],
-      challenge: 'Showcasing the product\'s intricate details in a visually stunning way.',
-      idea: 'Using extreme close-ups and dramatic lighting to emphasize quality and craftsmanship.',
-      gridClass: 'col-span-7',
-      noCrop: true
-    },
-    { 
-      src: 'AQO6sWjMKyvkrzRrw8z_VJVBxvMMbml4OYmeMZr3Gmuhn8uSrM86d87nedZmd_h.mp4', 
-      title: 'Yusuf Inspire', 
-      subtitle: 'Motion reels',
-      summary: 'A sophisticated motion design piece focused on fluid transitions and engaging typography.',
+      src: 'meport4res.mp4', 
+      title: 'SFAD', 
+      subtitle: 'dynamic edit',
+      summary: 'A high-energy promotional video crafted for SFAD.',
       deliverables: ['Motion Graphics', 'Typography', 'Sound Design'],
-      challenge: 'Creating an inspiring narrative using purely abstract motion and text.',
-      idea: 'Leveraging dynamic pacing and bold colors to keep the viewer constantly engaged.',
-      gridClass: 'col-span-5',
-      noCrop: true
+      gridClass: 'col-span-12'
     },
     // --- ROW 2 ---
     { 
@@ -210,12 +196,26 @@
     },
     // --- ROW 6 ---
     { 
-      src: 'meport4res.mp4', 
-      title: 'SFAD', 
-      subtitle: 'dynamic edit',
-      summary: 'A high-energy promotional video crafted for SFAD.',
+      src: 'promo200.mp4', 
+      title: 'Millat Umidi', 
+      subtitle: 'Promo video',
+      summary: 'A full production motion animation for a premium product launch.',
+      deliverables: ['Motion Graphics', 'Typography', 'Sound Design', 'Infographics'],
+      challenge: 'Showcasing the product\'s intricate details in a visually stunning way.',
+      idea: 'Using extreme close-ups and dramatic lighting to emphasize quality and craftsmanship.',
+      gridClass: 'col-span-7',
+      noCrop: true
+    },
+    { 
+      src: 'AQO6sWjMKyvkrzRrw8z_VJVBxvMMbml4OYmeMZr3Gmuhn8uSrM86d87nedZmd_h.mp4', 
+      title: 'Yusuf Inspire', 
+      subtitle: 'Motion reels',
+      summary: 'A sophisticated motion design piece focused on fluid transitions and engaging typography.',
       deliverables: ['Motion Graphics', 'Typography', 'Sound Design'],
-      gridClass: 'col-span-12'
+      challenge: 'Creating an inspiring narrative using purely abstract motion and text.',
+      idea: 'Leveraging dynamic pacing and bold colors to keep the viewer constantly engaged.',
+      gridClass: 'col-span-5',
+      noCrop: true
     }
   ];
 
