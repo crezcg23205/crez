@@ -92,13 +92,6 @@
       deliverables: ['Motion Graphics', 'Typography', 'Sound Design'],
       gridClass: 'col-span-6'
     },
-    { 
-      src: 'meport8res.mp4', 
-      title: 'SFAD', 
-      subtitle: 'full motion/sfx/design',
-      deliverables: ['Motion Graphics', 'Typography', 'Sound Design'],
-      gridClass: 'col-span-12'
-    },
     // --- ROW 2 ---
     { 
       src: 'meport4res.mp4', 
