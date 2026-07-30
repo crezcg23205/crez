@@ -70,7 +70,36 @@
 
   // Full detailed playlist with specific grid layouts
   const projects = [
-    // --- ROW 1 ---
+    // --- ROW 1 (NEW ADDITIONS) ---
+    { 
+      src: 'for f.mp4', 
+      title: 'SFAD', 
+      subtitle: 'full motion/sfx/design',
+      deliverables: ['Motion Graphics', 'Typography', 'Sound Design'],
+      gridClass: 'col-span-12'
+    },
+    { 
+      src: 'meport5res.mp4', 
+      title: 'vero.uz', 
+      subtitle: 'full motion/sfx/design',
+      deliverables: ['Motion Graphics', 'Typography', 'Sound Design'],
+      gridClass: 'col-span-6'
+    },
+    { 
+      src: 'meport6res.mp4', 
+      title: 'tepalab agency', 
+      subtitle: 'expert reels motion',
+      deliverables: ['Motion Graphics', 'Typography', 'Sound Design'],
+      gridClass: 'col-span-6'
+    },
+    { 
+      src: 'meport8res.mp4', 
+      title: 'SFAD', 
+      subtitle: 'full motion/sfx/design',
+      deliverables: ['Motion Graphics', 'Typography', 'Sound Design'],
+      gridClass: 'col-span-12'
+    },
+    // --- ROW 2 ---
     { 
       src: 'meport4res.mp4', 
       title: 'SFAD', 
