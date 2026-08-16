@@ -70,6 +70,21 @@
 
   // Full detailed playlist with specific grid layouts
   const projects = [
+    // --- NEW ROW ---
+    { 
+      src: 'meport13res.mp4', 
+      title: 'Motion Project', 
+      subtitle: 'dynamic edit',
+      deliverables: ['Motion Graphics', 'Typography', 'Sound Design'],
+      gridClass: 'col-span-6'
+    },
+    { 
+      src: 'meport14res.mp4', 
+      title: 'Motion Project', 
+      subtitle: 'dynamic edit',
+      deliverables: ['Motion Graphics', 'Typography', 'Sound Design'],
+      gridClass: 'col-span-6'
+    },
     // --- ROW 1 (NEW ADDITIONS) ---
     { 
       src: 'for f.mp4', 
