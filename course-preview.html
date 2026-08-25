@@ -100,6 +100,67 @@
         color: #000;
     }
 
+    /* Curriculum Switch */
+    .curriculum-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 40px;
+        flex-wrap: wrap;
+        gap: 24px;
+    }
+    .curriculum-switch-wrapper {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+    .switch-label {
+        font-family: 'Inter', sans-serif;
+        font-size: 1.1rem;
+        color: rgba(0,0,0,0.4);
+        transition: color 0.3s;
+    }
+    .switch-label.active {
+        color: rgba(0,0,0,1);
+        font-weight: 600;
+    }
+    .curriculum-switch {
+        position: relative;
+        display: inline-block;
+        width: 60px;
+        height: 32px;
+    }
+    .curriculum-switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+    }
+    .curriculum-switch .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0; left: 0; right: 0; bottom: 0;
+        background-color: #000;
+        transition: .4s;
+        border-radius: 32px;
+    }
+    .curriculum-switch .slider:before {
+        position: absolute;
+        content: "";
+        height: 24px;
+        width: 24px;
+        left: 4px;
+        bottom: 4px;
+        background-color: white;
+        transition: .4s;
+        border-radius: 50%;
+    }
+    .curriculum-switch input:checked + .slider {
+        background-color: #000;
+    }
+    .curriculum-switch input:checked + .slider:before {
+        transform: translateX(28px);
+    }
+
     /* Accordion */
     .accordion-list {
         display: flex;
@@ -362,10 +423,20 @@
       </div>
 
       <!-- CURRICULUM -->
-      <h2 class="section-title">O'quv rejasi</h2>
+      <div class="curriculum-header">
+          <h2 class="section-title" style="margin-bottom: 0;">O'quv rejasi</h2>
+          <div class="curriculum-switch-wrapper">
+              <span class="switch-label active" id="label-zero">0 dan</span>
+              <label class="curriculum-switch">
+                  <input type="checkbox" id="curriculumToggle" onchange="toggleCurriculum()">
+                  <span class="slider"></span>
+              </label>
+              <span class="switch-label" id="label-pro">Bilim bor</span>
+          </div>
+      </div>
       <div class="accordion-list">
           <!-- Blok 1 -->
-          <div class="accordion-item" onclick="this.classList.toggle('active')">
+          <div class="accordion-item" id="blok-1" onclick="this.classList.toggle('active')">
               <div class="accordion-header">
                   <div class="accordion-title-wrap">
                       <span class="block-num">Blok 1</span>
@@ -391,7 +462,7 @@
           </div>
 
           <!-- Blok 2 -->
-          <div class="accordion-item" onclick="this.classList.toggle('active')">
+          <div class="accordion-item" id="blok-2" onclick="this.classList.toggle('active')">
               <div class="accordion-header">
                   <div class="accordion-title-wrap">
                       <span class="block-num">Blok 2</span>
@@ -583,5 +654,26 @@
   </div>
 
   <script src="script.js"></script>
+  <script>
+      function toggleCurriculum() {
+          const isPro = document.getElementById('curriculumToggle').checked;
+          const block1 = document.getElementById('blok-1');
+          const block2 = document.getElementById('blok-2');
+          const labelZero = document.getElementById('label-zero');
+          const labelPro = document.getElementById('label-pro');
+          
+          if (isPro) {
+              block1.style.display = 'none';
+              block2.style.display = 'none';
+              labelPro.classList.add('active');
+              labelZero.classList.remove('active');
+          } else {
+              block1.style.display = 'block';
+              block2.style.display = 'block';
+              labelZero.classList.add('active');
+              labelPro.classList.remove('active');
+          }
+      }
+  </script>
 </body>
 </html>
