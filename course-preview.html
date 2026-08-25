@@ -1,229 +1,377 @@
-<!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<!doctype html>
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Motion & AI Course</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <style>
-        .hero-course {
-            padding: 120px 5% 60px;
-            text-align: center;
-            max-width: 900px;
-            margin: 0 auto;
-        }
-        .hero-course h1 {
-            font-size: clamp(3rem, 6vw, 5rem);
-            line-height: 1.1;
-            margin-bottom: 24px;
-            letter-spacing: -0.02em;
-        }
-        .hero-course p {
-            font-size: 1.25rem;
-            color: var(--text-secondary);
-            margin-bottom: 40px;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        
-        .course-video-wrapper {
-            width: 100%;
-            border-radius: 24px;
-            overflow: hidden;
-            margin-bottom: 80px;
-            background: #111;
-        }
-        .course-video-wrapper video {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Course Preview — CREZ Motion</title>
+  <meta name="description" content="Motion & AI Design Course by CREZ"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css"/>
+  <style>
+    /* Course specific minimalist styles */
+    body {
+        background-color: #000;
+        color: #fff;
+    }
+    
+    .course-page {
+        padding-top: 120px;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding-left: 24px;
+        padding-right: 24px;
+        padding-bottom: 120px;
+    }
 
-        .course-section {
-            padding: 80px 5%;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        
-        .section-title {
-            font-size: 2.5rem;
-            margin-bottom: 40px;
-            text-align: center;
-        }
+    .hero-course {
+        text-align: center;
+        margin-bottom: 80px;
+    }
+    
+    .hero-course h1 {
+        font-family: 'Instrument Serif', serif;
+        font-size: clamp(3rem, 6vw, 6rem);
+        font-style: italic;
+        line-height: 1.1;
+        margin-bottom: 24px;
+        font-weight: 400;
+    }
+    
+    .hero-course p {
+        font-size: 1.25rem;
+        color: rgba(255, 255, 255, 0.7);
+        max-width: 600px;
+        margin: 0 auto 40px;
+    }
 
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 32px;
-            margin-bottom: 80px;
-        }
-        .feature-card {
-            background: var(--bg-secondary);
-            padding: 40px;
-            border-radius: 24px;
-            border: 1px solid var(--border-color);
-        }
-        .feature-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 16px;
-        }
-        .feature-card p {
-            color: var(--text-secondary);
-            line-height: 1.6;
-        }
+    .video-wrapper {
+        width: 100%;
+        border-radius: 20px;
+        overflow: hidden;
+        background: #111;
+        margin-bottom: 120px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+    }
 
-        .instructor-section {
-            display: flex;
-            align-items: center;
-            gap: 60px;
-            background: var(--bg-secondary);
-            border-radius: 32px;
-            padding: 60px;
-            margin: 80px 0;
-            border: 1px solid var(--border-color);
-        }
-        .instructor-content {
-            flex: 1;
-        }
-        .instructor-stats {
-            display: flex;
-            gap: 40px;
-            margin-top: 32px;
-        }
-        .stat-item h4 {
-            font-size: 2.5rem;
-            margin-bottom: 8px;
-        }
-        .stat-item p {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-        
-        .cta-section {
-            text-align: center;
-            padding: 100px 5%;
-        }
+    .video-wrapper video {
+        width: 100%;
+        height: auto;
+        display: block;
+    }
 
-        @media (max-width: 768px) {
-            .instructor-section {
-                flex-direction: column;
-                padding: 40px 20px;
-            }
+    .section-title {
+        font-family: 'Instrument Serif', serif;
+        font-size: clamp(2.5rem, 4vw, 4rem);
+        margin-bottom: 40px;
+        font-weight: 400;
+    }
+
+    /* Salaries Section */
+    .salary-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 24px;
+        margin-bottom: 120px;
+    }
+    .salary-card {
+        background: #111;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        padding: 40px;
+        border-radius: 20px;
+        text-align: center;
+    }
+    .salary-card .role {
+        font-size: 1rem;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: rgba(255, 255, 255, 0.5);
+        margin-bottom: 16px;
+    }
+    .salary-card .amount {
+        font-size: 3.5rem;
+        font-weight: 500;
+        font-family: 'Inter', sans-serif;
+    }
+
+    /* Curriculum */
+    .curriculum-list {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        margin-bottom: 120px;
+    }
+    .curriculum-item {
+        background: #111;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        padding: 32px;
+        border-radius: 20px;
+        display: flex;
+        align-items: center;
+        gap: 32px;
+    }
+    .curriculum-item .week {
+        font-family: 'Instrument Serif', serif;
+        font-size: 2.5rem;
+        font-style: italic;
+        color: rgba(255, 255, 255, 0.4);
+        min-width: 100px;
+    }
+    .curriculum-item .content h3 {
+        font-size: 1.5rem;
+        margin-bottom: 8px;
+    }
+    .curriculum-item .content p {
+        color: rgba(255, 255, 255, 0.6);
+        line-height: 1.5;
+    }
+
+    /* Benefits grid */
+    .benefits-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 24px;
+        margin-bottom: 120px;
+    }
+    .benefit-card {
+        padding: 40px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 20px;
+        position: relative;
+        overflow: hidden;
+    }
+    .benefit-card::before {
+        content: '';
+        position: absolute;
+        top: 0; left: 0; width: 100%; height: 100%;
+        background: radial-gradient(circle at top right, rgba(255,255,255,0.05), transparent 70%);
+        pointer-events: none;
+    }
+    .benefit-card h3 {
+        font-size: 1.25rem;
+        margin-bottom: 12px;
+    }
+    .benefit-card p {
+        color: rgba(255, 255, 255, 0.6);
+        line-height: 1.6;
+    }
+
+    /* Instructor section */
+    .instructor {
+        display: flex;
+        gap: 60px;
+        align-items: center;
+        background: #111;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        padding: 60px;
+        border-radius: 32px;
+        margin-bottom: 120px;
+    }
+    .instructor-content {
+        flex: 1;
+    }
+    .instructor-video {
+        flex: 1;
+        border-radius: 20px;
+        overflow: hidden;
+    }
+    .instructor-video video {
+        width: 100%;
+        display: block;
+    }
+    
+    .cta-box {
+        text-align: center;
+        padding: 80px 40px;
+        background: #fff;
+        color: #000;
+        border-radius: 32px;
+    }
+    .cta-box h2 {
+        font-family: 'Instrument Serif', serif;
+        font-size: clamp(2.5rem, 4vw, 4rem);
+        margin-bottom: 24px;
+    }
+    .cta-box p {
+        font-size: 1.2rem;
+        margin-bottom: 40px;
+        color: rgba(0,0,0,0.7);
+    }
+    .cta-box a {
+        background: #000;
+        color: #fff;
+        padding: 16px 40px;
+        border-radius: 100px;
+        text-decoration: none;
+        font-size: 1.1rem;
+        display: inline-block;
+        transition: transform 0.2s;
+    }
+    .cta-box a:hover {
+        transform: translateY(-2px);
+    }
+
+    @media (max-width: 768px) {
+        .instructor {
+            flex-direction: column;
+            padding: 32px;
         }
-    </style>
+        .curriculum-item {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 16px;
+        }
+    }
+  </style>
 </head>
 <body>
 
-<nav class="navbar">
-    <div class="logo">CREZ</div>
+  <!-- Global side lines -->
+  <div class="global-side-lines" aria-hidden="true">
+    <div class="side-line side-line--1"></div>
+    <div class="side-line side-line--5"></div>
+  </div>
+
+  <!-- ===== NAV ===== -->
+  <nav class="nav" id="nav">
+    <a href="index.html#top" class="nav-logo">crez motion</a>
     <div class="nav-links">
-        <a href="index.html#work" class="nav-link">Portfolio</a>
-        <a href="index.html#testimonials" class="nav-link">Reviews</a>
-        <a href="course-preview.html" class="nav-link">Courses</a>
-        <a href="index.html#start" class="nav-link">Start</a>
+      <a href="index.html#work" class="nav-link">Portfolio</a>
+      <a href="index.html#testimonials" class="nav-link">Reviews</a>
+      <a href="course-preview.html" class="nav-link">Courses</a>
+      <a href="index.html#start" class="nav-link">Start</a>
     </div>
     <div style="display: flex; align-items: center; gap: 16px;">
-        <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
-            <svg class="sun-icon" viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
-            <svg class="moon-icon" viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" style="display: none;"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
-        </button>
+      <a href="https://t.me/shakh_salyamov" target="_blank" class="nav-cta">Contact me<span class="arrow">↗</span></a>
     </div>
-</nav>
+    <button class="nav-burger" id="burger" aria-label="Menu">
+      <span></span><span></span>
+    </button>
+  </nav>
 
-<header class="hero-course">
-    <h1>Motion & AI Design Course</h1>
-    <p>Noldan boshlab AI yordamida harakatlanuvchi dizaynlar, 2D/3D grafika va kreativ kontent yaratishni o'rganing.</p>
-    <a href="#about-course" class="btn btn--filled" style="padding: 16px 32px; font-size: 1.1rem;">Batafsil ma'lumot</a>
-</header>
+  <div class="course-page">
+      
+      <!-- HERO -->
+      <div class="hero-course">
+          <h1>Motion & AI Design Course</h1>
+          <p>Noldan boshlab AI yordamida harakatlanuvchi dizaynlar, 2D/3D grafika va kreativ kontent yaratishni o'rganing.</p>
+      </div>
 
-<div class="course-section" style="padding-top: 0;" id="about-course">
-    <div class="course-video-wrapper">
-        <video src="promo200.mp4" autoplay muted loop playsinline></video>
-    </div>
+      <div class="video-wrapper">
+          <video src="promo200.mp4" autoplay muted loop playsinline></video>
+      </div>
 
-    <h2 class="section-title">Kursda nimalarni o'rganasiz?</h2>
-    
-    <div class="features-grid">
-        <div class="feature-card">
-            <h3>Motion Dizayn Asoslari</h3>
-            <p>Kadrlar bilan ishlash, animatsiya prinsiplari va harakat qonuniyatlarini amaliyotda o'rganish. Har qanday obyektni jonlantirish sirlari.</p>
-        </div>
-        <div class="feature-card">
-            <h3>AI bilan ishlash</h3>
-            <p>Sun'iy intellekt (Midjourney, ChatGPT, Runway va boshqalar) yordamida g'oyalarni vizualizatsiya qilish, vaqtingizni 10 barobarga tejash.</p>
-        </div>
-        <div class="feature-card">
-            <h3>Dizayn Asoslari</h3>
-            <p>Kompozitsiya, ranglar nazariyasi, tipografika va vizual iyerarxiya. Qanday qilib e'tiborni tortuvchi kadrlar yaratish kerakligi.</p>
-        </div>
-        <div class="feature-card">
-            <h3>2D va 3D Grafika</h3>
-            <p>Ikkala o'lchamda ham zamonaviy renderlar tayyorlash. Mijozlarni lol qoldiradigan "wow" effektlarini yaratish.</p>
-        </div>
-    </div>
+      <!-- SALARIES -->
+      <h2 class="section-title">Bozordagi real holat</h2>
+      <p style="color: rgba(255,255,255,0.6); margin-bottom: 40px; font-size: 1.2rem; max-width: 800px;">
+          Dizaynerlar qancha daromad topadi va mutaxassislarga bo'lgan talab qanday o'smoqda? Bugungi kundagi motion dizaynerlarning o'rtacha oylik maoshlari (Freelance va studiyalarda):
+      </p>
+      
+      <div class="salary-grid">
+          <div class="salary-card">
+              <div class="role">Boshlang'ich</div>
+              <div class="amount">$500</div>
+          </div>
+          <div class="salary-card">
+              <div class="role">O'rtacha maosh</div>
+              <div class="amount">$800</div>
+          </div>
+          <div class="salary-card">
+              <div class="role">Middle (O'rta)</div>
+              <div class="amount">$1000</div>
+          </div>
+          <div class="salary-card">
+              <div class="role">Senior (Yuqori)</div>
+              <div class="amount">$2500+</div>
+          </div>
+      </div>
 
-    <div class="instructor-section">
-        <div class="instructor-content">
-            <h2 style="font-size: 2.5rem; margin-bottom: 24px;">Men haqimda</h2>
-            <p style="color: var(--text-secondary); line-height: 1.6; margin-bottom: 24px; font-size: 1.1rem;">
-                Dizayn va animatsiya sohasida to'plagan barcha tajribalarimni, shuningdek ish jarayonini tezlashtirish uchun zamonaviy sun'iy intellekt vositalaridan qanday foydalanishni aynan ushbu kursga jamlaganman.
-            </p>
-            <div class="instructor-stats">
-                <div class="stat-item">
-                    <h4>4+</h4>
-                    <p>Yillik tajriba</p>
-                </div>
-                <div class="stat-item">
-                    <h4>100%</h4>
-                    <p>Amaliyot</p>
-                </div>
-            </div>
-        </div>
-        <div style="flex: 1; border-radius: 24px; overflow: hidden;">
-            <video src="me.mp4" autoplay muted loop playsinline style="width: 100%; display: block; border-radius: 24px;"></video>
-        </div>
-    </div>
+      <!-- CURRICULUM -->
+      <h2 class="section-title">O'quv rejasi</h2>
+      <div class="curriculum-list">
+          <div class="curriculum-item">
+              <div class="week">01</div>
+              <div class="content">
+                  <h3>After Effects va Dizayn Asoslari</h3>
+                  <p>Interfeys bilan tanishish, kompozitsiya qoidalari, ranglar nazariyasi, tipografika va birinchi animatsiyalarni yaratish.</p>
+              </div>
+          </div>
+          <div class="curriculum-item">
+              <div class="week">02</div>
+              <div class="content">
+                  <h3>Kengaytirilgan Motion va Dinamika</h3>
+                  <p>Harakat qonuniyatlari, kadrlar bilan ishlash, tranzaktsiyalar, shakllar va vizual e'tiborni to'g'ri yo'naltirish usullari.</p>
+              </div>
+          </div>
+          <div class="curriculum-item">
+              <div class="week">03</div>
+              <div class="content">
+                  <h3>Sun'iy Intellekt (AI) integratsiyasi</h3>
+                  <p>Midjourney va ChatGPT kabi vositalar yordamida g'oyalarni vizualizatsiya qilish, vaqtni qisqartirish va kreativlikni oshirish.</p>
+              </div>
+          </div>
+          <div class="curriculum-item">
+              <div class="week">04</div>
+              <div class="content">
+                  <h3>2D/3D Grafika va Portfolio</h3>
+                  <p>Murakkab loyihalarni yig'ish, 3D elementlarni qo'shish, mijozlarga taqdim etish (render) va kuchli portfolio yaratish sirlari.</p>
+              </div>
+          </div>
+      </div>
 
-    <div class="cta-section">
-        <h2 style="font-size: 3rem; margin-bottom: 24px;">Tayyormisiz?</h2>
-        <p style="color: var(--text-secondary); margin-bottom: 40px; font-size: 1.2rem;">Kurs haqida to'liq ma'lumot olish yoki yozilish uchun men bilan bog'laning.</p>
-        <a href="https://t.me/shakh_salyamov" target="_blank" class="btn btn--filled" style="padding: 16px 40px; font-size: 1.2rem;">Telegram orqali yozish</a>
-    </div>
-</div>
+      <!-- OUTCOMES -->
+      <h2 class="section-title">Kursni tugatgach nimalarga ega bo'lasiz?</h2>
+      <div class="benefits-grid">
+          <div class="benefit-card">
+              <h3>30 ta Reels</h3>
+              <p>O'zingizning shaxsiy portfolionizni to'ldirish uchun 30 ta tayyor amaliy reels videolar.</p>
+          </div>
+          <div class="benefit-card">
+              <h3>3 ta Katta Darslik</h3>
+              <p>Murakkab va katta loyihalarni noldan oxirigacha qanday yig'ish haqida to'liq motion darsliklar.</p>
+          </div>
+          <div class="benefit-card">
+              <h3>Nazariy darslar va leksiyalar</h3>
+              <p>Sohadagi barcha fundamental bilimlar, dizayn psixologiyasi va mijozlar bilan ishlash bo'yicha maxsus leksiyalar.</p>
+          </div>
+          <div class="benefit-card">
+              <h3>20 ta Shablonlar</h3>
+              <p>Ish jarayonini 10 barobarga tezlashtiruvchi tayyor shablonlar (templates) to'plami.</p>
+          </div>
+          <div class="benefit-card">
+              <h3>Uy vazifalari va Feedback</h3>
+              <p>Har bir qilingan ish bo'yicha professionallar tomonidan tekshiruv va shaxsiy feedbacklar (xatolarni to'g'rilash).</p>
+          </div>
+          <div class="benefit-card">
+              <h3>Haftalik jonli razbor (Live)</h3>
+              <p>Haftada bir marta barcha o'quvchilar bilan jonli efirda loyihalarni analiz qilib, savol-javoblar o'tkaziladi.</p>
+          </div>
+      </div>
 
-<script>
-    function toggleTheme() {
-        const body = document.documentElement;
-        const currentTheme = body.getAttribute('data-theme');
-        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-        
-        body.setAttribute('data-theme', newTheme);
-        localStorage.setItem('theme', newTheme);
-        
-        const sunIcon = document.querySelector('.sun-icon');
-        const moonIcon = document.querySelector('.moon-icon');
-        
-        if (newTheme === 'dark') {
-            sunIcon.style.display = 'block';
-            moonIcon.style.display = 'none';
-        } else {
-            sunIcon.style.display = 'none';
-            moonIcon.style.display = 'block';
-        }
-    }
+      <!-- ABOUT INSTRUCTOR -->
+      <div class="instructor">
+          <div class="instructor-content">
+              <h2 class="section-title" style="margin-bottom: 24px; text-align: left;">Men haqimda</h2>
+              <p style="color: rgba(255,255,255,0.7); line-height: 1.6; margin-bottom: 24px; font-size: 1.1rem;">
+                  Motion dizayn va AI sohasida <strong>4+ yillik tajribaga ega</strong> mutaxassisman. Shu vaqt ichida ko'plab brendlar va xalqaro loyihalar bilan ishladim.
+              </p>
+              <p style="color: rgba(255,255,255,0.7); line-height: 1.6; font-size: 1.1rem;">
+                  Ushbu kursni yaratishdan asosiy maqsad – faqatgina tugmalarni bosishni emas, balki sun'iy intellekt va to'g'ri dizayn asoslari orqali vizual fikrlashni o'rgatishdir.
+              </p>
+          </div>
+          <div class="instructor-video">
+              <video src="me.mp4" autoplay muted loop playsinline></video>
+          </div>
+      </div>
 
-    // Set initial theme
-    const savedTheme = localStorage.getItem('theme') || 'dark';
-    document.documentElement.setAttribute('data-theme', savedTheme);
-    if (savedTheme === 'light') {
-        document.querySelector('.sun-icon').style.display = 'none';
-        document.querySelector('.moon-icon').style.display = 'block';
-    }
-</script>
+      <!-- CTA -->
+      <div class="cta-box">
+          <h2>Maqsad sari qadam qo'ying</h2>
+          <p>Kurs haqida to'liq ma'lumot olish yoki joy band qilish uchun menga yozing.</p>
+          <a href="https://t.me/shakh_salyamov" target="_blank">Telegram orqali yozish</a>
+      </div>
 
+  </div>
+
+  <script src="script.js"></script>
 </body>
 </html>
