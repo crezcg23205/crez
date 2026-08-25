@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Motion & AI Course</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        .hero-course {
+            padding: 120px 5% 60px;
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .hero-course h1 {
+            font-size: clamp(3rem, 6vw, 5rem);
+            line-height: 1.1;
+            margin-bottom: 24px;
+            letter-spacing: -0.02em;
+        }
+        .hero-course p {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            margin-bottom: 40px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .course-video-wrapper {
+            width: 100%;
+            border-radius: 24px;
+            overflow: hidden;
+            margin-bottom: 80px;
+            background: #111;
+        }
+        .course-video-wrapper video {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .course-section {
+            padding: 80px 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 32px;
+            margin-bottom: 80px;
+        }
+        .feature-card {
+            background: var(--bg-secondary);
+            padding: 40px;
+            border-radius: 24px;
+            border: 1px solid var(--border-color);
+        }
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 16px;
+        }
+        .feature-card p {
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .instructor-section {
+            display: flex;
+            align-items: center;
+            gap: 60px;
+            background: var(--bg-secondary);
+            border-radius: 32px;
+            padding: 60px;
+            margin: 80px 0;
+            border: 1px solid var(--border-color);
+        }
+        .instructor-content {
+            flex: 1;
+        }
+        .instructor-stats {
+            display: flex;
+            gap: 40px;
+            margin-top: 32px;
+        }
+        .stat-item h4 {
+            font-size: 2.5rem;
+            margin-bottom: 8px;
+        }
+        .stat-item p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        
+        .cta-section {
+            text-align: center;
+            padding: 100px 5%;
+        }
+
+        @media (max-width: 768px) {
+            .instructor-section {
+                flex-direction: column;
+                padding: 40px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="logo">CREZ</div>
+    <div class="nav-links">
+        <a href="index.html#work" class="nav-link">Portfolio</a>
+        <a href="index.html#testimonials" class="nav-link">Reviews</a>
+        <a href="course-preview.html" class="nav-link">Courses</a>
+        <a href="index.html#start" class="nav-link">Start</a>
+    </div>
+    <div style="display: flex; align-items: center; gap: 16px;">
+        <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
+            <svg class="sun-icon" viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+            <svg class="moon-icon" viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" style="display: none;"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+        </button>
+    </div>
+</nav>
+
+<header class="hero-course">
+    <h1>Motion & AI Design Course</h1>
+    <p>Noldan boshlab AI yordamida harakatlanuvchi dizaynlar, 2D/3D grafika va kreativ kontent yaratishni o'rganing.</p>
+    <a href="#about-course" class="btn btn--filled" style="padding: 16px 32px; font-size: 1.1rem;">Batafsil ma'lumot</a>
+</header>
+
+<div class="course-section" style="padding-top: 0;" id="about-course">
+    <div class="course-video-wrapper">
+        <video src="promo200.mp4" autoplay muted loop playsinline></video>
+    </div>
+
+    <h2 class="section-title">Kursda nimalarni o'rganasiz?</h2>
+    
+    <div class="features-grid">
+        <div class="feature-card">
+            <h3>Motion Dizayn Asoslari</h3>
+            <p>Kadrlar bilan ishlash, animatsiya prinsiplari va harakat qonuniyatlarini amaliyotda o'rganish. Har qanday obyektni jonlantirish sirlari.</p>
+        </div>
+        <div class="feature-card">
+            <h3>AI bilan ishlash</h3>
+            <p>Sun'iy intellekt (Midjourney, ChatGPT, Runway va boshqalar) yordamida g'oyalarni vizualizatsiya qilish, vaqtingizni 10 barobarga tejash.</p>
+        </div>
+        <div class="feature-card">
+            <h3>Dizayn Asoslari</h3>
+            <p>Kompozitsiya, ranglar nazariyasi, tipografika va vizual iyerarxiya. Qanday qilib e'tiborni tortuvchi kadrlar yaratish kerakligi.</p>
+        </div>
+        <div class="feature-card">
+            <h3>2D va 3D Grafika</h3>
+            <p>Ikkala o'lchamda ham zamonaviy renderlar tayyorlash. Mijozlarni lol qoldiradigan "wow" effektlarini yaratish.</p>
+        </div>
+    </div>
+
+    <div class="instructor-section">
+        <div class="instructor-content">
+            <h2 style="font-size: 2.5rem; margin-bottom: 24px;">Men haqimda</h2>
+            <p style="color: var(--text-secondary); line-height: 1.6; margin-bottom: 24px; font-size: 1.1rem;">
+                Dizayn va animatsiya sohasida to'plagan barcha tajribalarimni, shuningdek ish jarayonini tezlashtirish uchun zamonaviy sun'iy intellekt vositalaridan qanday foydalanishni aynan ushbu kursga jamlaganman.
+            </p>
+            <div class="instructor-stats">
+                <div class="stat-item">
+                    <h4>4+</h4>
+                    <p>Yillik tajriba</p>
+                </div>
+                <div class="stat-item">
+                    <h4>100%</h4>
+                    <p>Amaliyot</p>
+                </div>
+            </div>
+        </div>
+        <div style="flex: 1; border-radius: 24px; overflow: hidden;">
+            <video src="me.mp4" autoplay muted loop playsinline style="width: 100%; display: block; border-radius: 24px;"></video>
+        </div>
+    </div>
+
+    <div class="cta-section">
+        <h2 style="font-size: 3rem; margin-bottom: 24px;">Tayyormisiz?</h2>
+        <p style="color: var(--text-secondary); margin-bottom: 40px; font-size: 1.2rem;">Kurs haqida to'liq ma'lumot olish yoki yozilish uchun men bilan bog'laning.</p>
+        <a href="https://t.me/shakh_salyamov" target="_blank" class="btn btn--filled" style="padding: 16px 40px; font-size: 1.2rem;">Telegram orqali yozish</a>
+    </div>
+</div>
+
+<script>
+    function toggleTheme() {
+        const body = document.documentElement;
+        const currentTheme = body.getAttribute('data-theme');
+        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        
+        body.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+        
+        const sunIcon = document.querySelector('.sun-icon');
+        const moonIcon = document.querySelector('.moon-icon');
+        
+        if (newTheme === 'dark') {
+            sunIcon.style.display = 'block';
+            moonIcon.style.display = 'none';
+        } else {
+            sunIcon.style.display = 'none';
+            moonIcon.style.display = 'block';
+        }
+    }
+
+    // Set initial theme
+    const savedTheme = localStorage.getItem('theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', savedTheme);
+    if (savedTheme === 'light') {
+        document.querySelector('.sun-icon').style.display = 'none';
+        document.querySelector('.moon-icon').style.display = 'block';
+    }
+</script>
+
+</body>
+</html>
