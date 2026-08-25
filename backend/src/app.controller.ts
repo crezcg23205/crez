@@ -54,13 +54,24 @@ export class AppController {
     if (!auth) throw new UnauthorizedException('Please login');
     const { courseId, provider } = body;
     
-    // Mock the payme/click integration successfully
-    payments.push({ courseId, provider, userId: 1, status: 'PAID' });
-    
-    return {
-      success: true,
-      telegramLink: 'https://t.me/+mockInviteLink123'
-    };
+    const course = courses.find(c => c.id === courseId);
+    if (!course) throw new Error("Course not found");
+
+    const amount = course.price;
+    const entityId = 1; // mock user id
+    const returnUrl = 'http://localhost:8080/courses.html?paid=true';
+
+    if (provider === 'Payme') {
+      const paymeMerchantId = '12345678901234567890abcd'; // Dummy
+      const data = `m=${paymeMerchantId};l=uz;ac.user_id=${entityId};a=${amount * 100};c=${returnUrl}`;
+      const encoded = Buffer.from(data).toString('base64');
+      return { success: true, paymentLink: `https://checkout.paycom.uz/${encoded}` };
+    } else {
+      const clickServiceId = '12345';
+      const clickMerchantId = '67890';
+      const clickLink = `https://my.click.uz/services/pay?service_id=${clickServiceId}&merchant_id=${clickMerchantId}&amount=${amount}&transaction_param=${entityId}&return_url=${returnUrl}`;
+      return { success: true, paymentLink: clickLink };
+    }
   }
 
   @Get('admin/students')

@@ -129,6 +129,12 @@
         document.getElementById('loginBtn').style.display = 'none';
       }
 
+      const urlParams = new URLSearchParams(window.location.search);
+      if (urlParams.get('paid') === 'true') {
+        alert("To'lov muvaffaqiyatli amalga oshirildi! Endi guruhga qo'shilishingiz mumkin.");
+        window.location.href = 'https://t.me/+mockInviteLink123';
+      }
+
       loadCourses();
     }
 
@@ -190,8 +196,8 @@
         
         const data = await res.json();
         if (res.ok) {
-          alert('To\'lov muvaffaqiyatli amalga oshirildi! Guruhga qabul qilindingiz.');
-          window.location.href = data.telegramLink; // Redirect to telegram group
+          // Redirect user to the real Payme/Click checkout page
+          window.location.href = data.paymentLink;
         } else {
           alert('Xatolik: ' + data.message);
         }
