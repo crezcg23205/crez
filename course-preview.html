@@ -100,37 +100,86 @@
         color: #000;
     }
 
-    /* Curriculum */
-    .curriculum-list {
+    /* Accordion */
+    .accordion-list {
         display: flex;
         flex-direction: column;
-        gap: 16px;
         margin-bottom: 120px;
     }
-    .curriculum-item {
-        background: #000;
-        color: #fff;
-        border: 1px solid rgba(0, 0, 0, 0.9);
-        padding: 32px;
-        border-radius: 20px;
+    .accordion-item {
+        border-bottom: 1px solid rgba(0,0,0,0.1);
+        cursor: pointer;
+    }
+    .accordion-item:first-child {
+        border-top: 1px solid rgba(0,0,0,0.1);
+    }
+    .accordion-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 40px 0;
+    }
+    .accordion-title-wrap {
         display: flex;
         align-items: center;
+        gap: 24px;
+    }
+    .block-num {
+        background: #ff5722;
+        color: #fff;
+        padding: 4px 12px;
+        font-family: 'Inter', sans-serif;
+        font-weight: 600;
+        font-size: 0.9rem;
+    }
+    .accordion-title {
+        font-family: 'Inter', sans-serif;
+        font-size: clamp(1.5rem, 3vw, 2.5rem);
+        font-weight: 700;
+        letter-spacing: -0.02em;
+        margin: 0;
+    }
+    .accordion-icon {
+        font-size: 2rem;
+        font-weight: 300;
+        transition: transform 0.3s;
+    }
+    .accordion-item.active .accordion-icon {
+        transform: rotate(45deg);
+    }
+    .accordion-content {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.4s ease-out;
+    }
+    .accordion-item.active .accordion-content {
+        max-height: 1000px;
+    }
+    .accordion-content-inner {
+        padding-bottom: 40px;
+        display: flex;
+        gap: 40px;
+    }
+    .accordion-left {
+        flex: 1;
+    }
+    .accordion-right {
+        flex: 1.5;
+        display: flex;
+        flex-direction: column;
         gap: 32px;
     }
-    .curriculum-item .week {
-        font-family: 'Instrument Serif', serif;
-        font-size: 2.5rem;
-        font-style: italic;
-        color: rgba(255, 255, 255, 0.5);
-        min-width: 100px;
+    .text-group h4 {
+        color: #ff5722;
+        text-transform: uppercase;
+        font-size: 0.85rem;
+        letter-spacing: 0.05em;
+        margin-bottom: 12px;
     }
-    .curriculum-item .content h3 {
-        font-size: 1.5rem;
-        margin-bottom: 8px;
-    }
-    .curriculum-item .content p {
-        color: rgba(255, 255, 255, 0.7);
-        line-height: 1.5;
+    .text-group p {
+        font-size: 1.1rem;
+        line-height: 1.6;
+        color: rgba(0,0,0,0.8);
     }
 
     /* Benefits grid */
@@ -314,33 +363,212 @@
 
       <!-- CURRICULUM -->
       <h2 class="section-title">O'quv rejasi</h2>
-      <div class="curriculum-list">
-          <div class="curriculum-item">
-              <div class="week">01</div>
-              <div class="content">
-                  <h3>After Effects va Dizayn Asoslari</h3>
-                  <p>Interfeys bilan tanishish, kompozitsiya qoidalari, ranglar nazariyasi, tipografika va birinchi animatsiyalarni yaratish.</p>
+      <div class="accordion-list">
+          <!-- Blok 1 -->
+          <div class="accordion-item" onclick="this.classList.toggle('active')">
+              <div class="accordion-header">
+                  <div class="accordion-title-wrap">
+                      <span class="block-num">Blok 1</span>
+                      <h3 class="accordion-title">Motion-dizaynga kirish</h3>
+                  </div>
+                  <span class="accordion-icon">+</span>
+              </div>
+              <div class="accordion-content">
+                  <div class="accordion-content-inner">
+                      <div class="accordion-left"></div>
+                      <div class="accordion-right">
+                          <div class="text-group">
+                              <h4>Nazariya</h4>
+                              <p>Kasb va sohaning asosiy yo'nalishlari bilan tanishasiz. Kompozitsiya, rang va tipografika bilan ishlashni, grafikani animatsiya bilan birlashtirishni o'rganasiz.</p>
+                          </div>
+                          <div class="text-group">
+                              <h4>Amaliyot</h4>
+                              <p>Dizayn-konsept, shriftli kompozitsiya va poster yaratasiz. Referenslar bilan ishlaysiz.</p>
+                          </div>
+                      </div>
+                  </div>
               </div>
           </div>
-          <div class="curriculum-item">
-              <div class="week">02</div>
-              <div class="content">
-                  <h3>Kengaytirilgan Motion va Dinamika</h3>
-                  <p>Harakat qonuniyatlari, kadrlar bilan ishlash, tranzaktsiyalar, shakllar va vizual e'tiborni to'g'ri yo'naltirish usullari.</p>
+
+          <!-- Blok 2 -->
+          <div class="accordion-item" onclick="this.classList.toggle('active')">
+              <div class="accordion-header">
+                  <div class="accordion-title-wrap">
+                      <span class="block-num">Blok 2</span>
+                      <h3 class="accordion-title">After Effects dasturida ishlash</h3>
+                  </div>
+                  <span class="accordion-icon">+</span>
+              </div>
+              <div class="accordion-content">
+                  <div class="accordion-content-inner">
+                      <div class="accordion-left"></div>
+                      <div class="accordion-right">
+                          <div class="text-group">
+                              <h4>Nazariya</h4>
+                              <p>Matn, personajlar va infografikani animatsiya qilishni, 2D va 3D ni birlashtirishni, plaginlardan foydalanishni o'rganasiz. Vizual didingizni rivojlantirasiz va Disney prinsiplari asosida g'oyalarni ta'sirchan animatsiyaga aylantirishni o'rganasiz.</p>
+                          </div>
+                          <div class="text-group">
+                              <h4>Amaliyot</h4>
+                              <p>7+ ta mini-loyiha, 2 ta animatsion rolik va to'liq showreel yaratasiz.</p>
+                          </div>
+                      </div>
+                  </div>
               </div>
           </div>
-          <div class="curriculum-item">
-              <div class="week">03</div>
-              <div class="content">
-                  <h3>Sun'iy Intellekt (AI) integratsiyasi</h3>
-                  <p>Midjourney va ChatGPT kabi vositalar yordamida g'oyalarni vizualizatsiya qilish, vaqtni qisqartirish va kreativlikni oshirish.</p>
+
+          <!-- Blok 3 -->
+          <div class="accordion-item" onclick="this.classList.toggle('active')">
+              <div class="accordion-header">
+                  <div class="accordion-title-wrap">
+                      <span class="block-num">Blok 3</span>
+                      <h3 class="accordion-title">Kengaytirilgan Motion va Dinamika</h3>
+                  </div>
+                  <span class="accordion-icon">+</span>
+              </div>
+              <div class="accordion-content">
+                  <div class="accordion-content-inner">
+                      <div class="accordion-left"></div>
+                      <div class="accordion-right">
+                          <div class="text-group">
+                              <h4>Nazariya</h4>
+                              <p>Harakat qonuniyatlari, kadrlar bilan ishlash, tranzaktsiyalar, murakkab shakllar va vizual e'tiborni to'g'ri yo'naltirish usullarini o'zlashtirasiz.</p>
+                          </div>
+                          <div class="text-group">
+                              <h4>Amaliyot</h4>
+                              <p>Dinamik reklama roliklari va ijtimoiy tarmoqlar uchun maxsus formatdagi videolar tayyorlaysiz.</p>
+                          </div>
+                      </div>
+                  </div>
               </div>
           </div>
-          <div class="curriculum-item">
-              <div class="week">04</div>
-              <div class="content">
-                  <h3>2D/3D Grafika va Portfolio</h3>
-                  <p>Murakkab loyihalarni yig'ish, 3D elementlarni qo'shish, mijozlarga taqdim etish (render) va kuchli portfolio yaratish sirlari.</p>
+
+          <!-- Blok 4 -->
+          <div class="accordion-item" onclick="this.classList.toggle('active')">
+              <div class="accordion-header">
+                  <div class="accordion-title-wrap">
+                      <span class="block-num">Blok 4</span>
+                      <h3 class="accordion-title">Sun'iy Intellekt (AI) integratsiyasi</h3>
+                  </div>
+                  <span class="accordion-icon">+</span>
+              </div>
+              <div class="accordion-content">
+                  <div class="accordion-content-inner">
+                      <div class="accordion-left"></div>
+                      <div class="accordion-right">
+                          <div class="text-group">
+                              <h4>Nazariya</h4>
+                              <p>Midjourney va ChatGPT kabi vositalar yordamida g'oyalarni vizualizatsiya qilish, ishlash vaqtini qisqartirish va kreativlikni yuzaga chiqarishni o'rganasiz.</p>
+                          </div>
+                          <div class="text-group">
+                              <h4>Amaliyot</h4>
+                              <p>AI yordamida noyob dizayn konseptlar yaratish va ularni After Effectsda harakatga keltirish.</p>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+
+          <!-- Blok 5 -->
+          <div class="accordion-item" onclick="this.classList.toggle('active')">
+              <div class="accordion-header">
+                  <div class="accordion-title-wrap">
+                      <span class="block-num">Blok 5</span>
+                      <h3 class="accordion-title">3D Grafika asoslari</h3>
+                  </div>
+                  <span class="accordion-icon">+</span>
+              </div>
+              <div class="accordion-content">
+                  <div class="accordion-content-inner">
+                      <div class="accordion-left"></div>
+                      <div class="accordion-right">
+                          <div class="text-group">
+                              <h4>Nazariya</h4>
+                              <p>Uch o'lchamli fazoda ishlash, yorug'lik, kameralar, materiallar va teksturalar bilan ishlash asoslari.</p>
+                          </div>
+                          <div class="text-group">
+                              <h4>Amaliyot</h4>
+                              <p>Oddiy 3D obyektlarni modellashtirish va ularni 2D kompozitsiyalarga sifatli integratsiya qilish (render).</p>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+
+          <!-- Blok 6 -->
+          <div class="accordion-item" onclick="this.classList.toggle('active')">
+              <div class="accordion-header">
+                  <div class="accordion-title-wrap">
+                      <span class="block-num">Blok 6</span>
+                      <h3 class="accordion-title">Brif bilan ishlash va UI-animatsiya</h3>
+                  </div>
+                  <span class="accordion-icon">+</span>
+              </div>
+              <div class="accordion-content">
+                  <div class="accordion-content-inner">
+                      <div class="accordion-left"></div>
+                      <div class="accordion-right">
+                          <div class="text-group">
+                              <h4>Nazariya</h4>
+                              <p>Mijoz brifi (texnik topshiriq) bilan savodli ishlashni, interfeyslarni animatsiya qilishni va maxsus UI-roliklar yaratishni o'rganasiz.</p>
+                          </div>
+                          <div class="text-group">
+                              <h4>Amaliyot</h4>
+                              <p>After Effects dasturida real loyiha asosida to'liq UI-rolik yaratasiz.</p>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+
+          <!-- Blok 7 -->
+          <div class="accordion-item" onclick="this.classList.toggle('active')">
+              <div class="accordion-header">
+                  <div class="accordion-title-wrap">
+                      <span class="block-num">Blok 7</span>
+                      <h3 class="accordion-title">Vizual fikrlash: statika va dinamika</h3>
+                  </div>
+                  <span class="accordion-icon">+</span>
+              </div>
+              <div class="accordion-content">
+                  <div class="accordion-content-inner">
+                      <div class="accordion-left"></div>
+                      <div class="accordion-right">
+                          <div class="text-group">
+                              <h4>Nazariya</h4>
+                              <p>Kompozitsiya, ritm, rang va shaklni his qilish qobiliyatingizni kuchaytirasiz, g'oyalarni eskizlar orqali vizualizatsiya qilishni o'rganasiz. Animatsiya tarixi bilan tanishasiz.</p>
+                          </div>
+                          <div class="text-group">
+                              <h4>Amaliyot</h4>
+                              <p>O'ziga xos va yorqin vizual konsept ishlab chiqasiz.</p>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+
+          <!-- Blok 8 -->
+          <div class="accordion-item" onclick="this.classList.toggle('active')">
+              <div class="accordion-header">
+                  <div class="accordion-title-wrap">
+                      <span class="block-num">Blok 8</span>
+                      <h3 class="accordion-title">Portfolio va o'zini targ'ib qilish</h3>
+                  </div>
+                  <span class="accordion-icon">+</span>
+              </div>
+              <div class="accordion-content">
+                  <div class="accordion-content-inner">
+                      <div class="accordion-left"></div>
+                      <div class="accordion-right">
+                          <div class="text-group">
+                              <h4>Nazariya</h4>
+                              <p>O'zingizni mutaxassis sifatida bozorga olib chiqishni, keyslarni to'g'ri rasmiylashtirishni, portfolio yig'ishni va loyihalarni taqdim etishni o'rganasiz.</p>
+                          </div>
+                          <div class="text-group">
+                              <h4>Amaliyot</h4>
+                              <p>Bozorga chiqish uchun tayyor portfolio va rezyume yaratasiz, shuningdek Behance tarmog'iga 2-3 ta keyslaringizni joylaysiz.</p>
+                          </div>
+                      </div>
+                  </div>
               </div>
           </div>
       </div>
