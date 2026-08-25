@@ -224,20 +224,17 @@
     }
     .marquee-content {
         display: flex;
-        gap: 40px;
+        gap: 60px;
         align-items: center;
         width: max-content;
         animation: scrollMarquee 25s linear infinite;
     }
-    .marquee-content img {
-        height: 32px;
-        object-fit: contain;
-        filter: grayscale(100%) opacity(0.6);
-        mix-blend-mode: multiply;
+    .marquee-content span {
+        white-space: nowrap;
     }
     @keyframes scrollMarquee {
         0% { transform: translateX(0); }
-        100% { transform: translateX(calc(-50% - 20px)); }
+        100% { transform: translateX(calc(-50% - 30px)); }
     }
 
     @media (max-width: 768px) {
@@ -389,40 +386,40 @@
               </p>
           </div>
           <div class="instructor-video">
-              <video src="me.mp4" autoplay muted loop playsinline></video>
+              <img src="portrait.jpg" alt="CREZ" style="width: 100%; display: block; border-radius: 20px;">
           </div>
       </div>
 
       <div class="marquee-container">
-          <div class="marquee-content">
+          <div class="marquee-content" style="font-family: 'Inter', sans-serif; font-size: 1.5rem; font-weight: 500; color: rgba(0,0,0,0.5); text-transform: uppercase;">
               <!-- First set -->
-              <img src="https://logo.clearbit.com/honor.com" alt="HONOR">
-              <img src="https://logo.clearbit.com/pepsi.com" alt="PEPSI">
-              <img src="https://logo.clearbit.com/lipton.com" alt="LIPTON">
-              <img src="https://logo.clearbit.com/cheers.uz" alt="CHEERS">
-              <img src="https://logo.clearbit.com/sfad.uz" alt="SFAD">
-              <img src="https://logo.clearbit.com/605.agency" alt="605 AGENCY">
-              <img src="https://logo.clearbit.com/baskent.edu.tr" alt="BASHKENT">
-              <img src="https://logo.clearbit.com/millatumidi.uz" alt="MILLAT UMIDI">
-              <img src="https://logo.clearbit.com/tafu.uz" alt="TAFU">
-              <img src="https://logo.clearbit.com/mdis.uz" alt="MDIS">
-              <img src="https://logo.clearbit.com/ipotekabank.uz" alt="IPOTEKA BANK">
-              <img src="https://logo.clearbit.com/ofb.uz" alt="ORIENT FINANCE">
-              <img src="https://logo.clearbit.com/artelgroup.org" alt="ARTEL">
+              <span>HONOR</span>
+              <span>PEPSI</span>
+              <span>LIPTON</span>
+              <span>CHEERS</span>
+              <span>SFAD</span>
+              <span>605 AGENCY</span>
+              <span>BASHKENT</span>
+              <span>MILLAT UMIDI</span>
+              <span>TAFU</span>
+              <span>MDIS</span>
+              <span>IPOTEKA BANK</span>
+              <span>ORIENT FINANCE</span>
+              <span>ARTEL</span>
               <!-- Duplicate for infinite loop -->
-              <img src="https://logo.clearbit.com/honor.com" alt="HONOR">
-              <img src="https://logo.clearbit.com/pepsi.com" alt="PEPSI">
-              <img src="https://logo.clearbit.com/lipton.com" alt="LIPTON">
-              <img src="https://logo.clearbit.com/cheers.uz" alt="CHEERS">
-              <img src="https://logo.clearbit.com/sfad.uz" alt="SFAD">
-              <img src="https://logo.clearbit.com/605.agency" alt="605 AGENCY">
-              <img src="https://logo.clearbit.com/baskent.edu.tr" alt="BASHKENT">
-              <img src="https://logo.clearbit.com/millatumidi.uz" alt="MILLAT UMIDI">
-              <img src="https://logo.clearbit.com/tafu.uz" alt="TAFU">
-              <img src="https://logo.clearbit.com/mdis.uz" alt="MDIS">
-              <img src="https://logo.clearbit.com/ipotekabank.uz" alt="IPOTEKA BANK">
-              <img src="https://logo.clearbit.com/ofb.uz" alt="ORIENT FINANCE">
-              <img src="https://logo.clearbit.com/artelgroup.org" alt="ARTEL">
+              <span>HONOR</span>
+              <span>PEPSI</span>
+              <span>LIPTON</span>
+              <span>CHEERS</span>
+              <span>SFAD</span>
+              <span>605 AGENCY</span>
+              <span>BASHKENT</span>
+              <span>MILLAT UMIDI</span>
+              <span>TAFU</span>
+              <span>MDIS</span>
+              <span>IPOTEKA BANK</span>
+              <span>ORIENT FINANCE</span>
+              <span>ARTEL</span>
           </div>
       </div>
 
