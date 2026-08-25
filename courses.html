@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Courses — CREZ Motion</title>
+  <link rel="stylesheet" href="style.css"/>
+  <style>
+    .courses-section {
+      padding: 120px var(--side-pad) 60px;
+      min-height: 100vh;
+    }
+    .course-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      padding: 24px;
+      border-radius: var(--radius);
+      margin-bottom: 24px;
+    }
+    .course-title {
+      font-size: 24px;
+      font-family: var(--font-primary);
+      margin-bottom: 12px;
+    }
+    .course-desc {
+      color: var(--text-secondary);
+      margin-bottom: 16px;
+    }
+    .course-price {
+      font-size: 20px;
+      font-weight: bold;
+      margin-bottom: 16px;
+      color: var(--text);
+    }
+    .header-actions {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 40px;
+    }
+    .logout-btn {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 8px 16px;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0,0,0,0.8);
+      align-items: center; justify-content: center;
+      z-index: 999;
+    }
+    .modal-content {
+      background: var(--bg);
+      padding: 30px;
+      border-radius: 8px;
+      text-align: center;
+      max-width: 400px;
+      width: 100%;
+      border: 1px solid var(--border);
+    }
+    .payment-btns {
+      display: flex;
+      gap: 10px;
+      margin-top: 20px;
+    }
+    .payment-btns button {
+      flex: 1;
+      padding: 12px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    .btn-payme { background: #33cccc; color: #fff; }
+    .btn-click { background: #00aaff; color: #fff; }
+  </style>
+</head>
+<body>
+  <nav class="nav" id="nav">
+    <a href="index.html#top" class="nav-logo">crez motion</a>
+    <div class="nav-links">
+      <a href="index.html#work" class="nav-link">Portfolio</a>
+      <a href="courses.html" class="nav-link">Courses</a>
+    </div>
+  </nav>
+
+  <section class="courses-section">
+    <div class="header-actions">
+      <h2>O'quv kurslari</h2>
+      <button class="logout-btn" onclick="logout()" id="logoutBtn" style="display:none;">Chiqish</button>
+      <a href="login.html" class="btn btn--filled" id="loginBtn">Tizimga kirish</a>
+    </div>
+    
+    <div id="coursesList">
+      <!-- Courses will be loaded here -->
+    </div>
+  </section>
+
+  <!-- Payment Modal -->
+  <div class="modal" id="paymentModal">
+    <div class="modal-content">
+      <h3>To'lov qilish</h3>
+      <p>Kurs narxi: <span id="payAmount"></span> so'm</p>
+      <p style="font-size: 13px; color: var(--text-muted); margin-top: 10px;">Admin karta: 9860270109906866</p>
+      <div class="payment-btns">
+        <button class="btn-payme" onclick="processPayment('Payme')">Payme bilan to'lash</button>
+        <button class="btn-click" onclick="processPayment('Click')">Click bilan to'lash</button>
+      </div>
+      <button style="margin-top: 15px; background: transparent; color: var(--text); border: none; cursor:pointer;" onclick="closeModal()">Bekor qilish</button>
+    </div>
+  </div>
+
+  <script>
+    let selectedCourseId = null;
+
+    window.onload = () => {
+      if (localStorage.getItem('theme') === 'dark') {
+        document.body.setAttribute('data-theme', 'dark');
+      }
+
+      const token = localStorage.getItem('token');
+      if (token) {
+        document.getElementById('logoutBtn').style.display = 'block';
+        document.getElementById('loginBtn').style.display = 'none';
+      }
+
+      loadCourses();
+    }
+
+    function logout() {
+      localStorage.removeItem('token');
+      localStorage.removeItem('userRole');
+      window.location.reload();
+    }
+
+    async function loadCourses() {
+      try {
+        const res = await fetch('http://localhost:3000/courses');
+        const courses = await res.json();
+        const list = document.getElementById('coursesList');
+        
+        if (courses.length === 0) {
+          list.innerHTML = '<p>Hozircha kurslar yo\'q.</p>';
+          return;
+        }
+
+        list.innerHTML = courses.map(c => `
+          <div class="course-card">
+            <h3 class="course-title">${c.title}</h3>
+            <p class="course-desc">${c.description}</p>
+            <div class="course-price">${c.price.toLocaleString()} so'm</div>
+            <button class="btn btn--filled" onclick="buyCourse(${c.id}, ${c.price})">Sotib olish</button>
+          </div>
+        `).join('');
+      } catch (e) {
+        document.getElementById('coursesList').innerHTML = '<p>Kurslarni yuklashda xatolik yuz berdi. Server ishlayaptimi?</p>';
+      }
+    }
+
+    function buyCourse(id, price) {
+      if (!localStorage.getItem('token')) {
+        alert('Iltimos, oldin tizimga kiring yoki ro\'yxatdan o\'ting.');
+        window.location.href = 'login.html';
+        return;
+      }
+      selectedCourseId = id;
+      document.getElementById('payAmount').innerText = price.toLocaleString();
+      document.getElementById('paymentModal').style.display = 'flex';
+    }
+
+    function closeModal() {
+      document.getElementById('paymentModal').style.display = 'none';
+    }
+
+    async function processPayment(provider) {
+      try {
+        const res = await fetch('http://localhost:3000/payments/pay', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + localStorage.getItem('token')
+          },
+          body: JSON.stringify({ courseId: selectedCourseId, provider })
+        });
+        
+        const data = await res.json();
+        if (res.ok) {
+          alert('To\'lov muvaffaqiyatli amalga oshirildi! Guruhga qabul qilindingiz.');
+          window.location.href = data.telegramLink; // Redirect to telegram group
+        } else {
+          alert('Xatolik: ' + data.message);
+        }
+      } catch (e) {
+        alert('Server bilan xatolik');
+      }
+      closeModal();
+    }
+  </script>
+</body>
+</html>
