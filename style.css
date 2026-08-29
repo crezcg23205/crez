@@ -593,13 +593,12 @@ ul, ol { list-style: none; }
    TESTIMONIALS (2-Row Infinite Marquee)
    ========================================== */
 .testimonials {
-  padding: 100px 0 120px 0;
+  padding: 100px var(--side-pad) 120px;
   position: relative;
   z-index: 10;
   overflow: hidden;
 }
 .testimonials-header {
-  padding: 0 var(--side-pad);
   margin-bottom: 50px;
 }
 .testimonials-title {
@@ -616,8 +615,9 @@ ul, ol { list-style: none; }
   gap: var(--marquee-gap);
   width: 100%;
   position: relative;
-  mask-image: linear-gradient(to right, transparent, black 6%, black 94%, transparent);
-  -webkit-mask-image: linear-gradient(to right, transparent, black 6%, black 94%, transparent);
+  overflow: hidden;
+  mask-image: linear-gradient(to right, transparent, black 40px, black calc(100% - 40px), transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 40px, black calc(100% - 40px), transparent);
 }
 
 .testimonials-marquee-track {
@@ -875,8 +875,8 @@ ul, ol { list-style: none; }
   .brands-list span:nth-last-of-type(-n+2) {
     border-bottom: none !important;
   }
-  .testimonials { padding: 60px 0 80px 0; }
-  .testimonials-header { padding: 0 var(--side-pad); margin-bottom: 36px; }
+  .testimonials { padding: 60px var(--side-pad) 80px; }
+  .testimonials-header { margin-bottom: 36px; }
   .testimonial-card { width: 380px; padding: 28px 24px; }
   .testimonial-text { font-size: 18px; }
   .footer { padding: 32px var(--side-pad); }
