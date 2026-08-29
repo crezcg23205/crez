@@ -616,39 +616,38 @@ ul, ol { list-style: none; }
   width: 100%;
   position: relative;
   overflow: hidden;
-  mask-image: linear-gradient(to right, transparent 0%, black 40px, black calc(100% - 40px), transparent 100%);
-  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 40px, black calc(100% - 40px), transparent 100%);
+  mask-image: linear-gradient(to right, transparent 0%, black 50px, black calc(100% - 50px), transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 50px, black calc(100% - 50px), transparent 100%);
 }
 
 .testimonials-marquee-track {
   display: flex;
   overflow: hidden;
   user-select: none;
-  gap: var(--marquee-gap);
   width: 100%;
 }
 
 .testimonials-marquee-content {
-  flex-shrink: 0;
   display: flex;
   gap: var(--marquee-gap);
-  min-width: 100%;
+  padding-right: var(--marquee-gap);
+  flex-shrink: 0;
   align-items: center;
-  animation: testimonialsScroll 32s linear infinite;
+  animation: testimonialsScroll 45s linear infinite;
   will-change: transform;
 }
 
 .testimonials-marquee-track.row-2 .testimonials-marquee-content {
-  animation: testimonialsScroll 32s linear infinite;
-  animation-delay: -16s;
+  animation: testimonialsScroll 45s linear infinite;
+  animation-delay: -22.5s;
 }
 
 @keyframes testimonialsScroll {
-  from {
+  0% {
     transform: translateX(0);
   }
-  to {
-    transform: translateX(calc(-100% - var(--marquee-gap)));
+  100% {
+    transform: translateX(-100%);
   }
 }
 
