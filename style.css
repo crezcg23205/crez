@@ -590,62 +590,106 @@ ul, ol { list-style: none; }
 }
 
 /* ==========================================
-   TESTIMONIALS
+   TESTIMONIALS (2-Row Infinite Marquee)
    ========================================== */
 .testimonials {
-  padding: 100px var(--side-pad) 120px;
+  padding: 100px 0 120px 0;
   position: relative;
   z-index: 10;
+  overflow: hidden;
+}
+.testimonials-header {
+  padding: 0 var(--side-pad);
+  margin-bottom: 50px;
 }
 .testimonials-title {
   font-family: var(--font-primary);
   font-size: clamp(2.5rem, 5vw, 4rem);
   font-weight: 900;
   margin-top: 24px;
-  margin-bottom: 60px;
 }
-.testimonials-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 40px;
+
+.testimonials-marquee-wrapper {
+  --marquee-gap: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--marquee-gap);
+  width: 100%;
+  position: relative;
+  mask-image: linear-gradient(to right, transparent, black 6%, black 94%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 6%, black 94%, transparent);
 }
+
+.testimonials-marquee-track {
+  display: flex;
+  overflow: hidden;
+  user-select: none;
+  gap: var(--marquee-gap);
+  width: 100%;
+}
+
+.testimonials-marquee-content {
+  flex-shrink: 0;
+  display: flex;
+  gap: var(--marquee-gap);
+  min-width: 100%;
+  align-items: stretch;
+}
+
+.testimonials-marquee-content.scroll-left {
+  animation: testimonialsScrollLeft 40s linear infinite;
+}
+
+.testimonials-marquee-content.scroll-right {
+  animation: testimonialsScrollRight 40s linear infinite;
+}
+
+.testimonials-marquee-track:hover .testimonials-marquee-content {
+  animation-play-state: paused;
+}
+
+@keyframes testimonialsScrollLeft {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(calc(-100% - var(--marquee-gap)));
+  }
+}
+
+@keyframes testimonialsScrollRight {
+  from {
+    transform: translateX(calc(-100% - var(--marquee-gap)));
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
 .testimonial-card {
-  padding: 40px;
+  width: 480px;
+  max-width: 85vw;
+  flex-shrink: 0;
+  padding: 36px 32px;
   border: 1px solid var(--border);
-  border-radius: 8px;
+  border-radius: 16px;
   background: var(--bg);
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  transition: transform 0.3s var(--ease), border-color 0.3s;
+  justify-content: center;
+  transition: transform 0.3s var(--ease), border-color 0.3s ease;
 }
+
 .testimonial-card:hover {
-  transform: translateY(-5px);
-  border-color: #555;
+  transform: translateY(-4px);
+  border-color: var(--text);
 }
+
 .testimonial-text {
   font-family: var(--font-italic-light);
-  font-size: 24px;
-  line-height: 1.4;
+  font-size: 21px;
+  line-height: 1.45;
   color: var(--text);
-  margin-bottom: 32px;
-}
-.testimonial-author {
-  display: flex;
-  flex-direction: column;
-}
-.testimonial-author strong {
-  font-family: var(--font-secondary);
-  font-size: 16px;
-  font-weight: bold;
-  color: var(--text);
-  text-transform: uppercase;
-}
-.testimonial-author span {
-  font-family: var(--font-sans);
-  font-size: 14px;
-  color: var(--text-muted);
-  margin-top: 4px;
 }
 
 /* ==========================================
@@ -831,10 +875,10 @@ ul, ol { list-style: none; }
   .brands-list span:nth-last-of-type(-n+2) {
     border-bottom: none !important;
   }
-  .testimonials { padding: 60px var(--side-pad) 80px; }
-  .testimonials-grid { grid-template-columns: 1fr; gap: 24px; }
-  .testimonial-card { padding: 24px; }
-  .testimonial-text { font-size: 20px; }
+  .testimonials { padding: 60px 0 80px 0; }
+  .testimonials-header { padding: 0 var(--side-pad); margin-bottom: 36px; }
+  .testimonial-card { width: 380px; padding: 28px 24px; }
+  .testimonial-text { font-size: 18px; }
   .footer { padding: 32px var(--side-pad); }
   .footer-top { flex-direction: column; gap: 16px; align-items: flex-start; }
   .footer-links { flex-direction: column; gap: 8px; align-items: flex-start; }
@@ -847,4 +891,7 @@ ul, ol { list-style: none; }
   .start-title { font-size: 26px; }
   .category-tabs { gap: 6px; }
   .cat-tab { font-size: 12px; padding: 8px 16px; }
+  .testimonials-marquee-wrapper { --marquee-gap: 14px; }
+  .testimonial-card { width: 290px; padding: 22px 18px; border-radius: 12px; }
+  .testimonial-text { font-size: 15px; }
 }
