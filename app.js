@@ -312,120 +312,48 @@
     portfolioContent.innerHTML = html;
   }
 
-  // ---------- 3D Perspective Curved Portfolio Carousel ----------
-  const portfolio3dWrapper = document.getElementById('portfolio3dWrapper');
-  const portfolio3dTrack = document.getElementById('portfolio3dTrack');
+  // ---------- Continuous 2-Row Carousel (Top: Vertical, Bottom: Horizontal) ----------
+  const trackTop1 = document.getElementById('carouselTrackTop1');
+  const trackTop2 = document.getElementById('carouselTrackTop2');
+  const trackBottom1 = document.getElementById('carouselTrackBottom1');
+  const trackBottom2 = document.getElementById('carouselTrackBottom2');
 
-  function init3dCarousel() {
-    if (!portfolio3dWrapper || !portfolio3dTrack) return;
-
-    portfolio3dTrack.innerHTML = '';
-    const cards = [];
-
-    projects.forEach((proj) => {
-      const card = document.createElement('div');
-      card.className = 'portfolio-3d-card';
-      card.setAttribute('data-video-src', proj.src);
-      card.setAttribute('role', 'button');
-      card.setAttribute('tabindex', '0');
-      card.setAttribute('aria-label', proj.title);
-      card.innerHTML = `<video src="${proj.src}" autoplay muted loop playsinline preload="metadata"></video>`;
-      portfolio3dTrack.appendChild(card);
-      cards.push(card);
-    });
-
-    const N = cards.length;
-    let scrollPos = 0;
-    const speed = 0.75;
-    let isDragging = false;
-    let startX = 0;
-    let dragStartPos = 0;
-
-    function getCardSpacing() {
-      return window.innerWidth <= 768 ? 200 : 280;
+  function isProjVertical(proj) {
+    if (proj.isVertical || proj.noCrop || proj.gridClass === 'col-span-3' || proj.gridClass === 'col-span-4') {
+      return true;
     }
+    const vertFiles = ['AQNwZro', 'un1', 'un2', 'un3', '4-mefortg', 'SaveInta', 'AQNBGsao', 'AQO8jSCn', 'AQNfxjw', 'AQPsEune'];
+    return vertFiles.some(f => proj.src.includes(f));
+  }
 
-    function updateTransforms() {
-      const wrapperWidth = portfolio3dWrapper.clientWidth || window.innerWidth;
-      const cardSpacing = getCardSpacing();
-      const totalWidth = N * cardSpacing;
-      const halfW = wrapperWidth / 2;
+  function createCardHtml(proj, isVert) {
+    const cls = isVert ? 'is-vertical' : 'is-horizontal';
+    return `
+      <div class="portfolio-card ${cls}" data-video-src="${proj.src}" role="button" tabindex="0" aria-label="${proj.title}">
+        <video src="${proj.src}" autoplay muted loop playsinline preload="metadata"></video>
+      </div>
+    `;
+  }
 
-      cards.forEach((card, i) => {
-        let rawX = (i * cardSpacing - scrollPos) % totalWidth;
-        if (rawX < -totalWidth / 2) rawX += totalWidth;
-        if (rawX > totalWidth / 2) rawX -= totalWidth;
+  function renderCarousel() {
+    if (!trackTop1) return;
 
-        const u = rawX / (halfW * 0.85);
+    const verticalProjects = projects.filter(p => isProjVertical(p));
+    const horizontalProjects = projects.filter(p => !isProjVertical(p));
 
-        if (Math.abs(u) > 1.6) {
-          card.style.display = 'none';
-          return;
-        }
-        card.style.display = 'block';
+    const topHtml = verticalProjects.map(p => createCardHtml(p, true)).join('');
+    const bottomHtml = horizontalProjects.map(p => createCardHtml(p, false)).join('');
 
-        const absU = Math.abs(u);
-        const rotY = -u * 24;
-        const translateZ = (absU * absU) * 120 - 70;
-        const scale = 0.82 + 0.32 * Math.min(1.2, absU * absU);
-        const opacity = Math.min(1, Math.max(0, 1.5 - Math.abs(u)));
+    trackTop1.innerHTML = topHtml;
+    if (trackTop2) trackTop2.innerHTML = topHtml;
 
-        card.style.transform = `translate3d(${rawX.toFixed(2)}px, 0px, ${translateZ.toFixed(2)}px) rotateY(${rotY.toFixed(2)}deg) scale(${scale.toFixed(3)})`;
-        card.style.opacity = opacity.toFixed(2);
-        card.style.zIndex = Math.round(100 - Math.abs(rawX));
-      });
-    }
-
-    function tick() {
-      if (!isDragging) {
-        scrollPos += speed;
-      }
-      updateTransforms();
-      requestAnimationFrame(tick);
-    }
-
-    tick();
-
-    portfolio3dWrapper.addEventListener('mousedown', (e) => {
-      isDragging = true;
-      startX = e.clientX;
-      dragStartPos = scrollPos;
-    });
-
-    window.addEventListener('mousemove', (e) => {
-      if (!isDragging) return;
-      const dx = e.clientX - startX;
-      scrollPos = dragStartPos - dx;
-    });
-
-    window.addEventListener('mouseup', () => {
-      isDragging = false;
-    });
-
-    portfolio3dWrapper.addEventListener('touchstart', (e) => {
-      if (e.touches.length > 0) {
-        isDragging = true;
-        startX = e.touches[0].clientX;
-        dragStartPos = scrollPos;
-      }
-    }, { passive: true });
-
-    window.addEventListener('touchmove', (e) => {
-      if (!isDragging || e.touches.length === 0) return;
-      const dx = e.touches[0].clientX - startX;
-      scrollPos = dragStartPos - dx;
-    }, { passive: true });
-
-    window.addEventListener('touchend', () => {
-      isDragging = false;
-    });
-
-    window.addEventListener('resize', updateTransforms);
+    if (trackBottom1) trackBottom1.innerHTML = bottomHtml;
+    if (trackBottom2) trackBottom2.innerHTML = bottomHtml;
   }
 
   // Render on load
   renderPortfolio();
-  init3dCarousel();
+  renderCarousel();
 
   // ---------- Lazy Video ----------
   const heroVideo = document.querySelector('.hero-visual video');

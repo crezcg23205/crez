@@ -381,69 +381,102 @@ ul, ol { list-style: none; }
 }
 
 /* ==========================================
-   PORTFOLIO 3D PERSPECTIVE CURVED CAROUSEL
+   PORTFOLIO 2-ROW CONTINUOUS CAROUSEL
+   (Top Row: Vertical, Bottom Row: Horizontal)
    ========================================== */
-.portfolio-3d-wrapper {
+.portfolio-carousel-wrapper {
+  --carousel-gap: 12px;
   width: 100%;
   position: relative;
-  height: 440px;
   overflow: hidden;
-  perspective: 1000px;
-  perspective-origin: 50% 50%;
-  padding: 20px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 10px 0 20px;
+  mask-image: linear-gradient(to right, transparent 0%, black 30px, black calc(100% - 30px), transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 30px, black calc(100% - 30px), transparent 100%);
+}
+
+.portfolio-carousel-track {
+  display: flex;
+  overflow: hidden;
   user-select: none;
-  touch-action: pan-y;
-  cursor: grab;
-  mask-image: linear-gradient(to right, transparent 0%, black 40px, black calc(100% - 40px), transparent 100%);
-  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 40px, black calc(100% - 40px), transparent 100%);
-}
-
-.portfolio-3d-wrapper:active {
-  cursor: grabbing;
-}
-
-.portfolio-3d-track {
   width: 100%;
-  height: 100%;
-  position: relative;
-  transform-style: preserve-3d;
 }
 
-.portfolio-3d-card {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 250px;
-  height: 380px;
-  margin-top: -190px;
-  margin-left: -125px;
-  border-radius: 24px;
+.portfolio-carousel-track.row-top {
+  height: 240px;
+}
+
+.portfolio-carousel-track.row-bottom {
+  height: 190px;
+}
+
+.portfolio-carousel-content {
+  display: flex;
+  gap: var(--carousel-gap);
+  padding-right: var(--carousel-gap);
+  flex-shrink: 0;
+  align-items: center;
+  height: 100%;
+  animation: portfolioCarouselScroll 38s linear infinite;
+  will-change: transform;
+}
+
+.portfolio-carousel-track.row-bottom .portfolio-carousel-content {
+  animation: portfolioCarouselScroll 44s linear infinite;
+  animation-delay: -12s;
+}
+
+@keyframes portfolioCarouselScroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+.portfolio-card {
+  flex: 0 0 auto;
+  border-radius: 14px;
   background: #0d0d0d;
+  position: relative;
   overflow: hidden;
   cursor: pointer;
-  box-shadow: 0 20px 45px -15px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 8px 24px -6px rgba(0, 0, 0, 0.12);
   border: 1px solid var(--border);
-  will-change: transform, opacity;
-  transform-origin: center center;
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease, border-color 0.3s ease;
 }
 
-[data-theme="dark"] .portfolio-3d-card {
+.portfolio-card.is-vertical {
+  height: 240px;
+  width: calc(240px * 9 / 16);
+  aspect-ratio: 9 / 16;
+}
+
+.portfolio-card.is-horizontal {
+  height: 190px;
+  width: calc(190px * 16 / 9);
+  aspect-ratio: 16 / 9;
+}
+
+[data-theme="dark"] .portfolio-card {
   border-color: rgba(255, 255, 255, 0.15);
-  box-shadow: 0 20px 50px -15px rgba(0, 0, 0, 0.7);
+  box-shadow: 0 10px 28px -8px rgba(0, 0, 0, 0.5);
 }
 
-.portfolio-3d-card:hover {
+.portfolio-card:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 16px 36px -8px rgba(0, 0, 0, 0.25);
   border-color: var(--text);
-  box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.35);
 }
 
-.portfolio-3d-card video {
+.portfolio-card video {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
-  pointer-events: none;
 }
 
 /* "Full Portfolio" Button Container */
@@ -491,16 +524,25 @@ ul, ol { list-style: none; }
 }
 
 @media (max-width: 768px) {
-  .portfolio-3d-wrapper {
-    height: 350px;
-    perspective: 700px;
+  .portfolio-carousel-wrapper {
+    --carousel-gap: 10px;
+    gap: 12px;
   }
-  .portfolio-3d-card {
-    width: 180px;
-    height: 280px;
-    margin-top: -140px;
-    margin-left: -90px;
-    border-radius: 16px;
+  .portfolio-carousel-track.row-top {
+    height: 170px;
+  }
+  .portfolio-carousel-track.row-bottom {
+    height: 135px;
+  }
+  .portfolio-card.is-vertical {
+    height: 170px;
+    width: calc(170px * 9 / 16);
+    border-radius: 10px;
+  }
+  .portfolio-card.is-horizontal {
+    height: 135px;
+    width: calc(135px * 16 / 9);
+    border-radius: 10px;
   }
   .portfolio-action-row {
     margin-top: 30px;
