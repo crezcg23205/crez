@@ -355,6 +355,45 @@
   renderPortfolio();
   renderCarousel();
 
+  // ---------- 3D Circular Arc Carousel Effect ----------
+  function updateCarousel3DCurve() {
+    const wrapper = document.querySelector('.portfolio-carousel-wrapper');
+    if (!wrapper) return;
+    const wrapperRect = wrapper.getBoundingClientRect();
+    const wrapperCenter = wrapperRect.left + wrapperRect.width / 2;
+    const halfWidth = (wrapperRect.width / 2) || 1;
+
+    const cards = wrapper.querySelectorAll('.portfolio-card');
+    cards.forEach(card => {
+      const cardRect = card.getBoundingClientRect();
+      // Skip if offscreen
+      if (cardRect.right < wrapperRect.left - 100 || cardRect.left > wrapperRect.right + 100) return;
+
+      const cardCenter = cardRect.left + cardRect.width / 2;
+      const normX = (cardCenter - wrapperCenter) / halfWidth;
+      const clampedX = Math.max(-1.4, Math.min(1.4, normX));
+
+      // 3D rotation Y along the circular cylinder curve
+      const rotateY = clampedX * 22;
+      // Z depth translation to create the convex arch curve
+      const translateZ = (1 - Math.pow(Math.abs(clampedX), 1.6)) * 40;
+      // Subtle scale adjust
+      const scale = 1 - Math.abs(clampedX) * 0.04;
+
+      const isHovered = card.matches(':hover');
+      const hoverScale = isHovered ? 1.05 : 1;
+      const hoverZ = isHovered ? translateZ + 20 : translateZ;
+
+      card.style.transform = `perspective(900px) rotateY(${rotateY}deg) translateZ(${hoverZ}px) scale(${scale * hoverScale})`;
+    });
+
+    requestAnimationFrame(updateCarousel3DCurve);
+  }
+
+  requestAnimationFrame(() => {
+    requestAnimationFrame(updateCarousel3DCurve);
+  });
+
   // ---------- Lazy Video ----------
   const heroVideo = document.querySelector('.hero-visual video');
   if (heroVideo) {

@@ -385,16 +385,19 @@ ul, ol { list-style: none; }
    (Top Row: Vertical, Bottom Row: Horizontal)
    ========================================== */
 .portfolio-carousel-wrapper {
-  --carousel-gap: 12px;
+  --carousel-gap: 14px;
   width: 100%;
   position: relative;
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  gap: 16px;
-  padding: 10px 0 20px;
-  mask-image: linear-gradient(to right, transparent 0%, black 30px, black calc(100% - 30px), transparent 100%);
-  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 30px, black calc(100% - 30px), transparent 100%);
+  gap: 20px;
+  padding: 20px 0 30px;
+  perspective: 1000px;
+  perspective-origin: 50% 50%;
+  transform-style: preserve-3d;
+  mask-image: linear-gradient(to right, transparent 0%, black 40px, black calc(100% - 40px), transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 40px, black calc(100% - 40px), transparent 100%);
 }
 
 .portfolio-carousel-track {
@@ -402,14 +405,18 @@ ul, ol { list-style: none; }
   overflow: hidden;
   user-select: none;
   width: 100%;
+  perspective: 1000px;
+  perspective-origin: 50% 50%;
+  transform-style: preserve-3d;
+  padding: 10px 0;
 }
 
 .portfolio-carousel-track.row-top {
-  height: 240px;
+  height: 250px;
 }
 
 .portfolio-carousel-track.row-bottom {
-  height: 190px;
+  height: 200px;
 }
 
 .portfolio-carousel-content {
@@ -419,6 +426,7 @@ ul, ol { list-style: none; }
   flex-shrink: 0;
   align-items: center;
   height: 100%;
+  transform-style: preserve-3d;
   animation: portfolioCarouselScroll 38s linear infinite;
   will-change: transform;
 }
@@ -439,36 +447,37 @@ ul, ol { list-style: none; }
 
 .portfolio-card {
   flex: 0 0 auto;
-  border-radius: 14px;
+  border-radius: 16px;
   background: #0d0d0d;
   position: relative;
   overflow: hidden;
   cursor: pointer;
-  box-shadow: 0 8px 24px -6px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 12px 30px -8px rgba(0, 0, 0, 0.22);
   border: 1px solid var(--border);
-  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease, border-color 0.3s ease;
+  transform-style: preserve-3d;
+  will-change: transform;
+  transition: box-shadow 0.3s ease, border-color 0.3s ease;
 }
 
 .portfolio-card.is-vertical {
-  height: 240px;
-  width: calc(240px * 9 / 16);
+  height: 230px;
+  width: calc(230px * 9 / 16);
   aspect-ratio: 9 / 16;
 }
 
 .portfolio-card.is-horizontal {
-  height: 190px;
-  width: calc(190px * 16 / 9);
+  height: 180px;
+  width: calc(180px * 16 / 9);
   aspect-ratio: 16 / 9;
 }
 
 [data-theme="dark"] .portfolio-card {
   border-color: rgba(255, 255, 255, 0.15);
-  box-shadow: 0 10px 28px -8px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 12px 32px -8px rgba(0, 0, 0, 0.6);
 }
 
 .portfolio-card:hover {
-  transform: translateY(-4px) scale(1.02);
-  box-shadow: 0 16px 36px -8px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.35);
   border-color: var(--text);
 }
 
