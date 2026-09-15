@@ -318,23 +318,10 @@
 
   function renderCarousel() {
     if (!carouselTrack1) return;
-    const cardsHtml = projects.map((proj, idx) => {
-      const num = String(idx + 1).padStart(2, '0');
-      const badge = (proj.deliverables && proj.deliverables[0]) ? proj.deliverables[0] : 'Motion';
+    const cardsHtml = projects.map((proj) => {
       return `
-        <div class="portfolio-card" data-video-src="${proj.src}" role="button" tabindex="0" aria-label="Open ${proj.title}">
-          <div class="portfolio-card-top">
-            <span class="portfolio-card-badge">${badge}</span>
-            <div class="portfolio-card-play-icon" aria-hidden="true">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
-            </div>
-          </div>
+        <div class="portfolio-card" data-video-src="${proj.src}" role="button" tabindex="0" aria-label="${proj.title}">
           <video src="${proj.src}" autoplay muted loop playsinline preload="metadata"></video>
-          <div class="portfolio-card-overlay">
-            <div class="portfolio-card-num">${num}</div>
-            <div class="portfolio-card-title">${proj.title}</div>
-            <div class="portfolio-card-subtitle">${proj.subtitle}</div>
-          </div>
         </div>
       `;
     }).join('');
