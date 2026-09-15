@@ -329,7 +329,7 @@
   function createCardHtml(proj, isVert) {
     const cls = isVert ? 'is-vertical' : 'is-horizontal';
     return `
-      <div class="portfolio-card ${cls}" data-video-src="${proj.src}" role="button" tabindex="0" aria-label="${proj.title}">
+      <div class="portfolio-card ${cls}">
         <video src="${proj.src}" autoplay muted loop playsinline preload="metadata"></video>
       </div>
     `;
@@ -380,11 +380,7 @@
       // Subtle scale adjust
       const scale = 1 - Math.abs(clampedX) * 0.04;
 
-      const isHovered = card.matches(':hover');
-      const hoverScale = isHovered ? 1.05 : 1;
-      const hoverZ = isHovered ? translateZ + 20 : translateZ;
-
-      card.style.transform = `perspective(900px) rotateY(${rotateY}deg) translateZ(${hoverZ}px) scale(${scale * hoverScale})`;
+      card.style.transform = `perspective(900px) rotateY(${rotateY}deg) translateZ(${translateZ}px) scale(${scale})`;
     });
 
     requestAnimationFrame(updateCarousel3DCurve);
@@ -416,7 +412,7 @@
   let activeVideoWrapper = null;
 
   document.addEventListener('click', (e) => {
-    const trigger = e.target.closest('.portfolio-3d-card, .portfolio-card, .project-video-wrapper');
+    const trigger = e.target.closest('.portfolio-3d-card, .project-video-wrapper');
     if (trigger && videoModal && modalVideoPlayer) {
       const src = trigger.getAttribute('data-video-src');
       if (src) {
