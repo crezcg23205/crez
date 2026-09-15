@@ -380,6 +380,249 @@ ul, ol { list-style: none; }
   line-height: 1.1;
 }
 
+/* ==========================================
+   PORTFOLIO CONTINUOUS CAROUSEL (Infinite Marquee)
+   ========================================== */
+.portfolio-carousel-wrapper {
+  --carousel-gap: 28px;
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+  position: relative;
+  overflow: hidden;
+  padding: 10px 0 20px;
+  mask-image: linear-gradient(to right, transparent 0%, black 50px, black calc(100% - 50px), transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 50px, black calc(100% - 50px), transparent 100%);
+}
+
+.portfolio-carousel-track {
+  display: flex;
+  overflow: hidden;
+  user-select: none;
+  width: 100%;
+}
+
+.portfolio-carousel-content {
+  display: flex;
+  gap: var(--carousel-gap);
+  padding-right: var(--carousel-gap);
+  flex-shrink: 0;
+  align-items: center;
+  animation: portfolioCarouselScroll 60s linear infinite;
+  will-change: transform;
+}
+
+@keyframes portfolioCarouselScroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+.portfolio-card {
+  flex: 0 0 320px;
+  width: 320px;
+  height: 520px;
+  border-radius: 20px;
+  background: #0d0d0d;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  box-shadow: 0 16px 36px -12px rgba(0, 0, 0, 0.16);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease;
+}
+
+[data-theme="dark"] .portfolio-card {
+  border-color: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 16px 36px -12px rgba(0, 0, 0, 0.5);
+}
+
+.portfolio-card:hover {
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 24px 48px -12px rgba(0, 0, 0, 0.28);
+  border-color: rgba(0, 0, 0, 0.2);
+}
+
+.portfolio-card video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.portfolio-card-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.88) 0%, rgba(0, 0, 0, 0.35) 45%, transparent 75%);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 24px;
+  box-sizing: border-box;
+  opacity: 0.95;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.portfolio-card:hover .portfolio-card-overlay {
+  opacity: 1;
+}
+
+.portfolio-card-top {
+  position: absolute;
+  top: 18px;
+  left: 18px;
+  right: 18px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 2;
+}
+
+.portfolio-card-badge {
+  font-family: var(--font-secondary);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.85);
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  padding: 5px 12px;
+  border-radius: var(--radius-full);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.portfolio-card-play-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.portfolio-card:hover .portfolio-card-play-icon {
+  transform: scale(1.1);
+  background: rgba(255, 255, 255, 0.95);
+  color: #000;
+}
+
+.portfolio-card-num {
+  font-family: var(--font-secondary);
+  font-size: 13px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.6);
+  margin-bottom: 4px;
+}
+
+.portfolio-card-title {
+  font-family: var(--font-primary);
+  font-size: 22px;
+  font-weight: 900;
+  color: #ffffff;
+  line-height: 1.15;
+  margin-bottom: 4px;
+  letter-spacing: -0.02em;
+}
+
+.portfolio-card-subtitle {
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.75);
+  text-transform: capitalize;
+}
+
+/* "To'liq ko'rish" Button Container */
+.portfolio-action-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
+  width: 100%;
+}
+
+.btn--portfolio-all {
+  font-family: var(--font-secondary);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 38px;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--text);
+  color: var(--text);
+  background: transparent;
+  text-decoration: none;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+}
+
+.btn--portfolio-all:hover {
+  background: var(--text);
+  color: var(--bg);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px -6px rgba(0, 0, 0, 0.15);
+}
+
+.btn--portfolio-all .arrow {
+  display: inline-block;
+  font-size: 16px;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn--portfolio-all:hover .arrow {
+  transform: translateX(4px);
+}
+
+@media (max-width: 768px) {
+  .portfolio-carousel-wrapper {
+    --carousel-gap: 16px;
+    padding: 10px 0 20px;
+  }
+  .portfolio-card {
+    flex: 0 0 240px;
+    width: 240px;
+    height: 400px;
+    border-radius: 14px;
+  }
+  .portfolio-card-title {
+    font-size: 18px;
+  }
+  .portfolio-carousel-content {
+    animation-duration: 40s;
+  }
+  .portfolio-action-row {
+    margin-top: 36px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .portfolio-carousel-content {
+    animation: none;
+  }
+  .portfolio-carousel-track {
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+  }
+  .portfolio-card {
+    scroll-snap-align: start;
+  }
+}
+
 .portfolio-inline-content {
   width: 100%;
   padding: 0 var(--side-pad) 120px;

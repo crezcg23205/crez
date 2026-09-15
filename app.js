@@ -312,8 +312,42 @@
     portfolioContent.innerHTML = html;
   }
 
+  // ---------- Continuous Portfolio Carousel ----------
+  const carouselTrack1 = document.getElementById('carouselTrack1');
+  const carouselTrack2 = document.getElementById('carouselTrack2');
+
+  function renderCarousel() {
+    if (!carouselTrack1) return;
+    const cardsHtml = projects.map((proj, idx) => {
+      const num = String(idx + 1).padStart(2, '0');
+      const badge = (proj.deliverables && proj.deliverables[0]) ? proj.deliverables[0] : 'Motion';
+      return `
+        <div class="portfolio-card" data-video-src="${proj.src}" role="button" tabindex="0" aria-label="Open ${proj.title}">
+          <div class="portfolio-card-top">
+            <span class="portfolio-card-badge">${badge}</span>
+            <div class="portfolio-card-play-icon" aria-hidden="true">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+            </div>
+          </div>
+          <video src="${proj.src}" autoplay muted loop playsinline preload="metadata"></video>
+          <div class="portfolio-card-overlay">
+            <div class="portfolio-card-num">${num}</div>
+            <div class="portfolio-card-title">${proj.title}</div>
+            <div class="portfolio-card-subtitle">${proj.subtitle}</div>
+          </div>
+        </div>
+      `;
+    }).join('');
+
+    carouselTrack1.innerHTML = cardsHtml;
+    if (carouselTrack2) {
+      carouselTrack2.innerHTML = cardsHtml;
+    }
+  }
+
   // Render on load
   renderPortfolio();
+  renderCarousel();
 
   // ---------- Lazy Video ----------
   const heroVideo = document.querySelector('.hero-visual video');
@@ -336,21 +370,19 @@
   const modalVideoPlayer = document.getElementById('modalVideoPlayer');
   let activeVideoWrapper = null;
 
-  if (portfolioContent) {
-    portfolioContent.addEventListener('click', (e) => {
-      const wrapper = e.target.closest('.project-video-wrapper');
-      if (wrapper) {
-        const src = wrapper.getAttribute('data-video-src');
-        if (src) {
-          activeVideoWrapper = wrapper;
-          modalVideoPlayer.src = src;
-          videoModal.classList.add('open');
-          modalVideoPlayer.play().catch(()=>{});
-          document.body.style.overflow = 'hidden';
-        }
+  document.addEventListener('click', (e) => {
+    const trigger = e.target.closest('.portfolio-card, .project-video-wrapper');
+    if (trigger && videoModal && modalVideoPlayer) {
+      const src = trigger.getAttribute('data-video-src');
+      if (src) {
+        activeVideoWrapper = trigger;
+        modalVideoPlayer.src = src;
+        videoModal.classList.add('open');
+        modalVideoPlayer.play().catch(()=>{});
+        document.body.style.overflow = 'hidden';
       }
-    });
-  }
+    }
+  });
 
   function closeVideoModal() {
     videoModal.classList.remove('open');

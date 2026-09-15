@@ -117,14 +117,34 @@
     </div>
   </section>
 
-  <!-- ===== PORTFOLIO ===== -->
+  <!-- ===== PORTFOLIO CAROUSEL ===== -->
   <section class="work" id="work">
     <div class="work-header reveal">
-      <h2 class="work-title"><em>Portfolio</em></h2>
+      <div class="section-label-row" style="margin-bottom: 24px;">
+        <span class="section-num">02</span>
+        <span class="section-slash"> / </span>
+        <span class="section-name">PORTFOLIO</span>
+      </div>
+      <h2 class="work-title">Featured <em>Work</em></h2>
     </div>
 
-    <div class="portfolio-inline-content" id="portfolioContent">
-      <!-- Populated by JS -->
+    <!-- Infinite Continuous Video Carousel -->
+    <div class="portfolio-carousel-wrapper reveal">
+      <div class="portfolio-carousel-track">
+        <div class="portfolio-carousel-content" id="carouselTrack1">
+          <!-- Populated by JS -->
+        </div>
+        <div class="portfolio-carousel-content" id="carouselTrack2" aria-hidden="true">
+          <!-- Populated by JS for seamless infinite loop -->
+        </div>
+      </div>
+    </div>
+
+    <div class="portfolio-action-row reveal">
+      <a href="portfolio.html" class="btn btn--portfolio-all" aria-label="To'liq portfolioni ko'rish">
+        <span>To'liq ko'rish</span>
+        <span class="arrow">→</span>
+      </a>
     </div>
   </section>
 
