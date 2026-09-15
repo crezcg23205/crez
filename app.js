@@ -312,24 +312,46 @@
     portfolioContent.innerHTML = html;
   }
 
-  // ---------- Continuous Portfolio Carousel ----------
-  const carouselTrack1 = document.getElementById('carouselTrack1');
-  const carouselTrack2 = document.getElementById('carouselTrack2');
+  // ---------- Continuous Portfolio Carousel (2 Rows) ----------
+  const track1_1 = document.getElementById('carouselTrack1_1');
+  const track1_2 = document.getElementById('carouselTrack1_2');
+  const track2_1 = document.getElementById('carouselTrack2_1');
+  const track2_2 = document.getElementById('carouselTrack2_2');
+
+  function buildCard(proj) {
+    let orientationClass = 'is-horizontal';
+    if (proj.isVertical || proj.noCrop || proj.gridClass === 'col-span-3' || proj.gridClass === 'col-span-4') {
+      orientationClass = 'is-vertical';
+    }
+    return `
+      <div class="portfolio-card ${orientationClass}" data-video-src="${proj.src}" role="button" tabindex="0" aria-label="${proj.title}">
+        <video src="${proj.src}" autoplay muted loop playsinline preload="metadata" onloadedmetadata="if(this.videoWidth && this.videoHeight) { this.parentElement.style.aspectRatio = this.videoWidth + '/' + this.videoHeight; }"></video>
+      </div>
+    `;
+  }
 
   function renderCarousel() {
-    if (!carouselTrack1) return;
-    const cardsHtml = projects.map((proj) => {
-      return `
-        <div class="portfolio-card" data-video-src="${proj.src}" role="button" tabindex="0" aria-label="${proj.title}">
-          <video src="${proj.src}" autoplay muted loop playsinline preload="metadata"></video>
-        </div>
-      `;
-    }).join('');
+    if (!track1_1) return;
 
-    carouselTrack1.innerHTML = cardsHtml;
-    if (carouselTrack2) {
-      carouselTrack2.innerHTML = cardsHtml;
-    }
+    const row1Projects = [];
+    const row2Projects = [];
+
+    projects.forEach((proj, idx) => {
+      if (idx % 2 === 0) {
+        row1Projects.push(proj);
+      } else {
+        row2Projects.push(proj);
+      }
+    });
+
+    const row1Html = row1Projects.map(buildCard).join('');
+    const row2Html = row2Projects.map(buildCard).join('');
+
+    track1_1.innerHTML = row1Html;
+    if (track1_2) track1_2.innerHTML = row1Html;
+
+    if (track2_1) track2_1.innerHTML = row2Html;
+    if (track2_2) track2_2.innerHTML = row2Html;
   }
 
   // Render on load
