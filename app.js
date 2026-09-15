@@ -85,6 +85,20 @@
       deliverables: ['Motion Graphics', 'Typography', 'Sound Design'],
       gridClass: 'col-span-6'
     },
+    { 
+      src: '5v2.mp4', 
+      title: 'Motion Project', 
+      subtitle: 'dynamic edit',
+      deliverables: ['Motion Graphics', 'Typography', 'Sound Design'],
+      gridClass: 'col-span-6'
+    },
+    { 
+      src: 'AQNwZro_xJtNdi6bYZPw21NaVKnFnCNymHbCU2gPb2hgC6ae2AnwFsfoqOxtNyR.mp4', 
+      title: 'Motion Project', 
+      subtitle: 'dynamic edit',
+      deliverables: ['Motion Graphics', 'Typography', 'Sound Design'],
+      gridClass: 'col-span-6'
+    },
     // --- ROW 1 (NEW ADDITIONS) ---
     { 
       src: 'for f.mp4', 
