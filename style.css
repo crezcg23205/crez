@@ -427,21 +427,32 @@ ul, ol { list-style: none; }
   align-items: center;
   height: 100%;
   transform-style: preserve-3d;
-  animation: portfolioCarouselScroll 38s linear infinite;
   will-change: transform;
 }
 
-.portfolio-carousel-track.row-bottom .portfolio-carousel-content {
-  animation: portfolioCarouselScroll 44s linear infinite;
-  animation-delay: -12s;
+.portfolio-carousel-track.row-top .portfolio-carousel-content {
+  animation: portfolioCarouselScrollLeft 38s linear infinite;
 }
 
-@keyframes portfolioCarouselScroll {
+.portfolio-carousel-track.row-bottom .portfolio-carousel-content {
+  animation: portfolioCarouselScrollRight 44s linear infinite;
+}
+
+@keyframes portfolioCarouselScrollLeft {
   0% {
     transform: translateX(0);
   }
   100% {
     transform: translateX(-100%);
+  }
+}
+
+@keyframes portfolioCarouselScrollRight {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0);
   }
 }
 
