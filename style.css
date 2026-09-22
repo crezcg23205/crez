@@ -391,11 +391,8 @@ ul, ol { list-style: none; }
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  gap: 20px;
-  padding: 20px 0 30px;
-  perspective: 1000px;
-  perspective-origin: 50% 50%;
-  transform-style: preserve-3d;
+  gap: 16px;
+  padding: 15px 0 20px;
   mask-image: linear-gradient(to right, transparent 0%, black 40px, black calc(100% - 40px), transparent 100%);
   -webkit-mask-image: linear-gradient(to right, transparent 0%, black 40px, black calc(100% - 40px), transparent 100%);
 }
@@ -405,18 +402,14 @@ ul, ol { list-style: none; }
   overflow: hidden;
   user-select: none;
   width: 100%;
-  perspective: 1000px;
-  perspective-origin: 50% 50%;
-  transform-style: preserve-3d;
-  padding: 10px 0;
 }
 
 .portfolio-carousel-track.row-top {
-  height: 250px;
+  height: 240px;
 }
 
 .portfolio-carousel-track.row-bottom {
-  height: 200px;
+  height: 190px;
 }
 
 .portfolio-carousel-content {
@@ -426,50 +419,45 @@ ul, ol { list-style: none; }
   flex-shrink: 0;
   align-items: center;
   height: 100%;
-  transform-style: preserve-3d;
   will-change: transform;
 }
 
 .portfolio-carousel-track.row-top .portfolio-carousel-content {
-  animation: portfolioCarouselScrollLeft 38s linear infinite;
+  animation: portfolioCarouselScrollLeft 36s linear infinite;
 }
 
 .portfolio-carousel-track.row-bottom .portfolio-carousel-content {
-  animation: portfolioCarouselScrollRight 44s linear infinite;
+  animation: portfolioCarouselScrollRight 42s linear infinite;
 }
 
 @keyframes portfolioCarouselScrollLeft {
   0% {
-    transform: translateX(0);
+    transform: translate3d(0, 0, 0);
   }
   100% {
-    transform: translateX(-100%);
+    transform: translate3d(-100%, 0, 0);
   }
 }
 
 @keyframes portfolioCarouselScrollRight {
   0% {
-    transform: translateX(-100%);
+    transform: translate3d(-100%, 0, 0);
   }
   100% {
-    transform: translateX(0);
+    transform: translate3d(0, 0, 0);
   }
 }
 
 .portfolio-card {
   flex: 0 0 auto;
-  border-radius: 16px;
+  border-radius: 14px;
   background: #0d0d0d;
   position: relative;
   overflow: hidden;
   cursor: default;
   pointer-events: none;
-  box-shadow: 0 12px 30px -8px rgba(0, 0, 0, 0.22);
+  box-shadow: 0 10px 24px -6px rgba(0, 0, 0, 0.18);
   border: 1px solid var(--border);
-  transform-style: preserve-3d;
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
-  will-change: transform;
 }
 
 .portfolio-card.is-vertical {
