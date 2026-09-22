@@ -355,55 +355,102 @@
   renderPortfolio();
   renderCarousel();
 
-  // ---------- 3D Circular Arc Carousel Effect ----------
+  // ---------- Optimized 3D Circular Arc Carousel Effect ----------
+  let carouselActive = false;
+  let carouselFrameId = null;
+
   function updateCarousel3DCurve() {
+    if (!carouselActive) return;
+
     const wrapper = document.querySelector('.portfolio-carousel-wrapper');
     if (!wrapper) return;
+
     const wrapperRect = wrapper.getBoundingClientRect();
-    const wrapperCenter = wrapperRect.left + wrapperRect.width / 2;
+    const wrapperLeft = wrapperRect.left;
+    const wrapperRight = wrapperRect.right;
     const halfWidth = (wrapperRect.width / 2) || 1;
+    const wrapperCenter = wrapperLeft + halfWidth;
 
-    const cards = wrapper.querySelectorAll('.portfolio-card');
-    cards.forEach(card => {
-      const cardRect = card.getBoundingClientRect();
-      // Skip if offscreen
-      if (cardRect.right < wrapperRect.left - 100 || cardRect.left > wrapperRect.right + 100) return;
+    const tracks = wrapper.querySelectorAll('.portfolio-carousel-content');
+    tracks.forEach(track => {
+      const trackLeft = track.getBoundingClientRect().left;
+      const cards = track.children;
+      const len = cards.length;
 
-      const cardCenter = cardRect.left + cardRect.width / 2;
-      const normX = (cardCenter - wrapperCenter) / halfWidth;
-      const clampedX = Math.max(-1.4, Math.min(1.4, normX));
+      for (let i = 0; i < len; i++) {
+        const card = cards[i];
+        const cardLeft = trackLeft + card.offsetLeft;
+        const cardWidth = card.offsetWidth || 135;
 
-      // 3D rotation Y along the circular cylinder curve
-      const rotateY = clampedX * 22;
-      // Z depth translation to create the convex arch curve
-      const translateZ = (1 - Math.pow(Math.abs(clampedX), 1.6)) * 40;
-      // Subtle scale adjust
-      const scale = 1 - Math.abs(clampedX) * 0.04;
+        // Skip rendering offscreen cards
+        if (cardLeft + cardWidth < wrapperLeft - 50 || cardLeft > wrapperRight + 50) continue;
 
-      card.style.transform = `perspective(900px) rotateY(${rotateY}deg) translateZ(${translateZ}px) scale(${scale})`;
+        const cardCenter = cardLeft + cardWidth / 2;
+        const normX = (cardCenter - wrapperCenter) / halfWidth;
+        const clampedX = Math.max(-1.4, Math.min(1.4, normX));
+
+        const rotateY = clampedX * 22;
+        const translateZ = (1 - Math.pow(Math.abs(clampedX), 1.6)) * 40;
+        const scale = 1 - Math.abs(clampedX) * 0.04;
+
+        card.style.transform = `perspective(900px) rotateY(${rotateY}deg) translateZ(${translateZ}px) scale(${scale})`;
+      }
     });
 
-    requestAnimationFrame(updateCarousel3DCurve);
+    carouselFrameId = requestAnimationFrame(updateCarousel3DCurve);
   }
 
-  requestAnimationFrame(() => {
-    requestAnimationFrame(updateCarousel3DCurve);
-  });
-
-  // ---------- Lazy Video ----------
-  const heroVideo = document.querySelector('.hero-visual video');
-  if (heroVideo) {
-    const videoObserver = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
+  // Observe Carousel Visibility: Pause animation loop when out of viewport
+  const carouselWrapper = document.querySelector('.portfolio-carousel-wrapper');
+  if (carouselWrapper) {
+    const carouselObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
         if (entry.isIntersecting) {
-          entry.target.play().catch(() => {});
+          carouselActive = true;
+          if (!carouselFrameId) {
+            carouselFrameId = requestAnimationFrame(updateCarousel3DCurve);
+          }
         } else {
-          entry.target.pause();
+          carouselActive = false;
+          if (carouselFrameId) {
+            cancelAnimationFrame(carouselFrameId);
+            carouselFrameId = null;
+          }
         }
       });
-    }, { threshold: 0.1 });
-    videoObserver.observe(heroVideo);
+    }, { rootMargin: '200px 0px 200px 0px', threshold: 0 });
+    carouselObserver.observe(carouselWrapper);
   }
+
+  // ---------- Global Lazy Video Performance Observer ----------
+  // Automatically pause videos when they are offscreen to prevent GPU decoder context crash (black rectangles)
+  function initLazyVideos() {
+    const videoObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        const video = entry.target;
+        if (video.id === 'modalVideoPlayer') return;
+
+        if (entry.isIntersecting) {
+          if (video.paused) {
+            video.play().catch(() => {});
+          }
+        } else {
+          if (!video.paused) {
+            video.pause();
+          }
+        }
+      });
+    }, { rootMargin: '100px 0px 100px 0px', threshold: 0.01 });
+
+    document.querySelectorAll('video').forEach((vid) => {
+      if (vid.id !== 'modalVideoPlayer') {
+        videoObserver.observe(vid);
+      }
+    });
+  }
+
+  // Initialize lazy videos after DOM is ready
+  requestAnimationFrame(initLazyVideos);
 
   // ---------- Video Modal ----------
   const videoModal = document.getElementById('videoModal');
