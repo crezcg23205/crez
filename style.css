@@ -1061,10 +1061,8 @@ ul, ol { list-style: none; }
   .nav { padding: 0 20px; }
   .nav-links, .nav-cta { display: none; }
   .nav-burger { display: flex; }
-  .hero { grid-template-columns: 1fr; min-height: auto; padding-top: 90px; gap: 32px; }
-  .hero-right { order: -1; }
-  .hero-visual { max-width: 260px; margin: 0 auto; }
-  .logo-visual { transform: scale(1); max-width: 260px; }
+  .hero { grid-template-columns: 1fr; min-height: auto; padding-top: 85px; gap: 24px; }
+  .hero-right { display: none; }
   .work { padding: 50px var(--side-pad) 60px; }
   
   .portfolio-inline-content {
@@ -1254,8 +1252,6 @@ ul, ol { list-style: none; }
 
 @media (max-width: 480px) {
   :root { --side-pad: 16px; }
-  .hero-visual { max-width: 200px; }
-  .logo-visual { max-width: 210px; }
   .hero-title { font-size: 32px; }
   .brands-mobile-content { gap: 6px; padding-right: 6px; }
   .brand-chip { height: 34px; padding: 4px 12px; font-size: 11px; }
