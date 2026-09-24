@@ -70,6 +70,21 @@
 
   // Full detailed playlist with specific grid layouts
   const projects = [
+    // --- SMARTCAST MEDIA ---
+    { 
+      src: '7v2.mp4', 
+      title: 'Smartcast media', 
+      subtitle: 'dynamic edit',
+      deliverables: ['Motion Graphics', 'Typography', 'Sound Design'],
+      gridClass: 'col-span-6'
+    },
+    { 
+      src: '8v2.mp4', 
+      title: 'Smartcast media', 
+      subtitle: 'dynamic edit',
+      deliverables: ['Motion Graphics', 'Typography', 'Sound Design'],
+      gridClass: 'col-span-6'
+    },
     // --- NEW ROW ---
     { 
       src: 'meport13res.mp4', 
