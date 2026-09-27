@@ -345,7 +345,7 @@
     const cls = isVert ? 'is-vertical' : 'is-horizontal';
     return `
       <div class="portfolio-card ${cls}">
-        <video data-src="${proj.src}" muted loop playsinline preload="none" disablePictureInPicture controlsList="nodownload" oncontextmenu="return false;"></video>
+        <video src="${proj.src}" muted loop playsinline preload="metadata" disablePictureInPicture controlsList="nodownload" oncontextmenu="return false;"></video>
       </div>
     `;
   }
@@ -353,8 +353,9 @@
   function renderCarousel() {
     if (!trackTop1) return;
 
-    const verticalProjects = projects.filter(p => isProjVertical(p));
-    const horizontalProjects = projects.filter(p => !isProjVertical(p));
+    // Curate top 7 vertical and top 7 horizontal projects for smooth 60fps loop
+    const verticalProjects = projects.filter(p => isProjVertical(p)).slice(0, 7);
+    const horizontalProjects = projects.filter(p => !isProjVertical(p)).slice(0, 7);
 
     const topHtml = verticalProjects.map(p => createCardHtml(p, true)).join('');
     const bottomHtml = horizontalProjects.map(p => createCardHtml(p, false)).join('');
@@ -370,62 +371,48 @@
   renderPortfolio();
   renderCarousel();
 
-  // ---------- Lazy Video Loader — only load & play when in viewport ----------
-  // Max concurrent playing carousel videos to prevent GPU overload
-  const MAX_PLAYING = 10;
-  let playingVideos = new Set();
-
+  // ---------- High-Performance Carousel & Video Visibility Controller ----------
+  // Automatically pause the carousel animation and videos when scrolled out of view (0% GPU usage when offscreen)
   function initLazyVideos() {
-    const carouselVideoObserver = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        const video = entry.target;
-        if (video.id === 'modalVideoPlayer') return;
+    const carouselWrapper = document.querySelector('.portfolio-carousel-wrapper');
+    const carouselVideos = document.querySelectorAll('.portfolio-card video');
 
-        if (entry.isIntersecting) {
-          // Lazy load: inject src only when needed
-          if (!video.src && video.dataset.src) {
-            video.src = video.dataset.src;
+    if (carouselWrapper && carouselVideos.length > 0) {
+      const carouselObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            carouselWrapper.classList.remove('is-paused');
+            carouselVideos.forEach((v) => {
+              if (v.paused) v.play().catch(() => {});
+            });
+          } else {
+            carouselWrapper.classList.add('is-paused');
+            carouselVideos.forEach((v) => {
+              if (!v.paused) v.pause();
+            });
           }
-          // Only play if under the concurrent limit
-          if (playingVideos.size < MAX_PLAYING) {
-            video.play().catch(() => {});
-            playingVideos.add(video);
-          } else if (video.paused) {
-            // Still load it, but don't play immediately
-            video.load();
+        });
+      }, { rootMargin: '100px 0px 100px 0px', threshold: 0.05 });
+
+      carouselObserver.observe(carouselWrapper);
+    }
+
+    // Grid videos on portfolio.html: play only when in view
+    const gridVideos = document.querySelectorAll('.project-video-wrapper video');
+    if (gridVideos.length > 0) {
+      const gridObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          const v = entry.target;
+          if (entry.isIntersecting) {
+            v.play().catch(() => {});
+          } else {
+            v.pause();
           }
-        } else {
-          if (!video.paused) {
-            video.pause();
-          }
-          playingVideos.delete(video);
-        }
-      });
-    }, { rootMargin: '0px 200px 0px 200px', threshold: 0.01 });
+        });
+      }, { rootMargin: '50px 0px 50px 0px', threshold: 0.1 });
 
-    // Observe only carousel videos
-    document.querySelectorAll('.portfolio-card video').forEach((vid) => {
-      carouselVideoObserver.observe(vid);
-    });
-
-    // Separately handle non-carousel videos (hero, portfolio grid) with simpler logic
-    const generalVideoObserver = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        const video = entry.target;
-        if (video.closest('.portfolio-card') || video.id === 'modalVideoPlayer') return;
-        if (entry.isIntersecting) {
-          video.play().catch(() => {});
-        } else {
-          video.pause();
-        }
-      });
-    }, { threshold: 0.1 });
-
-    document.querySelectorAll('video').forEach((vid) => {
-      if (!vid.closest('.portfolio-card') && vid.id !== 'modalVideoPlayer') {
-        generalVideoObserver.observe(vid);
-      }
-    });
+      gridVideos.forEach((v) => gridObserver.observe(v));
+    }
   }
 
   requestAnimationFrame(initLazyVideos);

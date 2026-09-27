@@ -434,6 +434,10 @@ ul, ol { list-style: none; }
   animation: portfolioCarouselScrollRight 42s linear infinite;
 }
 
+.portfolio-carousel-wrapper.is-paused .portfolio-carousel-content {
+  animation-play-state: paused;
+}
+
 @keyframes portfolioCarouselScrollLeft {
   0% {
     transform: translate3d(0, 0, 0);
