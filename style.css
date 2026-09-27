@@ -1160,9 +1160,10 @@ ul, ol { list-style: none; }
     align-items: center;
     justify-content: center;
     padding: 6px 14px;
-    height: 38px;
-    background: var(--bg-input);
+    height: 40px;
+    background: #ffffff;
     border: 1px solid var(--border);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
     border-radius: 9999px;
     font-family: var(--font-primary);
     font-size: 12px;
@@ -1171,9 +1172,12 @@ ul, ol { list-style: none; }
     white-space: nowrap;
   }
   .brand-chip .brands-logo {
-    max-width: 80px;
-    max-height: 20px;
+    width: auto;
+    height: auto;
     object-fit: contain;
+    filter: none !important;
+    opacity: 1 !important;
+    mix-blend-mode: normal !important;
   }
 
   .testimonials { padding: 45px var(--side-pad) 55px; }
@@ -1329,8 +1333,8 @@ ul, ol { list-style: none; }
   }
 
   .brands-mobile-content { gap: 6px; padding-right: 6px; }
-  .brand-chip { height: 34px; padding: 4px 12px; font-size: 11px; }
-  .brand-chip .brands-logo { max-width: 70px; max-height: 18px; }
+  .brand-chip { height: 36px; padding: 4px 12px; font-size: 11px; }
+  .brand-chip .brands-logo { object-fit: contain; }
   .testimonials-marquee-wrapper {
     --marquee-gap: 8px;
     gap: var(--marquee-gap);

@@ -79,41 +79,119 @@
     <div class="brands-inner reveal">
       <p class="brands-label">TRUSTED BY:</p>
       <style>
+        .brands-list {
+          display: grid;
+          grid-template-columns: repeat(4, 1fr);
+          width: 100%;
+        }
+        .brands-list > span {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          height: 124px;
+          padding: 20px 24px;
+          border-bottom: 1px solid var(--border);
+          border-right: 1px solid var(--border);
+          transition: background 0.3s ease;
+        }
+        .brands-list > span:nth-child(4n) {
+          border-right: none;
+        }
+        .brands-list > span:nth-last-child(-n+4) {
+          border-bottom: none;
+        }
+        .brands-list > span:hover {
+          background: rgba(0, 0, 0, 0.015);
+        }
         .brands-logo {
-          max-width: 140px;
-          max-height: 50px;
+          width: auto;
+          height: auto;
           object-fit: contain;
-          filter: grayscale(100%) contrast(1.2) brightness(0.2);
-          mix-blend-mode: multiply;
-          opacity: 0.6;
-          transition: opacity 0.3s ease, filter 0.3s ease;
+          filter: none !important;
+          opacity: 1 !important;
+          mix-blend-mode: normal !important;
+          transition: transform 0.25s ease;
         }
         .brands-list > span:hover .brands-logo {
-          opacity: 1;
-          filter: grayscale(0%) contrast(1) brightness(1);
+          transform: scale(1.06);
         }
+
+        /* Desktop Optical Sizing: Every logo feels balanced and uniform */
+        .brand-logo-honor       { height: 26px; max-width: 155px; }
+        .brand-logo-pepsi       { height: 40px; max-width: 140px; }
+        .brand-logo-lipton      { height: 54px; max-width: 60px; }
+        .brand-logo-cheers      { height: 46px; max-width: 85px; }
+        .brand-logo-sfad        { height: 34px; max-width: 135px; }
+        .brand-logo-605         { height: 40px; max-width: 80px; }
+        .brand-logo-bashkent    { height: 20px; max-width: 185px; }
+        .brand-logo-millatumidi { height: 42px; max-width: 95px; }
+        .brand-logo-tafu        { height: 34px; max-width: 145px; }
+        .brand-logo-mdis        { height: 28px; max-width: 170px; }
+        .brand-logo-ipoteka     { height: 34px; max-width: 155px; }
+        .brand-logo-asaka       { height: 48px; max-width: 70px; }
+        .brand-logo-aab         { height: 36px; max-width: 145px; }
+        .brand-logo-ofb         { height: 28px; max-width: 200px; }
+        .brand-logo-artel       { height: 36px; max-width: 115px; }
+        .brand-logo-vero        { height: 38px; max-width: 120px; }
+        .brand-logo-nolte       { height: 38px; max-width: 105px; }
+        .brand-logo-brinkhaus   { height: 48px; max-width: 58px; }
+        .brand-logo-dream       { height: 50px; max-width: 56px; }
+        .brand-logo-spm         { height: 40px; max-width: 105px; }
+
+        /* Mobile Pill Chips: Always original vibrant colors on clean white card */
+        .brand-chip {
+          background: #ffffff !important;
+          border: 1px solid #e8e8e8 !important;
+          box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+          padding: 6px 14px !important;
+        }
+        .brand-chip .brands-logo {
+          filter: none !important;
+          opacity: 1 !important;
+          mix-blend-mode: normal !important;
+        }
+        .brand-chip .brand-logo-honor       { height: 16px; max-width: 75px; }
+        .brand-chip .brand-logo-pepsi       { height: 22px; max-width: 70px; }
+        .brand-chip .brand-logo-lipton      { height: 28px; max-width: 30px; }
+        .brand-chip .brand-logo-cheers      { height: 24px; max-width: 48px; }
+        .brand-chip .brand-logo-sfad        { height: 18px; max-width: 70px; }
+        .brand-chip .brand-logo-605         { height: 20px; max-width: 42px; }
+        .brand-chip .brand-logo-bashkent    { height: 13px; max-width: 90px; }
+        .brand-chip .brand-logo-millatumidi { height: 22px; max-width: 50px; }
+        .brand-chip .brand-logo-tafu        { height: 18px; max-width: 75px; }
+        .brand-chip .brand-logo-mdis        { height: 15px; max-width: 80px; }
+        .brand-chip .brand-logo-ipoteka     { height: 18px; max-width: 75px; }
+        .brand-chip .brand-logo-asaka       { height: 26px; max-width: 36px; }
+        .brand-chip .brand-logo-aab         { height: 18px; max-width: 72px; }
+        .brand-chip .brand-logo-ofb         { height: 16px; max-width: 90px; }
+        .brand-chip .brand-logo-artel       { height: 18px; max-width: 60px; }
+        .brand-chip .brand-logo-vero        { height: 20px; max-width: 60px; }
+        .brand-chip .brand-logo-nolte       { height: 20px; max-width: 55px; }
+        .brand-chip .brand-logo-brinkhaus   { height: 25px; max-width: 32px; }
+        .brand-chip .brand-logo-dream       { height: 26px; max-width: 30px; }
+        .brand-chip .brand-logo-spm         { height: 21px; max-width: 55px; }
       </style>
       <div class="brands-list brands-desktop">
-        <span><img src="https://logo.clearbit.com/honor.com" alt="HONOR UZBEKISTAN" class="brands-logo" onerror="this.outerHTML='HONOR UZBEKISTAN'"></span>
-        <span><img src="https://logo.clearbit.com/pepsi.com" alt="PEPSI" class="brands-logo" onerror="this.outerHTML='PEPSI'"></span>
-        <span><img src="https://logo.clearbit.com/lipton.com" alt="LIPTON" class="brands-logo" onerror="this.outerHTML='LIPTON'"></span>
-        <span><img src="https://logo.clearbit.com/cheers.uz" alt="CHEERS" class="brands-logo" onerror="this.outerHTML='CHEERS'"></span>
-        <span><img src="https://logo.clearbit.com/sfad.uz" alt="SFAD" class="brands-logo" onerror="this.outerHTML='SFAD'"></span>
-        <span><img src="https://logo.clearbit.com/605.agency" alt="605 AGENCY" class="brands-logo" onerror="this.outerHTML='605 AGENCY'"></span>
-        <span><img src="https://logo.clearbit.com/baskent.edu.tr" alt="BASHKENT" class="brands-logo" onerror="this.outerHTML='BASHKENT'"></span>
-        <span><img src="https://logo.clearbit.com/millatumidi.uz" alt="MILLAT UMIDI" class="brands-logo" onerror="this.outerHTML='MILLAT UMIDI'"></span>
-        <span><img src="https://logo.clearbit.com/tafu.uz" alt="TAFU" class="brands-logo" onerror="this.outerHTML='TAFU'"></span>
-        <span><img src="https://logo.clearbit.com/mdis.uz" alt="MDIS UNIVERSITY" class="brands-logo" onerror="this.outerHTML='mdis UNIVERSITY'"></span>
-        <span><img src="https://logo.clearbit.com/ipotekabank.uz" alt="IPOTEKA BANK" class="brands-logo" onerror="this.outerHTML='IPOTEKA BANK'"></span>
-        <span><img src="https://logo.clearbit.com/asakabank.uz" alt="ASAKABANK" class="brands-logo" onerror="this.outerHTML='ASAKABANK'"></span>
-        <span><img src="https://logo.clearbit.com/aab.uz" alt="ASIA ALLIANCE BANK" class="brands-logo" onerror="this.outerHTML='ASIA ALLIANCE BANK'"></span>
-        <span><img src="https://logo.clearbit.com/ofb.uz" alt="ORIENT FINANCE BANK" class="brands-logo" onerror="this.outerHTML='ORIENT FINANCE BANK'"></span>
-        <span><img src="https://logo.clearbit.com/artelgroup.org" alt="ARTEL" class="brands-logo" onerror="this.outerHTML='artel'"></span>
-        <span><img src="https://logo.clearbit.com/vero.uz" alt="VERO.UZ" class="brands-logo" onerror="this.outerHTML='vero.uz'"></span>
-        <span><img src="https://logo.clearbit.com/nolte-kuechen.com" alt="NOLTE KÜCHEN" class="brands-logo" onerror="this.outerHTML='Nolte Küchen'"></span>
-        <span><img src="https://logo.clearbit.com/brinkhaus.de" alt="BRINKHAUS" class="brands-logo" onerror="this.outerHTML='brinkhaus'"></span>
-        <span><img src="https://logo.clearbit.com/dreamresidence.uz" alt="DREAM RESIDENCE" class="brands-logo" onerror="this.outerHTML='DREAM RESIDENCE'"></span>
-        <span><img src="https://logo.clearbit.com/spm.uz" alt="SPM SCHOOL" class="brands-logo" onerror="this.outerHTML='SPM SCHOOL'"></span>
+        <span><img src="logos/honor.svg" alt="HONOR UZBEKISTAN" class="brands-logo brand-logo-honor" onerror="this.outerHTML='HONOR UZBEKISTAN'"></span>
+        <span><img src="logos/pepsi.svg" alt="PEPSI" class="brands-logo brand-logo-pepsi" onerror="this.outerHTML='PEPSI'"></span>
+        <span><img src="logos/lipton.svg" alt="LIPTON" class="brands-logo brand-logo-lipton" onerror="this.outerHTML='LIPTON'"></span>
+        <span><img src="logos/cheers.png" alt="CHEERS" class="brands-logo brand-logo-cheers" onerror="this.outerHTML='CHEERS'"></span>
+        <span><img src="logos/sfad.png" alt="SFAD" class="brands-logo brand-logo-sfad" onerror="this.outerHTML='SFAD'"></span>
+        <span><img src="logos/605agency.svg" alt="605 AGENCY" class="brands-logo brand-logo-605" onerror="this.outerHTML='605 AGENCY'"></span>
+        <span><img src="logos/bashkent.svg" alt="BASHKENT" class="brands-logo brand-logo-bashkent" onerror="this.outerHTML='BASHKENT'"></span>
+        <span><img src="logos/millatumidi.png" alt="MILLAT UMIDI" class="brands-logo brand-logo-millatumidi" onerror="this.outerHTML='MILLAT UMIDI'"></span>
+        <span><img src="logos/tafu.svg" alt="TAFU" class="brands-logo brand-logo-tafu" onerror="this.outerHTML='TAFU'"></span>
+        <span><img src="logos/mdis.png" alt="MDIS UNIVERSITY" class="brands-logo brand-logo-mdis" onerror="this.outerHTML='mdis UNIVERSITY'"></span>
+        <span><img src="logos/ipotekabank.png" alt="IPOTEKA BANK" class="brands-logo brand-logo-ipoteka" onerror="this.outerHTML='IPOTEKA BANK'"></span>
+        <span><img src="logos/asakabank.png" alt="ASAKABANK" class="brands-logo brand-logo-asaka" onerror="this.outerHTML='ASAKABANK'"></span>
+        <span><img src="logos/asiaalliancebank.svg" alt="ASIA ALLIANCE BANK" class="brands-logo brand-logo-aab" onerror="this.outerHTML='ASIA ALLIANCE BANK'"></span>
+        <span><img src="logos/ofb.svg" alt="ORIENT FINANCE BANK" class="brands-logo brand-logo-ofb" onerror="this.outerHTML='ORIENT FINANCE BANK'"></span>
+        <span><img src="logos/artel.svg" alt="ARTEL" class="brands-logo brand-logo-artel" onerror="this.outerHTML='artel'"></span>
+        <span><img src="logos/vero.png" alt="VERO.UZ" class="brands-logo brand-logo-vero" onerror="this.outerHTML='vero.uz'"></span>
+        <span><img src="logos/nolte.svg" alt="NOLTE KÜCHEN" class="brands-logo brand-logo-nolte" onerror="this.outerHTML='Nolte Küchen'"></span>
+        <span><img src="logos/brinkhaus.png" alt="BRINKHAUS" class="brands-logo brand-logo-brinkhaus" onerror="this.outerHTML='brinkhaus'"></span>
+        <span><img src="logos/dreamresidence.png" alt="DREAM RESIDENCE" class="brands-logo brand-logo-dream" onerror="this.outerHTML='DREAM RESIDENCE'"></span>
+        <span><img src="logos/spmschool.png" alt="SPM SCHOOL" class="brands-logo brand-logo-spm" onerror="this.outerHTML='SPM SCHOOL'"></span>
       </div>
 
       <!-- Mobile 4-Row Animated Marquee (Hidden on Desktop) -->
@@ -121,72 +199,72 @@
         <!-- Row 1 -->
         <div class="brands-mobile-track row-1">
           <div class="brands-mobile-content">
-            <span class="brand-chip"><img src="https://logo.clearbit.com/honor.com" alt="HONOR" class="brands-logo" onerror="this.outerHTML='HONOR'"></span>
-            <span class="brand-chip"><img src="https://logo.clearbit.com/pepsi.com" alt="PEPSI" class="brands-logo" onerror="this.outerHTML='PEPSI'"></span>
-            <span class="brand-chip"><img src="https://logo.clearbit.com/lipton.com" alt="LIPTON" class="brands-logo" onerror="this.outerHTML='LIPTON'"></span>
-            <span class="brand-chip"><img src="https://logo.clearbit.com/cheers.uz" alt="CHEERS" class="brands-logo" onerror="this.outerHTML='CHEERS'"></span>
-            <span class="brand-chip"><img src="https://logo.clearbit.com/sfad.uz" alt="SFAD" class="brands-logo" onerror="this.outerHTML='SFAD'"></span>
+            <span class="brand-chip"><img src="logos/honor.svg" alt="HONOR" class="brands-logo brand-logo-honor" onerror="this.outerHTML='HONOR'"></span>
+            <span class="brand-chip"><img src="logos/pepsi.svg" alt="PEPSI" class="brands-logo brand-logo-pepsi" onerror="this.outerHTML='PEPSI'"></span>
+            <span class="brand-chip"><img src="logos/lipton.svg" alt="LIPTON" class="brands-logo brand-logo-lipton" onerror="this.outerHTML='LIPTON'"></span>
+            <span class="brand-chip"><img src="logos/cheers.png" alt="CHEERS" class="brands-logo brand-logo-cheers" onerror="this.outerHTML='CHEERS'"></span>
+            <span class="brand-chip"><img src="logos/sfad.png" alt="SFAD" class="brands-logo brand-logo-sfad" onerror="this.outerHTML='SFAD'"></span>
           </div>
           <div class="brands-mobile-content" aria-hidden="true">
-            <span class="brand-chip"><img src="https://logo.clearbit.com/honor.com" alt="HONOR" class="brands-logo" onerror="this.outerHTML='HONOR'"></span>
-            <span class="brand-chip"><img src="https://logo.clearbit.com/pepsi.com" alt="PEPSI" class="brands-logo" onerror="this.outerHTML='PEPSI'"></span>
-            <span class="brand-chip"><img src="https://logo.clearbit.com/lipton.com" alt="LIPTON" class="brands-logo" onerror="this.outerHTML='LIPTON'"></span>
-            <span class="brand-chip"><img src="https://logo.clearbit.com/cheers.uz" alt="CHEERS" class="brands-logo" onerror="this.outerHTML='CHEERS'"></span>
-            <span class="brand-chip"><img src="https://logo.clearbit.com/sfad.uz" alt="SFAD" class="brands-logo" onerror="this.outerHTML='SFAD'"></span>
+            <span class="brand-chip"><img src="logos/honor.svg" alt="HONOR" class="brands-logo brand-logo-honor" onerror="this.outerHTML='HONOR'"></span>
+            <span class="brand-chip"><img src="logos/pepsi.svg" alt="PEPSI" class="brands-logo brand-logo-pepsi" onerror="this.outerHTML='PEPSI'"></span>
+            <span class="brand-chip"><img src="logos/lipton.svg" alt="LIPTON" class="brands-logo brand-logo-lipton" onerror="this.outerHTML='LIPTON'"></span>
+            <span class="brand-chip"><img src="logos/cheers.png" alt="CHEERS" class="brands-logo brand-logo-cheers" onerror="this.outerHTML='CHEERS'"></span>
+            <span class="brand-chip"><img src="logos/sfad.png" alt="SFAD" class="brands-logo brand-logo-sfad" onerror="this.outerHTML='SFAD'"></span>
           </div>
         </div>
 
         <!-- Row 2 -->
         <div class="brands-mobile-track row-2">
           <div class="brands-mobile-content">
-            <span class="brand-chip"><img src="https://logo.clearbit.com/605.agency" alt="605 AGENCY" class="brands-logo" onerror="this.outerHTML='605 AGENCY'"></span>
-            <span class="brand-chip"><img src="https://logo.clearbit.com/baskent.edu.tr" alt="BASHKENT" class="brands-logo" onerror="this.outerHTML='BASHKENT'"></span>
-            <span class="brand-chip"><img src="https://logo.clearbit.com/millatumidi.uz" alt="MILLAT UMIDI" class="brands-logo" onerror="this.outerHTML='MILLAT UMIDI'"></span>
-            <span class="brand-chip"><img src="https://logo.clearbit.com/tafu.uz" alt="TAFU" class="brands-logo" onerror="this.outerHTML='TAFU'"></span>
-            <span class="brand-chip"><img src="https://logo.clearbit.com/mdis.uz" alt="MDIS" class="brands-logo" onerror="this.outerHTML='MDIS'"></span>
+            <span class="brand-chip"><img src="logos/605agency.svg" alt="605 AGENCY" class="brands-logo brand-logo-605" onerror="this.outerHTML='605 AGENCY'"></span>
+            <span class="brand-chip"><img src="logos/bashkent.svg" alt="BASHKENT" class="brands-logo brand-logo-bashkent" onerror="this.outerHTML='BASHKENT'"></span>
+            <span class="brand-chip"><img src="logos/millatumidi.png" alt="MILLAT UMIDI" class="brands-logo brand-logo-millatumidi" onerror="this.outerHTML='MILLAT UMIDI'"></span>
+            <span class="brand-chip"><img src="logos/tafu.svg" alt="TAFU" class="brands-logo brand-logo-tafu" onerror="this.outerHTML='TAFU'"></span>
+            <span class="brand-chip"><img src="logos/mdis.png" alt="MDIS" class="brands-logo brand-logo-mdis" onerror="this.outerHTML='MDIS'"></span>
           </div>
           <div class="brands-mobile-content" aria-hidden="true">
-            <span class="brand-chip"><img src="https://logo.clearbit.com/605.agency" alt="605 AGENCY" class="brands-logo" onerror="this.outerHTML='605 AGENCY'"></span>
-            <span class="brand-chip"><img src="https://logo.clearbit.com/baskent.edu.tr" alt="BASHKENT" class="brands-logo" onerror="this.outerHTML='BASHKENT'"></span>
-            <span class="brand-chip"><img src="https://logo.clearbit.com/millatumidi.uz" alt="MILLAT UMIDI" class="brands-logo" onerror="this.outerHTML='MILLAT UMIDI'"></span>
-            <span class="brand-chip"><img src="https://logo.clearbit.com/tafu.uz" alt="TAFU" class="brands-logo" onerror="this.outerHTML='TAFU'"></span>
-            <span class="brand-chip"><img src="https://logo.clearbit.com/mdis.uz" alt="MDIS" class="brands-logo" onerror="this.outerHTML='MDIS'"></span>
+            <span class="brand-chip"><img src="logos/605agency.svg" alt="605 AGENCY" class="brands-logo brand-logo-605" onerror="this.outerHTML='605 AGENCY'"></span>
+            <span class="brand-chip"><img src="logos/bashkent.svg" alt="BASHKENT" class="brands-logo brand-logo-bashkent" onerror="this.outerHTML='BASHKENT'"></span>
+            <span class="brand-chip"><img src="logos/millatumidi.png" alt="MILLAT UMIDI" class="brands-logo brand-logo-millatumidi" onerror="this.outerHTML='MILLAT UMIDI'"></span>
+            <span class="brand-chip"><img src="logos/tafu.svg" alt="TAFU" class="brands-logo brand-logo-tafu" onerror="this.outerHTML='TAFU'"></span>
+            <span class="brand-chip"><img src="logos/mdis.png" alt="MDIS" class="brands-logo brand-logo-mdis" onerror="this.outerHTML='MDIS'"></span>
           </div>
         </div>
 
         <!-- Row 3 -->
         <div class="brands-mobile-track row-3">
           <div class="brands-mobile-content">
-            <span class="brand-chip"><img src="https://logo.clearbit.com/ipotekabank.uz" alt="IPOTEKA BANK" class="brands-logo" onerror="this.outerHTML='IPOTEKA BANK'"></span>
-            <span class="brand-chip"><img src="https://logo.clearbit.com/asakabank.uz" alt="ASAKABANK" class="brands-logo" onerror="this.outerHTML='ASAKABANK'"></span>
-            <span class="brand-chip"><img src="https://logo.clearbit.com/aab.uz" alt="ASIA ALLIANCE" class="brands-logo" onerror="this.outerHTML='ASIA ALLIANCE'"></span>
-            <span class="brand-chip"><img src="https://logo.clearbit.com/ofb.uz" alt="OFB" class="brands-logo" onerror="this.outerHTML='OFB'"></span>
-            <span class="brand-chip"><img src="https://logo.clearbit.com/artelgroup.org" alt="ARTEL" class="brands-logo" onerror="this.outerHTML='ARTEL'"></span>
+            <span class="brand-chip"><img src="logos/ipotekabank.png" alt="IPOTEKA BANK" class="brands-logo brand-logo-ipoteka" onerror="this.outerHTML='IPOTEKA BANK'"></span>
+            <span class="brand-chip"><img src="logos/asakabank.png" alt="ASAKABANK" class="brands-logo brand-logo-asaka" onerror="this.outerHTML='ASAKABANK'"></span>
+            <span class="brand-chip"><img src="logos/asiaalliancebank.svg" alt="ASIA ALLIANCE" class="brands-logo brand-logo-aab" onerror="this.outerHTML='ASIA ALLIANCE'"></span>
+            <span class="brand-chip"><img src="logos/ofb.svg" alt="OFB" class="brands-logo brand-logo-ofb" onerror="this.outerHTML='OFB'"></span>
+            <span class="brand-chip"><img src="logos/artel.svg" alt="ARTEL" class="brands-logo brand-logo-artel" onerror="this.outerHTML='ARTEL'"></span>
           </div>
           <div class="brands-mobile-content" aria-hidden="true">
-            <span class="brand-chip"><img src="https://logo.clearbit.com/ipotekabank.uz" alt="IPOTEKA BANK" class="brands-logo" onerror="this.outerHTML='IPOTEKA BANK'"></span>
-            <span class="brand-chip"><img src="https://logo.clearbit.com/asakabank.uz" alt="ASAKABANK" class="brands-logo" onerror="this.outerHTML='ASAKABANK'"></span>
-            <span class="brand-chip"><img src="https://logo.clearbit.com/aab.uz" alt="ASIA ALLIANCE" class="brands-logo" onerror="this.outerHTML='ASIA ALLIANCE'"></span>
-            <span class="brand-chip"><img src="https://logo.clearbit.com/ofb.uz" alt="OFB" class="brands-logo" onerror="this.outerHTML='OFB'"></span>
-            <span class="brand-chip"><img src="https://logo.clearbit.com/artelgroup.org" alt="ARTEL" class="brands-logo" onerror="this.outerHTML='ARTEL'"></span>
+            <span class="brand-chip"><img src="logos/ipotekabank.png" alt="IPOTEKA BANK" class="brands-logo brand-logo-ipoteka" onerror="this.outerHTML='IPOTEKA BANK'"></span>
+            <span class="brand-chip"><img src="logos/asakabank.png" alt="ASAKABANK" class="brands-logo brand-logo-asaka" onerror="this.outerHTML='ASAKABANK'"></span>
+            <span class="brand-chip"><img src="logos/asiaalliancebank.svg" alt="ASIA ALLIANCE" class="brands-logo brand-logo-aab" onerror="this.outerHTML='ASIA ALLIANCE'"></span>
+            <span class="brand-chip"><img src="logos/ofb.svg" alt="OFB" class="brands-logo brand-logo-ofb" onerror="this.outerHTML='OFB'"></span>
+            <span class="brand-chip"><img src="logos/artel.svg" alt="ARTEL" class="brands-logo brand-logo-artel" onerror="this.outerHTML='ARTEL'"></span>
           </div>
         </div>
 
         <!-- Row 4 -->
         <div class="brands-mobile-track row-4">
           <div class="brands-mobile-content">
-            <span class="brand-chip"><img src="https://logo.clearbit.com/vero.uz" alt="VERO.UZ" class="brands-logo" onerror="this.outerHTML='VERO.UZ'"></span>
-            <span class="brand-chip"><img src="https://logo.clearbit.com/nolte-kuechen.com" alt="NOLTE" class="brands-logo" onerror="this.outerHTML='NOLTE'"></span>
-            <span class="brand-chip"><img src="https://logo.clearbit.com/brinkhaus.de" alt="BRINKHAUS" class="brands-logo" onerror="this.outerHTML='BRINKHAUS'"></span>
-            <span class="brand-chip"><img src="https://logo.clearbit.com/dreamresidence.uz" alt="DREAM RESIDENCE" class="brands-logo" onerror="this.outerHTML='DREAM RESIDENCE'"></span>
-            <span class="brand-chip"><img src="https://logo.clearbit.com/spm.uz" alt="SPM SCHOOL" class="brands-logo" onerror="this.outerHTML='SPM SCHOOL'"></span>
+            <span class="brand-chip"><img src="logos/vero.png" alt="VERO.UZ" class="brands-logo brand-logo-vero" onerror="this.outerHTML='VERO.UZ'"></span>
+            <span class="brand-chip"><img src="logos/nolte.svg" alt="NOLTE" class="brands-logo brand-logo-nolte" onerror="this.outerHTML='NOLTE'"></span>
+            <span class="brand-chip"><img src="logos/brinkhaus.png" alt="BRINKHAUS" class="brands-logo brand-logo-brinkhaus" onerror="this.outerHTML='BRINKHAUS'"></span>
+            <span class="brand-chip"><img src="logos/dreamresidence.png" alt="DREAM RESIDENCE" class="brands-logo brand-logo-dream" onerror="this.outerHTML='DREAM RESIDENCE'"></span>
+            <span class="brand-chip"><img src="logos/spmschool.png" alt="SPM SCHOOL" class="brands-logo brand-logo-spm" onerror="this.outerHTML='SPM SCHOOL'"></span>
           </div>
           <div class="brands-mobile-content" aria-hidden="true">
-            <span class="brand-chip"><img src="https://logo.clearbit.com/vero.uz" alt="VERO.UZ" class="brands-logo" onerror="this.outerHTML='VERO.UZ'"></span>
-            <span class="brand-chip"><img src="https://logo.clearbit.com/nolte-kuechen.com" alt="NOLTE" class="brands-logo" onerror="this.outerHTML='NOLTE'"></span>
-            <span class="brand-chip"><img src="https://logo.clearbit.com/brinkhaus.de" alt="BRINKHAUS" class="brands-logo" onerror="this.outerHTML='BRINKHAUS'"></span>
-            <span class="brand-chip"><img src="https://logo.clearbit.com/dreamresidence.uz" alt="DREAM RESIDENCE" class="brands-logo" onerror="this.outerHTML='DREAM RESIDENCE'"></span>
-            <span class="brand-chip"><img src="https://logo.clearbit.com/spm.uz" alt="SPM SCHOOL" class="brands-logo" onerror="this.outerHTML='SPM SCHOOL'"></span>
+            <span class="brand-chip"><img src="logos/vero.png" alt="VERO.UZ" class="brands-logo brand-logo-vero" onerror="this.outerHTML='VERO.UZ'"></span>
+            <span class="brand-chip"><img src="logos/nolte.svg" alt="NOLTE" class="brands-logo brand-logo-nolte" onerror="this.outerHTML='NOLTE'"></span>
+            <span class="brand-chip"><img src="logos/brinkhaus.png" alt="BRINKHAUS" class="brands-logo brand-logo-brinkhaus" onerror="this.outerHTML='BRINKHAUS'"></span>
+            <span class="brand-chip"><img src="logos/dreamresidence.png" alt="DREAM RESIDENCE" class="brands-logo brand-logo-dream" onerror="this.outerHTML='DREAM RESIDENCE'"></span>
+            <span class="brand-chip"><img src="logos/spmschool.png" alt="SPM SCHOOL" class="brands-logo brand-logo-spm" onerror="this.outerHTML='SPM SCHOOL'"></span>
           </div>
         </div>
       </div>
