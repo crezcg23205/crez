@@ -299,7 +299,7 @@
       html += `
         <div class="project-block reveal ${proj.gridClass}">
           <div class="project-video-wrapper ${noCropClass} ${verticalClass}" data-video-src="${proj.src}">
-            <video src="${proj.src}" autoplay muted loop playsinline preload="metadata"></video>
+            <video src="${proj.src}" autoplay muted loop playsinline preload="metadata" disablePictureInPicture controlsList="nodownload" oncontextmenu="return false;"></video>
             <div class="project-video-overlay">
               <div class="overlay-num">${num}</div>
               <div class="overlay-title">${proj.title}</div>
@@ -345,7 +345,7 @@
     const cls = isVert ? 'is-vertical' : 'is-horizontal';
     return `
       <div class="portfolio-card ${cls}">
-        <video data-src="${proj.src}" muted loop playsinline preload="none"></video>
+        <video data-src="${proj.src}" muted loop playsinline preload="none" disablePictureInPicture controlsList="nodownload" oncontextmenu="return false;"></video>
       </div>
     `;
   }
@@ -443,12 +443,56 @@
       if (src) {
         activeVideoWrapper = trigger;
         modalVideoPlayer.src = src;
+        modalVideoPlayer.muted = true;
+        modalVideoPlayer.defaultMuted = true;
+        modalVideoPlayer.volume = 0;
+        modalVideoPlayer.loop = true;
+        modalVideoPlayer.setAttribute('muted', '');
+        modalVideoPlayer.setAttribute('loop', '');
+        modalVideoPlayer.setAttribute('playsinline', '');
+        modalVideoPlayer.setAttribute('disablePictureInPicture', '');
+        modalVideoPlayer.setAttribute('controlsList', 'nodownload noplaybackrate');
+        modalVideoPlayer.setAttribute('oncontextmenu', 'return false;');
         videoModal.classList.add('open');
         modalVideoPlayer.play().catch(()=>{});
         document.body.style.overflow = 'hidden';
       }
     }
   });
+
+  // ---------- Video Protection & GIF-Mode Enforcer ----------
+  // Disable right-click context menu on all videos (blocks "Save video as...")
+  document.addEventListener('contextmenu', (e) => {
+    if (e.target.tagName === 'VIDEO' || e.target.closest('video, .project-video-wrapper, .portfolio-card, .video-modal')) {
+      e.preventDefault();
+      return false;
+    }
+  });
+
+  // Block dragging video elements to desktop or folder
+  document.addEventListener('dragstart', (e) => {
+    if (e.target.tagName === 'VIDEO' || e.target.closest('video, .project-video-wrapper, .portfolio-card')) {
+      e.preventDefault();
+      return false;
+    }
+  });
+
+  // Programmatically enforce muted + loop + nodownload on all video elements
+  function enforceGifVideoMode() {
+    document.querySelectorAll('video').forEach((v) => {
+      v.muted = true;
+      v.defaultMuted = true;
+      v.volume = 0;
+      v.setAttribute('muted', '');
+      v.setAttribute('loop', '');
+      v.setAttribute('playsinline', '');
+      v.setAttribute('disablePictureInPicture', '');
+      v.setAttribute('controlsList', 'nodownload noplaybackrate');
+      v.setAttribute('oncontextmenu', 'return false;');
+    });
+  }
+
+  requestAnimationFrame(enforceGifVideoMode);
 
   function closeVideoModal() {
     videoModal.classList.remove('open');
