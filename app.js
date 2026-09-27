@@ -430,35 +430,11 @@
 
   requestAnimationFrame(initLazyVideos);
 
-  // ---------- Video Modal ----------
+  // ---------- Video Modal Disabled (Videos stay and play in place like GIFs) ----------
   const videoModal = document.getElementById('videoModal');
   const videoModalClose = document.getElementById('videoModalClose');
   const modalVideoPlayer = document.getElementById('modalVideoPlayer');
   let activeVideoWrapper = null;
-
-  document.addEventListener('click', (e) => {
-    const trigger = e.target.closest('.portfolio-3d-card, .project-video-wrapper');
-    if (trigger && videoModal && modalVideoPlayer) {
-      const src = trigger.getAttribute('data-video-src');
-      if (src) {
-        activeVideoWrapper = trigger;
-        modalVideoPlayer.src = src;
-        modalVideoPlayer.muted = true;
-        modalVideoPlayer.defaultMuted = true;
-        modalVideoPlayer.volume = 0;
-        modalVideoPlayer.loop = true;
-        modalVideoPlayer.setAttribute('muted', '');
-        modalVideoPlayer.setAttribute('loop', '');
-        modalVideoPlayer.setAttribute('playsinline', '');
-        modalVideoPlayer.setAttribute('disablePictureInPicture', '');
-        modalVideoPlayer.setAttribute('controlsList', 'nodownload noplaybackrate');
-        modalVideoPlayer.setAttribute('oncontextmenu', 'return false;');
-        videoModal.classList.add('open');
-        modalVideoPlayer.play().catch(()=>{});
-        document.body.style.overflow = 'hidden';
-      }
-    }
-  });
 
   // ---------- Video Protection & GIF-Mode Enforcer ----------
   // Disable right-click context menu on all videos (blocks "Save video as...")

@@ -649,7 +649,7 @@ ul, ol { list-style: none; }
   border-radius: 8px;
   overflow: hidden;
   margin-bottom: 24px;
-  cursor: pointer;
+  cursor: default;
 }
 
 .project-video-wrapper.no-crop {
@@ -1005,20 +1005,8 @@ ul, ol { list-style: none; }
    VIDEO MODAL
    ========================================== */
 .video-modal {
-  position: fixed;
-  inset: 0;
-  z-index: 30000;
-  background: rgba(0,0,0,0.95);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.3s var(--ease);
-}
-.video-modal.open {
-  opacity: 1;
-  pointer-events: auto;
+  display: none !important;
+  pointer-events: none !important;
 }
 .video-modal-close {
   position: absolute;
