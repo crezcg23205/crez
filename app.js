@@ -384,12 +384,16 @@
   function renderCarousel() {
     if (!trackTop1) return;
 
-    // Curate top vertical and horizontal projects
-    const verticalProjects = projects.filter(p => isProjVertical(p)).slice(0, 8);
-    const horizontalProjects = projects.filter(p => !isProjVertical(p)).slice(0, 8);
+    // Get all vertical and horizontal projects
+    const verticalProjects = projects.filter(p => isProjVertical(p));
+    const horizontalProjects = projects.filter(p => !isProjVertical(p));
 
-    const topHtml = verticalProjects.map(p => createCardHtml(p, true)).join('');
-    const bottomHtml = horizontalProjects.map(p => createCardHtml(p, false)).join('');
+    // Duplicate vertical projects so top row (24 cards, ~3500px) fully spans across any screen width matching horizontal row (~3700px)
+    const topList = [...verticalProjects, ...verticalProjects];
+    const bottomList = [...horizontalProjects, ...horizontalProjects];
+
+    const topHtml = topList.map(p => createCardHtml(p, true)).join('');
+    const bottomHtml = bottomList.map(p => createCardHtml(p, false)).join('');
 
     trackTop1.innerHTML = topHtml;
     if (trackBottom1) trackBottom1.innerHTML = bottomHtml;
