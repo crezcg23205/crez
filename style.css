@@ -172,6 +172,7 @@ ul, ol { list-style: none; }
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border-bottom: 1px solid var(--border);
+  transform: translateZ(0);
 }
 .nav-logo {
   font-size: 15px;
@@ -448,6 +449,8 @@ ul, ol { list-style: none; }
   pointer-events: none;
   box-shadow: 0 10px 24px -6px rgba(0, 0, 0, 0.18);
   border: 1px solid var(--border);
+  contain: layout paint;
+  transform: translateZ(0);
 }
 
 .portfolio-card.is-vertical {
@@ -473,6 +476,7 @@ ul, ol { list-style: none; }
   object-fit: cover;
   display: block;
   pointer-events: none;
+  transform: translateZ(0);
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
 }
@@ -842,6 +846,11 @@ ul, ol { list-style: none; }
   100% {
     transform: translate3d(0, 0, 0);
   }
+}
+
+.testimonials-marquee-wrapper.is-paused .testimonials-marquee-content,
+.brands-mobile.is-paused .brands-mobile-content {
+  animation-play-state: paused !important;
 }
 
 .testimonial-card {

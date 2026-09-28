@@ -341,122 +341,241 @@
     return vertFiles.some(f => proj.src.includes(f));
   }
 
-  function createCardHtml(proj, isVert) {
+  function createCardHtml(proj, isVert, isInitial) {
     const cls = isVert ? 'is-vertical' : 'is-horizontal';
+    const srcAttr = isInitial ? `src="${proj.src}" preload="metadata"` : `data-src="${proj.src}" preload="none"`;
     return `
-      <div class="portfolio-card ${cls}">
-        <video src="${proj.src}" autoplay muted loop playsinline preload="auto" disablePictureInPicture controlsList="nodownload" oncontextmenu="return false;"></video>
+      <div class="portfolio-card ${cls}" data-video-src="${proj.src}">
+        <video ${srcAttr} autoplay muted loop playsinline disablePictureInPicture controlsList="nodownload noplaybackrate" oncontextmenu="return false;"></video>
       </div>
     `;
   }
 
+  // Hardware decode session manager (caps concurrent playing videos to max 6)
+  const MAX_ACTIVE_DECODERS = 6;
+  const activePlayingVideos = new Set();
+
+  function playVideoSafely(video) {
+    if (!video) return;
+    if (!video.src && video.dataset.src) {
+      video.src = video.dataset.src;
+    }
+    if (activePlayingVideos.size >= MAX_ACTIVE_DECODERS && !activePlayingVideos.has(video)) {
+      const oldest = activePlayingVideos.values().next().value;
+      if (oldest) {
+        oldest.pause();
+        activePlayingVideos.delete(oldest);
+      }
+    }
+    video.muted = true;
+    const p = video.play();
+    if (p !== undefined) {
+      p.then(() => activePlayingVideos.add(video)).catch(() => {});
+    }
+  }
+
+  function pauseVideoSafely(video) {
+    if (!video) return;
+    video.pause();
+    activePlayingVideos.delete(video);
+  }
+
+  // Smooth rAF-locked mouse drag scrolling
   function enableDragScroll(track) {
     if (!track) return;
     let isDown = false;
     let startX = 0;
-    let scrollLeft = 0;
+    let initialScrollLeft = 0;
+    let targetScrollLeft = 0;
+    let rAFId = null;
 
-    track.addEventListener('mousedown', (e) => {
+    const onMouseDown = (e) => {
       isDown = true;
       track.classList.add('is-dragging');
       startX = e.pageX - track.offsetLeft;
-      scrollLeft = track.scrollLeft;
-    });
+      initialScrollLeft = track.scrollLeft;
+      targetScrollLeft = initialScrollLeft;
+    };
 
-    const endDrag = () => {
+    const stopDrag = () => {
       if (!isDown) return;
       isDown = false;
       track.classList.remove('is-dragging');
+      if (rAFId) {
+        cancelAnimationFrame(rAFId);
+        rAFId = null;
+      }
+      updateVisibleVideos();
     };
 
-    track.addEventListener('mouseleave', endDrag);
-    track.addEventListener('mouseup', endDrag);
+    const renderDrag = () => {
+      if (isDown) {
+        track.scrollLeft = targetScrollLeft;
+        rAFId = requestAnimationFrame(renderDrag);
+      } else {
+        rAFId = null;
+      }
+    };
 
-    track.addEventListener('mousemove', (e) => {
+    const onMouseMove = (e) => {
       if (!isDown) return;
       e.preventDefault();
       const x = e.pageX - track.offsetLeft;
-      const walk = (x - startX) * 1.5;
-      track.scrollLeft = scrollLeft - walk;
+      const walk = (x - startX) * 1.4;
+      targetScrollLeft = initialScrollLeft - walk;
+      if (!rAFId) {
+        rAFId = requestAnimationFrame(renderDrag);
+      }
+    };
+
+    track.addEventListener('mousedown', onMouseDown);
+    track.addEventListener('mouseleave', stopDrag);
+    track.addEventListener('mouseup', stopDrag);
+    track.addEventListener('mousemove', onMouseMove);
+    track.addEventListener('scroll', () => {
+      if (!isDown && !rAFId) {
+        rAFId = requestAnimationFrame(() => {
+          updateVisibleVideos();
+          rAFId = null;
+        });
+      }
+    }, { passive: true });
+  }
+
+  let isPortfolioSectionInView = true;
+
+  function updateVisibleVideos() {
+    if (!isPortfolioSectionInView) {
+      activePlayingVideos.forEach(v => v.pause());
+      activePlayingVideos.clear();
+      return;
+    }
+    const tracks = [trackTopWrapper, trackBottomWrapper];
+    tracks.forEach(track => {
+      if (!track) return;
+      const trackRect = track.getBoundingClientRect();
+      const cards = track.querySelectorAll('.portfolio-card');
+      cards.forEach(card => {
+        const cardRect = card.getBoundingClientRect();
+        const video = card.querySelector('video');
+        if (!video) return;
+        const isVisible = cardRect.right >= (trackRect.left - 60) && cardRect.left <= (trackRect.right + 60);
+        if (isVisible) {
+          playVideoSafely(video);
+        } else {
+          pauseVideoSafely(video);
+        }
+      });
     });
+  }
+
+  function setupTrackObserver(trackEl) {
+    if (!trackEl) return;
+    const cards = trackEl.querySelectorAll('.portfolio-card');
+    const trackObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        const video = entry.target.querySelector('video');
+        if (!video) return;
+        if (entry.isIntersecting && isPortfolioSectionInView) {
+          playVideoSafely(video);
+        } else {
+          pauseVideoSafely(video);
+        }
+      });
+    }, {
+      root: trackEl,
+      rootMargin: '0px 100px 0px 100px',
+      threshold: 0.05
+    });
+
+    cards.forEach(card => trackObserver.observe(card));
   }
 
   function renderCarousel() {
     if (!trackTop1) return;
 
-    // Get all vertical and horizontal projects
     const verticalProjects = projects.filter(p => isProjVertical(p));
     const horizontalProjects = projects.filter(p => !isProjVertical(p));
 
-    // Duplicate vertical projects so top row (24 cards, ~3500px) fully spans across any screen width matching horizontal row (~3700px)
     const topList = [...verticalProjects, ...verticalProjects];
     const bottomList = [...horizontalProjects, ...horizontalProjects];
 
-    const topHtml = topList.map(p => createCardHtml(p, true)).join('');
-    const bottomHtml = bottomList.map(p => createCardHtml(p, false)).join('');
+    const topHtml = topList.map((p, idx) => createCardHtml(p, true, idx < 8)).join('');
+    const bottomHtml = bottomList.map((p, idx) => createCardHtml(p, false, idx < 4)).join('');
 
     trackTop1.innerHTML = topHtml;
     if (trackBottom1) trackBottom1.innerHTML = bottomHtml;
 
-    enableDragScroll(trackTopWrapper || trackTop1.parentElement);
-    enableDragScroll(trackBottomWrapper || trackBottom1.parentElement);
+    const topWrapper = trackTopWrapper || trackTop1.parentElement;
+    const bottomWrapper = trackBottomWrapper || trackBottom1.parentElement;
+
+    enableDragScroll(topWrapper);
+    enableDragScroll(bottomWrapper);
+
+    setupTrackObserver(topWrapper);
+    setupTrackObserver(bottomWrapper);
   }
 
-  // Render on load
-  renderPortfolio();
+  if (portfolioContent) {
+    renderPortfolio();
+  }
   renderCarousel();
 
-  // ---------- Video Playback Controller (Always playing, battery-friendly offscreen) ----------
-  function initLazyVideos() {
-    const carouselWrapper = document.querySelector('.portfolio-carousel-wrapper');
-    const carouselVideos = document.querySelectorAll('.portfolio-card video');
-
-    const playAll = () => {
-      carouselVideos.forEach((v) => {
-        v.muted = true;
-        if (v.paused) v.play().catch(() => {});
-      });
-    };
-
-    playAll();
-
-    if (carouselWrapper && carouselVideos.length > 0) {
-      const carouselObserver = new IntersectionObserver((entries) => {
+  // Page-level observer to pause all videos when section is offscreen
+  function initPageLevelObserver() {
+    const portfolioSection = document.getElementById('work');
+    if (portfolioSection) {
+      const sectionObserver = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            carouselVideos.forEach((v) => {
-              if (v.paused) v.play().catch(() => {});
-            });
+          isPortfolioSectionInView = entry.isIntersecting;
+          if (isPortfolioSectionInView) {
+            updateVisibleVideos();
           } else {
-            carouselVideos.forEach((v) => {
-              if (!v.paused) v.pause();
-            });
+            activePlayingVideos.forEach((v) => v.pause());
+            activePlayingVideos.clear();
           }
         });
-      }, { rootMargin: '250px 0px 250px 0px', threshold: 0.01 });
+      }, { rootMargin: '100px 0px 100px 0px', threshold: 0.02 });
 
-      carouselObserver.observe(carouselWrapper);
+      sectionObserver.observe(portfolioSection);
     }
 
-    // Grid videos on portfolio.html: play only when in view
+    // Grid videos on portfolio.html
     const gridVideos = document.querySelectorAll('.project-video-wrapper video');
     if (gridVideos.length > 0) {
       const gridObserver = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
           const v = entry.target;
           if (entry.isIntersecting) {
+            if (!v.src && v.dataset.src) v.src = v.dataset.src;
             v.play().catch(() => {});
           } else {
             v.pause();
           }
         });
-      }, { rootMargin: '50px 0px 50px 0px', threshold: 0.1 });
+      }, { rootMargin: '80px 0px 80px 0px', threshold: 0.1 });
 
       gridVideos.forEach((v) => gridObserver.observe(v));
     }
 
+    // Pause offscreen CSS marquees (Brands and Testimonials)
+    const marquees = document.querySelectorAll('.testimonials-marquee-wrapper, .brands-mobile');
+    if (marquees.length > 0) {
+      const marqueeObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.remove('is-paused');
+          } else {
+            entry.target.classList.add('is-paused');
+          }
+        });
+      }, { rootMargin: '100px 0px 100px 0px', threshold: 0.01 });
+
+      marquees.forEach(el => marqueeObserver.observe(el));
+    }
+
     const kickstart = () => {
-      playAll();
+      updateVisibleVideos();
       window.removeEventListener('pointerdown', kickstart);
       window.removeEventListener('scroll', kickstart);
     };
@@ -464,7 +583,7 @@
     window.addEventListener('scroll', kickstart, { once: true, passive: true });
   }
 
-  requestAnimationFrame(initLazyVideos);
+  requestAnimationFrame(initPageLevelObserver);
 
   // ---------- Video Modal Disabled (Videos stay and play in place like GIFs) ----------
   const videoModal = document.getElementById('videoModal');
