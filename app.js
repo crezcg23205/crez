@@ -327,11 +327,11 @@
     portfolioContent.innerHTML = html;
   }
 
-  // ---------- Continuous 2-Row Carousel (Top: Vertical, Bottom: Horizontal) ----------
+  // ---------- 2-Row Showcase (Top: Vertical, Bottom: Horizontal) ----------
   const trackTop1 = document.getElementById('carouselTrackTop1');
-  const trackTop2 = document.getElementById('carouselTrackTop2');
   const trackBottom1 = document.getElementById('carouselTrackBottom1');
-  const trackBottom2 = document.getElementById('carouselTrackBottom2');
+  const trackTopWrapper = document.getElementById('carouselTrackTopWrapper');
+  const trackBottomWrapper = document.getElementById('carouselTrackBottomWrapper');
 
   function isProjVertical(proj) {
     if (proj.isVertical || proj.noCrop || proj.gridClass === 'col-span-3' || proj.gridClass === 'col-span-4') {
@@ -345,54 +345,91 @@
     const cls = isVert ? 'is-vertical' : 'is-horizontal';
     return `
       <div class="portfolio-card ${cls}">
-        <video src="${proj.src}" muted loop playsinline preload="metadata" disablePictureInPicture controlsList="nodownload" oncontextmenu="return false;"></video>
+        <video src="${proj.src}" autoplay muted loop playsinline preload="auto" disablePictureInPicture controlsList="nodownload" oncontextmenu="return false;"></video>
       </div>
     `;
+  }
+
+  function enableDragScroll(track) {
+    if (!track) return;
+    let isDown = false;
+    let startX = 0;
+    let scrollLeft = 0;
+
+    track.addEventListener('mousedown', (e) => {
+      isDown = true;
+      track.classList.add('is-dragging');
+      startX = e.pageX - track.offsetLeft;
+      scrollLeft = track.scrollLeft;
+    });
+
+    const endDrag = () => {
+      if (!isDown) return;
+      isDown = false;
+      track.classList.remove('is-dragging');
+    };
+
+    track.addEventListener('mouseleave', endDrag);
+    track.addEventListener('mouseup', endDrag);
+
+    track.addEventListener('mousemove', (e) => {
+      if (!isDown) return;
+      e.preventDefault();
+      const x = e.pageX - track.offsetLeft;
+      const walk = (x - startX) * 1.5;
+      track.scrollLeft = scrollLeft - walk;
+    });
   }
 
   function renderCarousel() {
     if (!trackTop1) return;
 
-    // Curate top 7 vertical and top 7 horizontal projects for smooth 60fps loop
-    const verticalProjects = projects.filter(p => isProjVertical(p)).slice(0, 7);
-    const horizontalProjects = projects.filter(p => !isProjVertical(p)).slice(0, 7);
+    // Curate top vertical and horizontal projects
+    const verticalProjects = projects.filter(p => isProjVertical(p)).slice(0, 8);
+    const horizontalProjects = projects.filter(p => !isProjVertical(p)).slice(0, 8);
 
     const topHtml = verticalProjects.map(p => createCardHtml(p, true)).join('');
     const bottomHtml = horizontalProjects.map(p => createCardHtml(p, false)).join('');
 
     trackTop1.innerHTML = topHtml;
-    if (trackTop2) trackTop2.innerHTML = topHtml;
-
     if (trackBottom1) trackBottom1.innerHTML = bottomHtml;
-    if (trackBottom2) trackBottom2.innerHTML = bottomHtml;
+
+    enableDragScroll(trackTopWrapper || trackTop1.parentElement);
+    enableDragScroll(trackBottomWrapper || trackBottom1.parentElement);
   }
 
   // Render on load
   renderPortfolio();
   renderCarousel();
 
-  // ---------- High-Performance Carousel & Video Visibility Controller ----------
-  // Automatically pause the carousel animation and videos when scrolled out of view (0% GPU usage when offscreen)
+  // ---------- Video Playback Controller (Always playing, battery-friendly offscreen) ----------
   function initLazyVideos() {
     const carouselWrapper = document.querySelector('.portfolio-carousel-wrapper');
     const carouselVideos = document.querySelectorAll('.portfolio-card video');
+
+    const playAll = () => {
+      carouselVideos.forEach((v) => {
+        v.muted = true;
+        if (v.paused) v.play().catch(() => {});
+      });
+    };
+
+    playAll();
 
     if (carouselWrapper && carouselVideos.length > 0) {
       const carouselObserver = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            carouselWrapper.classList.remove('is-paused');
             carouselVideos.forEach((v) => {
               if (v.paused) v.play().catch(() => {});
             });
           } else {
-            carouselWrapper.classList.add('is-paused');
             carouselVideos.forEach((v) => {
               if (!v.paused) v.pause();
             });
           }
         });
-      }, { rootMargin: '100px 0px 100px 0px', threshold: 0.05 });
+      }, { rootMargin: '250px 0px 250px 0px', threshold: 0.01 });
 
       carouselObserver.observe(carouselWrapper);
     }
@@ -413,6 +450,14 @@
 
       gridVideos.forEach((v) => gridObserver.observe(v));
     }
+
+    const kickstart = () => {
+      playAll();
+      window.removeEventListener('pointerdown', kickstart);
+      window.removeEventListener('scroll', kickstart);
+    };
+    window.addEventListener('pointerdown', kickstart, { once: true, passive: true });
+    window.addEventListener('scroll', kickstart, { once: true, passive: true });
   }
 
   requestAnimationFrame(initLazyVideos);

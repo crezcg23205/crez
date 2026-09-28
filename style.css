@@ -385,27 +385,40 @@ ul, ol { list-style: none; }
 }
 
 /* ==========================================
-   PORTFOLIO 2-ROW CONTINUOUS CAROUSEL
+   PORTFOLIO 2-ROW SHOWCASE
    (Top Row: Vertical, Bottom Row: Horizontal)
    ========================================== */
 .portfolio-carousel-wrapper {
-  --carousel-gap: 14px;
+  --carousel-gap: 16px;
   width: 100%;
   position: relative;
-  overflow: hidden;
   display: flex;
   flex-direction: column;
   gap: 16px;
   padding: 15px 0 20px;
-  mask-image: linear-gradient(to right, transparent 0%, black 40px, black calc(100% - 40px), transparent 100%);
-  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 40px, black calc(100% - 40px), transparent 100%);
 }
 
 .portfolio-carousel-track {
   display: flex;
-  overflow: hidden;
+  overflow-x: auto;
+  overflow-y: hidden;
   user-select: none;
   width: 100%;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE/Edge */
+  -webkit-overflow-scrolling: touch; /* iOS smooth inertia */
+  scroll-behavior: smooth;
+  cursor: grab;
+}
+
+.portfolio-carousel-track::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+
+.portfolio-carousel-track.is-dragging,
+.portfolio-carousel-track:active {
+  cursor: grabbing;
+  scroll-behavior: auto;
 }
 
 .portfolio-carousel-track.row-top {
@@ -419,41 +432,10 @@ ul, ol { list-style: none; }
 .portfolio-carousel-content {
   display: flex;
   gap: var(--carousel-gap);
-  padding-right: var(--carousel-gap);
+  padding: 0 4px;
   flex-shrink: 0;
   align-items: center;
   height: 100%;
-  will-change: transform;
-}
-
-.portfolio-carousel-track.row-top .portfolio-carousel-content {
-  animation: portfolioCarouselScrollLeft 36s linear infinite;
-}
-
-.portfolio-carousel-track.row-bottom .portfolio-carousel-content {
-  animation: portfolioCarouselScrollRight 42s linear infinite;
-}
-
-.portfolio-carousel-wrapper.is-paused .portfolio-carousel-content {
-  animation-play-state: paused;
-}
-
-@keyframes portfolioCarouselScrollLeft {
-  0% {
-    transform: translate3d(0, 0, 0);
-  }
-  100% {
-    transform: translate3d(-100%, 0, 0);
-  }
-}
-
-@keyframes portfolioCarouselScrollRight {
-  0% {
-    transform: translate3d(-100%, 0, 0);
-  }
-  100% {
-    transform: translate3d(0, 0, 0);
-  }
 }
 
 .portfolio-card {
@@ -565,37 +547,6 @@ ul, ol { list-style: none; }
   }
 }
 
-@media (max-width: 768px) {
-  .portfolio-carousel-wrapper {
-    --carousel-gap: 14px;
-    padding: 10px 0 16px;
-  }
-  .portfolio-carousel-track {
-    height: 180px;
-  }
-  .portfolio-card {
-    height: 180px;
-    border-radius: 12px;
-  }
-  .portfolio-card.is-vertical {
-    width: calc(180px * 9 / 16);
-  }
-  .portfolio-card.is-horizontal {
-    width: calc(180px * 16 / 9);
-  }
-  .portfolio-card.is-standard {
-    width: calc(180px * 4 / 3);
-  }
-  .portfolio-carousel-content {
-    animation-duration: 35s;
-  }
-  .portfolio-carousel-track.row-2 .portfolio-carousel-content {
-    animation-duration: 38s;
-  }
-  .portfolio-action-row {
-    margin-top: 36px;
-  }
-}
 
 @media (prefers-reduced-motion: reduce) {
   .portfolio-carousel-content {
