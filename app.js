@@ -72,6 +72,13 @@
   const projects = [
     // --- SMARTCAST MEDIA ---
     { 
+      src: '10v1.mp4', 
+      title: 'Smartcast media', 
+      subtitle: 'dynamic edit',
+      deliverables: ['Motion Graphics', 'Typography', 'Sound Design'],
+      gridClass: 'col-span-6'
+    },
+    { 
       src: '7v2.mp4', 
       title: 'Smartcast media', 
       subtitle: 'dynamic edit',
