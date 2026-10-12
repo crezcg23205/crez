@@ -37,10 +37,15 @@
 
   // ---------- Smooth Scroll ----------
   document.addEventListener('click', (e) => {
-    const a = e.target.closest && e.target.closest('a[href^="#"]');
+    const a = e.target.closest && e.target.closest('a[href^="#"], a[href^="index.html#"]');
     if (!a) return;
-    const id = a.getAttribute('href').slice(1);
+    const href = a.getAttribute('href');
+    const hashIndex = href.indexOf('#');
+    if (hashIndex === -1) return;
+    const id = href.slice(hashIndex + 1);
     if (!id) return;
+    const isHomePage = window.location.pathname.endsWith('index.html') || window.location.pathname === '/' || window.location.pathname.endsWith('/');
+    if (!isHomePage && href.startsWith('index.html#')) return;
     const el = document.getElementById(id);
     if (el) {
       e.preventDefault();
