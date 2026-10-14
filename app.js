@@ -552,6 +552,21 @@
       sectionObserver.observe(portfolioSection);
     }
 
+    // Featured single showcase video on index.html
+    const featuredVideo = document.getElementById('featuredWorkVideo');
+    if (featuredVideo) {
+      const featObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            featuredVideo.play().catch(() => {});
+          } else {
+            featuredVideo.pause();
+          }
+        });
+      }, { rootMargin: '120px 0px 120px 0px', threshold: 0.05 });
+      featObserver.observe(featuredVideo);
+    }
+
     // Grid videos on portfolio.html
     const gridVideos = document.querySelectorAll('.project-video-wrapper video');
     if (gridVideos.length > 0) {

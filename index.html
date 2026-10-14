@@ -83,7 +83,7 @@
       <style>
         .brands-list {
           display: grid;
-          grid-template-columns: repeat(4, 1fr);
+          grid-template-columns: repeat(3, 1fr);
           width: 100%;
         }
         .brands-list > span {
@@ -96,10 +96,10 @@
           border-right: 1px solid var(--border);
           transition: background 0.3s ease;
         }
-        .brands-list > span:nth-child(4n) {
+        .brands-list > span:nth-child(3n) {
           border-right: none;
         }
-        .brands-list > span:nth-last-child(-n+4) {
+        .brands-list > span:nth-last-child(-n+3) {
           border-bottom: none;
         }
         .brands-list > span:hover {
@@ -129,6 +129,7 @@
         .brand-logo-millatumidi { height: 42px; max-width: 95px; }
         .brand-logo-tafu        { height: 34px; max-width: 145px; }
         .brand-logo-mdis        { height: 28px; max-width: 170px; }
+        .brand-logo-cambridge   { height: 30px; max-width: 155px; }
         .brand-logo-ipoteka     { height: 34px; max-width: 155px; }
         .brand-logo-asaka       { height: 48px; max-width: 70px; }
         .brand-logo-aab         { height: 36px; max-width: 145px; }
@@ -162,6 +163,7 @@
         .brand-chip .brand-logo-millatumidi { height: 22px; max-width: 50px; }
         .brand-chip .brand-logo-tafu        { height: 18px; max-width: 75px; }
         .brand-chip .brand-logo-mdis        { height: 15px; max-width: 80px; }
+        .brand-chip .brand-logo-cambridge   { height: 18px; max-width: 75px; }
         .brand-chip .brand-logo-ipoteka     { height: 18px; max-width: 75px; }
         .brand-chip .brand-logo-asaka       { height: 26px; max-width: 36px; }
         .brand-chip .brand-logo-aab         { height: 18px; max-width: 72px; }
@@ -184,6 +186,7 @@
         <span><img src="logos/millatumidi.png" alt="MILLAT UMIDI" class="brands-logo brand-logo-millatumidi" onerror="this.outerHTML='MILLAT UMIDI'"></span>
         <span><img src="logos/tafu.svg" alt="TAFU" class="brands-logo brand-logo-tafu" onerror="this.outerHTML='TAFU'"></span>
         <span><img src="logos/mdis.png" alt="MDIS UNIVERSITY" class="brands-logo brand-logo-mdis" onerror="this.outerHTML='mdis UNIVERSITY'"></span>
+        <span><img src="logos/cambridge.svg" alt="CAMBRIDGE LEARNING CENTER" class="brands-logo brand-logo-cambridge" onerror="this.outerHTML='CAMBRIDGE LEARNING CENTER'"></span>
         <span><img src="logos/ipotekabank.png" alt="IPOTEKA BANK" class="brands-logo brand-logo-ipoteka" onerror="this.outerHTML='IPOTEKA BANK'"></span>
         <span><img src="logos/asakabank.png" alt="ASAKABANK" class="brands-logo brand-logo-asaka" onerror="this.outerHTML='ASAKABANK'"></span>
         <span><img src="logos/asiaalliancebank.svg" alt="ASIA ALLIANCE BANK" class="brands-logo brand-logo-aab" onerror="this.outerHTML='ASIA ALLIANCE BANK'"></span>
@@ -206,6 +209,7 @@
             <span class="brand-chip"><img src="logos/lipton.svg" alt="LIPTON" class="brands-logo brand-logo-lipton" onerror="this.outerHTML='LIPTON'"></span>
             <span class="brand-chip"><img src="logos/cheers.png" alt="CHEERS" class="brands-logo brand-logo-cheers" onerror="this.outerHTML='CHEERS'"></span>
             <span class="brand-chip"><img src="logos/sfad.png" alt="SFAD" class="brands-logo brand-logo-sfad" onerror="this.outerHTML='SFAD'"></span>
+            <span class="brand-chip"><img src="logos/cambridge.svg" alt="CAMBRIDGE" class="brands-logo brand-logo-cambridge" onerror="this.outerHTML='CAMBRIDGE'"></span>
           </div>
           <div class="brands-mobile-content" aria-hidden="true">
             <span class="brand-chip"><img src="logos/honor.svg" alt="HONOR" class="brands-logo brand-logo-honor" onerror="this.outerHTML='HONOR'"></span>
@@ -213,6 +217,7 @@
             <span class="brand-chip"><img src="logos/lipton.svg" alt="LIPTON" class="brands-logo brand-logo-lipton" onerror="this.outerHTML='LIPTON'"></span>
             <span class="brand-chip"><img src="logos/cheers.png" alt="CHEERS" class="brands-logo brand-logo-cheers" onerror="this.outerHTML='CHEERS'"></span>
             <span class="brand-chip"><img src="logos/sfad.png" alt="SFAD" class="brands-logo brand-logo-sfad" onerror="this.outerHTML='SFAD'"></span>
+            <span class="brand-chip"><img src="logos/cambridge.svg" alt="CAMBRIDGE" class="brands-logo brand-logo-cambridge" onerror="this.outerHTML='CAMBRIDGE'"></span>
           </div>
         </div>
 
@@ -273,7 +278,7 @@
     </div>
   </section>
 
-  <!-- ===== PORTFOLIO CAROUSEL ===== -->
+  <!-- ===== FEATURED WORK ===== -->
   <section class="work" id="work">
     <div class="work-header reveal">
       <div class="section-label-row" style="margin-bottom: 24px;">
@@ -284,21 +289,9 @@
       <h2 class="work-title">Featured <em>Work</em></h2>
     </div>
 
-    <!-- 2-Row Video Showcase (Top: Vertical, Bottom: Horizontal) -->
-    <div class="portfolio-carousel-wrapper reveal">
-      <!-- Top Row: Vertical Videos -->
-      <div class="portfolio-carousel-track row-top" id="carouselTrackTopWrapper">
-        <div class="portfolio-carousel-content" id="carouselTrackTop1">
-          <!-- Populated by JS -->
-        </div>
-      </div>
-
-      <!-- Bottom Row: Horizontal Videos -->
-      <div class="portfolio-carousel-track row-bottom" id="carouselTrackBottomWrapper">
-        <div class="portfolio-carousel-content" id="carouselTrackBottom1">
-          <!-- Populated by JS -->
-        </div>
-      </div>
+    <!-- Single Showcase Video -->
+    <div class="featured-video-wrapper reveal">
+      <video id="featuredWorkVideo" src="PORTFOLIO_WEB.mp4" autoplay loop muted playsinline preload="auto" disablePictureInPicture controlsList="nodownload noplaybackrate" oncontextmenu="return false;"></video>
     </div>
 
     <div class="portfolio-action-row reveal">
