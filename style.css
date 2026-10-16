@@ -87,12 +87,7 @@ ul, ol { list-style: none; }
   pointer-events: none;
 }
 .brands { position: relative; }
-.side-lines {
-  position: absolute;
-  inset: 0;
-  z-index: 5;
-  pointer-events: none;
-}
+.side-lines { display: none !important; }
 .side-line {
   position: absolute;
   top: 0;
@@ -101,9 +96,6 @@ ul, ol { list-style: none; }
   background: var(--border);
 }
 .side-line--1 { left: var(--side-pad); }
-.side-line--2 { left: calc(var(--side-pad) + (100% - var(--side-pad) * 2) * 0.25); }
-.side-line--3 { left: 50%; }
-.side-line--4 { left: calc(var(--side-pad) + (100% - var(--side-pad) * 2) * 0.75); }
 .side-line--5 { right: var(--side-pad); }
 
 /* ---------- Section label row (01 / TITLE) ---------- */
