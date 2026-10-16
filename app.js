@@ -75,6 +75,15 @@
 
   // Full detailed playlist with specific grid layouts
   const projects = [
+    // --- IMPERVIR AGENCY ---
+    { 
+      src: '16.mp4', 
+      title: 'Impervir Agency', 
+      subtitle: 'Dynamic edit',
+      deliverables: ['Motion', 'SFX', 'Hashtags'],
+      gridClass: 'col-span-6',
+      isVertical: true
+    },
     // --- SMARTCAST MEDIA ---
     { 
       src: '10v1.mp4', 
