@@ -625,9 +625,11 @@ ul, ol { list-style: none; }
 
 .project-video-wrapper.vertical-video {
   aspect-ratio: 9/16;
+  max-height: 580px;
+  width: min(100%, calc(580px * 9 / 16));
+  margin: 0 auto 24px;
   border-radius: 8px;
   overflow: hidden;
-  margin-bottom: 24px;
   cursor: default;
 }
 

@@ -75,15 +75,6 @@
 
   // Full detailed playlist with specific grid layouts
   const projects = [
-    // --- IMPERVIR AGENCY ---
-    { 
-      src: '16.mp4', 
-      title: 'Impervir Agency', 
-      subtitle: 'Dynamic edit',
-      deliverables: ['Motion', 'SFX', 'Hashtags'],
-      gridClass: 'col-span-6',
-      isVertical: true
-    },
     // --- SMARTCAST MEDIA ---
     { 
       src: '10v1.mp4', 
@@ -106,7 +97,14 @@
       deliverables: ['Motion Graphics', 'Typography', 'Sound Design'],
       gridClass: 'col-span-6'
     },
-    // --- NEW ROW ---
+    { 
+      src: 'AQNwZro_xJtNdi6bYZPw21NaVKnFnCNymHbCU2gPb2hgC6ae2AnwFsfoqOxtNyR.mp4', 
+      title: 'Smartcast media', 
+      subtitle: 'dynamic edit',
+      deliverables: ['Motion Graphics', 'Typography', 'Sound Design'],
+      gridClass: 'col-span-6'
+    },
+    // --- MOTION PROJECTS ---
     { 
       src: 'meport13res.mp4', 
       title: 'Motion Project', 
@@ -126,14 +124,7 @@
       title: 'Motion Project', 
       subtitle: 'dynamic edit',
       deliverables: ['Motion Graphics', 'Typography', 'Sound Design'],
-      gridClass: 'col-span-6'
-    },
-    { 
-      src: 'AQNwZro_xJtNdi6bYZPw21NaVKnFnCNymHbCU2gPb2hgC6ae2AnwFsfoqOxtNyR.mp4', 
-      title: 'Motion Project', 
-      subtitle: 'dynamic edit',
-      deliverables: ['Motion Graphics', 'Typography', 'Sound Design'],
-      gridClass: 'col-span-6'
+      gridClass: 'col-span-12'
     },
     // --- ROW 1 (NEW ADDITIONS) ---
     { 
@@ -232,14 +223,23 @@
       idea: 'Utilizing streamlined workflows and custom templates without sacrificing quality.',
       gridClass: 'col-span-5'
     },
-    // --- ROW 4 ---
+    // --- ROW 4 (REELS) ---
+    { 
+      src: '16.mp4', 
+      title: 'Impervir Agency', 
+      subtitle: 'Expert Reels Motion',
+      summary: 'Dynamic social media reel with custom motion graphics, sound design, and viral pacing.',
+      deliverables: ['Motion', 'SFX', 'Hashtags'],
+      gridClass: 'col-span-3',
+      isVertical: true
+    },
     { 
       src: 'un1.mp4', 
       title: 'Flour Mill', 
       subtitle: 'Motion reels',
       summary: 'High-quality motion video tailored for social media engagement.',
       deliverables: ['Motion Graphics', 'Typography', 'Sound Design'],
-      gridClass: 'col-span-4',
+      gridClass: 'col-span-3',
       isVertical: true
     },
     { 
@@ -248,7 +248,7 @@
       subtitle: 'Motion reels',
       summary: 'High-quality motion video tailored for social media engagement.',
       deliverables: ['Motion Graphics', 'Typography', 'Sound Design'],
-      gridClass: 'col-span-4',
+      gridClass: 'col-span-3',
       isVertical: true
     },
     { 
@@ -257,7 +257,7 @@
       subtitle: 'Motion reels',
       summary: 'High-quality motion video tailored for social media engagement.',
       deliverables: ['Motion Graphics', 'Typography', 'Sound Design'],
-      gridClass: 'col-span-4',
+      gridClass: 'col-span-3',
       isVertical: true
     },
     // --- ROW 5 ---
