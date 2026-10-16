@@ -316,15 +316,11 @@
       
       const noCropClass = proj.noCrop ? 'no-crop' : '';
       const verticalClass = proj.isVertical ? 'vertical-video' : '';
-      const isInitial = idx < 2;
-      const srcAttr = isInitial 
-        ? `src="${proj.src}" preload="metadata"` 
-        : `data-src="${proj.src}" preload="none"`;
 
       html += `
         <div class="project-block reveal ${proj.gridClass}">
           <div class="project-video-wrapper ${noCropClass} ${verticalClass}" data-video-src="${proj.src}">
-            <video ${srcAttr} ${isInitial ? 'autoplay' : ''} muted loop playsinline disablePictureInPicture controlsList="nodownload" oncontextmenu="return false;"></video>
+            <video src="${proj.src}" autoplay muted loop playsinline preload="metadata" disablePictureInPicture controlsList="nodownload" oncontextmenu="return false;"></video>
             <div class="project-video-overlay">
               <div class="overlay-num">${num}</div>
               <div class="overlay-title">${proj.title}</div>
@@ -593,7 +589,7 @@
             v.pause();
           }
         });
-      }, { rootMargin: '200px 0px 200px 0px', threshold: 0.05 });
+      }, { rootMargin: '80px 0px 80px 0px', threshold: 0.1 });
 
       gridVideos.forEach((v) => gridObserver.observe(v));
     }
