@@ -234,15 +234,6 @@
       isVertical: true
     },
     { 
-      src: '17.mp4', 
-      title: 'Motion Edit', 
-      subtitle: 'Expert Reels Motion',
-      summary: 'High-energy motion edit with dynamic transitions, typography, and sound design.',
-      deliverables: ['Motion Graphics', 'Typography', 'Sound Design'],
-      gridClass: 'col-span-3',
-      isVertical: true
-    },
-    { 
       src: 'un1.mp4', 
       title: 'Flour Mill', 
       subtitle: 'Motion reels',
@@ -268,6 +259,15 @@
       deliverables: ['Motion Graphics', 'Typography', 'Sound Design'],
       gridClass: 'col-span-3',
       isVertical: true
+    },
+    // --- SFAD COMMERCIAL ---
+    { 
+      src: '17.mp4', 
+      title: 'SFAD', 
+      subtitle: 'full motion/sfx/design',
+      summary: 'A high-energy commercial motion showcase crafted for SFAD confectionery and brand products.',
+      deliverables: ['Motion Graphics', 'Typography', 'Sound Design'],
+      gridClass: 'col-span-12'
     },
     // --- ROW 5 ---
     { 
