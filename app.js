@@ -1,5 +1,5 @@
 // ==========================================
-// CREZ Motion — App (iee.studio WHITE clone)
+// CREZ Motion вЂ” App (iee.studio WHITE clone)
 // ==========================================
 
 (function () {
@@ -230,6 +230,15 @@
       subtitle: 'Expert Reels Motion',
       summary: 'Dynamic social media reel with custom motion graphics, sound design, and viral pacing.',
       deliverables: ['Motion', 'SFX', 'Hashtags'],
+      gridClass: 'col-span-3',
+      isVertical: true
+    },
+    { 
+      src: '17.mp4', 
+      title: 'Motion Edit', 
+      subtitle: 'Expert Reels Motion',
+      summary: 'High-energy motion edit with dynamic transitions, typography, and sound design.',
+      deliverables: ['Motion Graphics', 'Typography', 'Sound Design'],
       gridClass: 'col-span-3',
       isVertical: true
     },
